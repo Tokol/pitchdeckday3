@@ -79,11 +79,11 @@
       }
 
       .reveal h1.problem-title {
-        max-width: 890px;
+        max-width: 930px;
         margin: 0;
         color: var(--ink);
-        font-size: clamp(40px, 5.1vw, 66px);
-        line-height: 0.96;
+        font-size: clamp(26px, 3vw, 38px);
+        line-height: 1.04;
         letter-spacing: 0;
         text-transform: none;
       }
@@ -93,25 +93,844 @@
       }
 
       .problem-subtitle {
-        max-width: 770px;
+        max-width: 830px;
         margin: 12px 0 16px;
         color: var(--muted);
-        font-size: 19px;
+        font-size: 18px;
         line-height: 1.35;
       }
 
       .stage {
         position: relative;
-        min-height: 430px;
+        margin-top: 56px;
+        min-height: 376px;
         contain: layout paint;
-        border: 1px solid var(--line);
+        border: 1px solid rgba(170, 119, 18, 0.32);
         border-radius: 8px;
         background:
-          linear-gradient(rgba(23, 51, 37, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(23, 51, 37, 0.06) 1px, transparent 1px),
+          radial-gradient(circle at 19% 72%, rgba(220, 63, 63, 0.17), transparent 24%),
+          radial-gradient(circle at 82% 23%, rgba(255, 209, 102, 0.5), transparent 26%),
+          linear-gradient(rgba(170, 119, 18, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(170, 119, 18, 0.08) 1px, transparent 1px),
+          linear-gradient(135deg, rgba(255, 251, 237, 0.96), rgba(248, 238, 195, 0.9));
+        background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px, 100% 100%;
+        box-shadow: 0 24px 70px rgba(104, 71, 8, 0.18);
+      }
+
+      .stage::after {
+        content: "?";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        color: rgba(196, 136, 18, 0.15);
+        font-size: 250px;
+        font-weight: 950;
+        line-height: 1;
+        transform: translate(-50%, -52%);
+      }
+
+      .price-card {
+        position: absolute;
+        z-index: 4;
+        width: 232px;
+        border: 1px solid rgba(170, 119, 18, 0.26);
+        border-radius: 8px;
+        padding: 13px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 248, 230, 0.94));
+        box-shadow: 0 18px 45px rgba(104, 71, 8, 0.18);
+      }
+
+      .local-price-card {
+        left: 30px;
+        bottom: 22px;
+        border-color: rgba(220, 63, 63, 0.46);
+        background:
+          repeating-linear-gradient(
+            -8deg,
+            rgba(220, 63, 63, 0.06) 0 8px,
+            transparent 8px 22px
+          ),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 236, 225, 0.9));
+        box-shadow: 0 18px 45px rgba(220, 63, 63, 0.14);
+      }
+
+      .import-price-card {
+        left: 30px;
+        top: 24px;
+        border-color: rgba(196, 136, 18, 0.38);
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 201, 0.94));
+        box-shadow: 0 18px 45px rgba(196, 136, 18, 0.2);
+      }
+
+      .price-card small {
+        display: block;
+        max-width: 145px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1.08;
+      }
+
+      .price-card strong {
+        display: block;
+        margin-top: 5px;
+        color: var(--ink);
+        font-size: 40px;
+        line-height: 1;
+      }
+
+      .price-card span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.25;
+      }
+
+      .price-card.local-price-card strong {
+        color: var(--red);
+      }
+
+      .local-price-card::after {
+        content: "farm-gate distress price";
+        position: absolute;
+        right: 12px;
+        top: -12px;
+        border-radius: 999px;
+        padding: 4px 7px;
+        background: rgba(220, 63, 63, 0.12);
+        color: var(--red);
+        font-size: 8px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .price-card.import-price-card strong {
+        color: var(--orange);
+      }
+
+      .import-price-card::after {
+        content: "retail-ready supply";
+        position: absolute;
+        right: 12px;
+        top: -12px;
+        border-radius: 999px;
+        padding: 4px 7px;
+        background: rgba(255, 209, 102, 0.28);
+        color: #8a5a09;
+        font-size: 8px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .paprika-pile {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        align-items: end;
+      }
+
+      .local-producer-scene {
+        display: grid;
+        grid-template-columns: 74px 1fr;
+        align-items: end;
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      .local-producer-scene .paprika-pile {
+        margin-top: 0;
+      }
+
+      .farmer-mini {
+        position: relative;
+        height: 54px;
+      }
+
+      .farmer-mini::before {
+        content: "🧑‍🌾";
+        position: absolute;
+        left: 0;
+        bottom: 2px;
+        font-size: 28px;
+      }
+
+      .farmer-mini::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 4px;
+        width: 38px;
+        height: 23px;
+        border-radius: 7px 10px 5px 5px;
+        background: var(--green);
+        box-shadow:
+          inset 13px 0 0 var(--lime),
+          0 8px 14px rgba(23, 51, 37, 0.16);
+      }
+
+      .paprika {
+        position: relative;
+        width: 34px;
+        height: 47px;
+        border-radius: 48% 52% 44% 48%;
+        background:
+          radial-gradient(circle at 29% 35%, rgba(255, 255, 255, 0.36) 0 7px, transparent 8px),
+          linear-gradient(145deg, #f6533f, #b81925);
+        box-shadow: inset -9px -6px 0 rgba(93, 0, 0, 0.12);
+      }
+
+      .paprika::before {
+        content: "";
+        position: absolute;
+        left: 13px;
+        top: -9px;
+        width: 10px;
+        height: 14px;
+        border-radius: 999px 999px 4px 4px;
+        background: var(--deep-green);
+        transform: rotate(9deg);
+      }
+
+      .covered .paprika::after {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.06));
+        border: 1px solid rgba(255, 255, 255, 0.72);
+      }
+
+      .friction-stack {
+        position: absolute;
+        left: 55%;
+        bottom: 38px;
+        z-index: 5;
+        display: grid;
+        width: 470px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        transform: translateX(-50%);
+      }
+
+      .friction-item {
+        position: relative;
+        min-height: 58px;
+        border: 2px solid rgba(239, 123, 69, 0.28);
+        border-radius: 8px;
+        padding: 10px 9px;
+        background: rgba(255, 248, 230, 0.96);
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 950;
+        text-align: center;
+        box-shadow: 0 14px 32px rgba(23, 51, 37, 0.12);
+        animation: checkpointDeduct 5.6s ease-in-out infinite;
+      }
+
+      .friction-item::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -18px;
+        width: 2px;
+        height: 18px;
+        background: rgba(239, 123, 69, 0.48);
+        transform: translateX(-50%);
+      }
+
+      .friction-item::after {
+        content: "-";
+        position: absolute;
+        right: -10px;
+        top: -13px;
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--red);
+        color: #ffffff;
+        font-size: 19px;
+        font-weight: 950;
+        opacity: 0;
+        transform: scale(0.72);
+        animation: deductBadge 5.6s ease-in-out infinite;
+      }
+
+      .friction-item span {
+        display: block;
+        margin-top: 4px;
+        color: #9b5f08;
+        font-size: 10px;
+        font-weight: 950;
+      }
+
+      .route-plane {
+        position: absolute;
+        left: 300px;
+        top: 50px;
+        z-index: 5;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 8px;
+        color: #6a4610;
+        font-size: 50px;
+        font-weight: 950;
+        filter: drop-shadow(0 10px 14px rgba(104, 71, 8, 0.2));
+        animation: routePlane 5s ease-in-out infinite;
+      }
+
+      .route-tractor {
+        position: absolute;
+        left: 285px;
+        bottom: 90px;
+        z-index: 7;
+        width: 56px;
+        height: 32px;
+        border-radius: 9px 14px 6px 6px;
+        background: var(--green);
+        box-shadow:
+          inset 16px 0 0 var(--lime),
+          0 10px 18px rgba(23, 51, 37, 0.18);
+        animation: localTractorMove 5.6s ease-in-out infinite;
+      }
+
+      .route-tractor::before {
+        content: "";
+        position: absolute;
+        right: 6px;
+        top: -16px;
+        width: 22px;
+        height: 19px;
+        border-radius: 5px 5px 0 0;
+        background: var(--deep-green);
+      }
+
+      .route-tractor::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        bottom: -9px;
+        width: 22px;
+        height: 22px;
+        border: 4px solid var(--ink);
+        border-radius: 50%;
+        background: var(--yellow);
+        box-shadow: 32px 4px 0 -5px var(--yellow), 32px 4px 0 -1px var(--ink);
+      }
+
+      .co2-badge {
+        border-radius: 999px;
+        padding: 5px 9px;
+        background: rgba(57, 68, 62, 0.12);
+        color: #39443e;
+        font-size: 13px;
+        letter-spacing: 0.02em;
+      }
+
+      .import-route,
+      .local-route {
+        position: absolute;
+        z-index: 2;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(23, 51, 37, 0.12);
+      }
+
+      .import-route {
+        left: 280px;
+        right: 182px;
+        top: 92px;
+      }
+
+      .local-route {
+        left: 280px;
+        right: 182px;
+        bottom: 72px;
+      }
+
+      .import-route::before,
+      .local-route::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+      }
+
+      .import-route::before {
+        background: linear-gradient(90deg, var(--orange), var(--yellow));
+      }
+
+      .local-route::before {
+        width: 100%;
+        background: linear-gradient(90deg, var(--red), var(--orange), rgba(239, 123, 69, 0.48));
+      }
+
+      .import-route::after,
+      .local-route::after {
+        content: "";
+        position: absolute;
+        right: -2px;
+        top: 50%;
+        width: 15px;
+        height: 15px;
+        border-top: 4px solid var(--orange);
+        border-right: 4px solid var(--orange);
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .common-consumer {
+        position: absolute;
+        right: 34px;
+        top: 50%;
+        z-index: 4;
+        transform: translateY(-50%);
+      }
+
+      .friction-item:nth-child(2) {
+        animation-delay: 0.95s;
+      }
+
+      .friction-item:nth-child(3) {
+        animation-delay: 1.9s;
+      }
+
+      .friction-item:nth-child(2)::after {
+        animation-delay: 0.95s;
+      }
+
+      .friction-item:nth-child(3)::after {
+        animation-delay: 1.9s;
+      }
+
+      .carbon-note {
+        position: absolute;
+        right: 34px;
+        bottom: 22px;
+        z-index: 6;
+        max-width: 190px;
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: rgba(255, 209, 102, 0.28);
+        color: #6a4610;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .problem-diagnosis-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 18% 26%, rgba(220, 63, 63, 0.12), transparent 24%),
+          radial-gradient(circle at 84% 68%, rgba(255, 209, 102, 0.28), transparent 28%),
+          linear-gradient(135deg, #f7fbf2 0%, #eff8ea 56%, #fff7df 100%);
+      }
+
+      .problem-diagnosis-slide .deck-brand {
+        top: 22px;
+        right: 28px;
+        gap: 8px;
+        font-size: 11px;
+      }
+
+      .problem-diagnosis-slide .deck-brand img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .reveal h1.diagnosis-title {
+        max-width: 900px;
+        margin: 48px 0 22px;
+        color: var(--ink);
+        font-size: clamp(28px, 3.35vw, 44px);
+        line-height: 1.03;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .diagnosis-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: 250px 1fr 250px;
+        align-items: center;
+        gap: 22px;
+        min-height: 388px;
+        border: 1px solid rgba(170, 119, 18, 0.25);
+        border-radius: 8px;
+        padding: 28px;
+        background:
+          linear-gradient(rgba(170, 119, 18, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(170, 119, 18, 0.07) 1px, transparent 1px),
           rgba(255, 255, 255, 0.62);
-        background-size: 44px 44px;
-        box-shadow: 0 24px 70px rgba(23, 51, 37, 0.11);
+        background-size: 42px 42px;
+        box-shadow: 0 24px 70px rgba(104, 71, 8, 0.12);
+      }
+
+      .diagnosis-card {
+        position: relative;
+        z-index: 2;
+        align-self: center;
+        border: 1px solid rgba(23, 51, 37, 0.12);
+        border-radius: 8px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.11);
+      }
+
+      .producer-visual,
+      .consumer-visual {
+        min-height: 252px;
+      }
+
+      .diagnosis-card small {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .diagnosis-card strong {
+        display: block;
+        margin-top: 8px;
+        color: var(--ink);
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .producer-diagnosis {
+        border-color: rgba(220, 63, 63, 0.34);
+        background:
+          repeating-linear-gradient(-8deg, rgba(220, 63, 63, 0.06) 0 8px, transparent 8px 22px),
+          rgba(255, 255, 255, 0.94);
+      }
+
+      .consumer-diagnosis {
+        border-color: rgba(239, 123, 69, 0.3);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 248, 230, 0.94));
+      }
+
+      .producer-actor {
+        position: relative;
+        height: 92px;
+        margin-top: 16px;
+      }
+
+      .producer-actor::before {
+        content: "🧑‍🌾";
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        font-size: 44px;
+      }
+
+      .producer-actor::after {
+        content: "";
+        position: absolute;
+        right: 6px;
+        bottom: 14px;
+        width: 112px;
+        height: 52px;
+        border-radius: 14px 18px 10px 10px;
+        background:
+          radial-gradient(circle at 25% 44%, #e64242 0 11px, transparent 12px),
+          radial-gradient(circle at 48% 45%, #e64242 0 12px, transparent 13px),
+          radial-gradient(circle at 70% 46%, #e64242 0 11px, transparent 12px),
+          linear-gradient(135deg, var(--green), var(--lime));
+        box-shadow:
+          inset 22px 0 0 rgba(255, 255, 255, 0.18),
+          0 12px 22px rgba(23, 51, 37, 0.16);
+      }
+
+      .producer-wheels {
+        position: absolute;
+        right: 20px;
+        bottom: 4px;
+        width: 26px;
+        height: 26px;
+        border: 4px solid var(--ink);
+        border-radius: 50%;
+        background: var(--yellow);
+        box-shadow: 62px 0 0 -4px var(--yellow), 62px 0 0 0 var(--ink);
+      }
+
+      .value-token-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .value-token {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #ffd166, #c48712);
+        color: #6a4610;
+        font-size: 16px;
+        font-weight: 950;
+        box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.38);
+      }
+
+      .value-token.faded {
+        opacity: 0.34;
+      }
+
+      .margin-meter {
+        position: relative;
+        height: 18px;
+        margin-top: 22px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(23, 51, 37, 0.1);
+      }
+
+      .margin-meter::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 28%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--red), #ff8a65);
+        animation: lowMarginPulse 2.8s ease-in-out infinite;
+      }
+
+      .coin-stack {
+        display: flex;
+        align-items: end;
+        gap: 6px;
+        height: 56px;
+        margin-top: 18px;
+      }
+
+      .coin-stack span {
+        width: 34px;
+        border-radius: 999px 999px 4px 4px;
+        background: linear-gradient(180deg, #ffd166, #c48712);
+        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.42);
+      }
+
+      .coin-stack span:nth-child(1) {
+        height: 18px;
+      }
+
+      .coin-stack span:nth-child(2) {
+        height: 30px;
+      }
+
+      .coin-stack span:nth-child(3) {
+        height: 44px;
+        opacity: 0.42;
+      }
+
+      .friction-diagnosis {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-content: center;
+        gap: 28px;
+      }
+
+      .friction-diagnosis::before {
+        content: "";
+        position: absolute;
+        left: -26px;
+        right: -26px;
+        top: 50%;
+        z-index: -1;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow));
+        transform: translateY(-50%);
+      }
+
+      .friction-node {
+        position: relative;
+        min-height: 128px;
+        border: 2px solid rgba(239, 123, 69, 0.26);
+        border-radius: 8px;
+        padding: 42px 10px 12px;
+        background: rgba(255, 248, 230, 0.96);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 950;
+        text-align: center;
+        box-shadow: 0 16px 36px rgba(23, 51, 37, 0.1);
+      }
+
+      .friction-node::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 13px;
+        width: 34px;
+        height: 20px;
+        border-radius: 4px 4px 2px 2px;
+        background: repeating-linear-gradient(90deg, var(--red) 0 8px, #ffffff 8px 16px);
+        transform: translateX(-50%);
+      }
+
+      .friction-node::after {
+        content: "-";
+        position: absolute;
+        right: -14px;
+        top: 50%;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--red);
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 950;
+        box-shadow: 0 8px 20px rgba(220, 63, 63, 0.22);
+        animation: tollFlash 4.8s ease-in-out infinite;
+      }
+
+      .friction-node:nth-child(2)::after {
+        animation-delay: 0.8s;
+      }
+
+      .friction-node:nth-child(3)::after {
+        animation-delay: 1.6s;
+      }
+
+      .friction-node span {
+        display: block;
+        margin-top: 8px;
+        color: #9b5f08;
+        font-size: 11px;
+        line-height: 1.18;
+      }
+
+      .price-riser {
+        display: grid;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .price-riser span {
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(239, 123, 69, 0.18);
+      }
+
+      .price-riser span:nth-child(1) {
+        width: 42%;
+      }
+
+      .price-riser span:nth-child(2) {
+        width: 68%;
+      }
+
+      .price-riser span:nth-child(3) {
+        width: 96%;
+        background: linear-gradient(90deg, var(--orange), var(--yellow));
+      }
+
+      .access-lock {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        border-radius: 8px;
+        padding: 10px 12px;
+        background: rgba(23, 51, 37, 0.07);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .access-lock b {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--deep-green);
+        color: #ffffff;
+      }
+
+      .consumer-table-visual {
+        position: relative;
+        display: grid;
+        place-items: center;
+        height: 118px;
+        margin-top: 16px;
+      }
+
+      .consumer-table-visual .plate-icon {
+        transform: scale(1.2);
+      }
+
+      .access-route-block {
+        position: relative;
+        height: 58px;
+        margin-top: 18px;
+      }
+
+      .access-route-block::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 50%;
+        height: 10px;
+        border-radius: 999px;
+        background: repeating-linear-gradient(90deg, rgba(23, 51, 37, 0.18) 0 16px, transparent 16px 26px);
+      }
+
+      .access-route-block::after {
+        content: "blocked local access";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border: 2px solid rgba(220, 63, 63, 0.38);
+        border-radius: 999px;
+        padding: 7px 12px;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--red);
+        font-size: 12px;
+        font-weight: 950;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes lowMarginPulse {
+        0%,
+        100% {
+          width: 22%;
+        }
+        50% {
+          width: 34%;
+        }
+      }
+
+      @keyframes tollFlash {
+        0%,
+        22%,
+        100% {
+          opacity: 0;
+          transform: translateY(-50%) scale(0.72);
+        }
+        34%,
+        48% {
+          opacity: 1;
+          transform: translateY(-50%) scale(1);
+        }
       }
 
       .route-label {
@@ -352,16 +1171,6 @@
         animation-delay: 0.45s;
       }
 
-      .plane {
-        position: absolute;
-        top: 76px;
-        left: 118px;
-        z-index: 5;
-        font-size: 48px;
-        filter: drop-shadow(0 10px 13px rgba(23, 51, 37, 0.22));
-        animation: flyPlane 5.2s ease-in-out infinite;
-      }
-
       .moving-tractor {
         position: absolute;
         bottom: 44px;
@@ -533,18 +1342,6 @@
         }
       }
 
-      @keyframes flyPlane {
-        0% {
-          transform: translateX(0) translateY(4px) rotate(8deg);
-        }
-        58% {
-          transform: translateX(790px) translateY(-12px) rotate(8deg);
-        }
-        100% {
-          transform: translateX(790px) translateY(-12px) rotate(8deg);
-        }
-      }
-
       @keyframes moveTruck {
         0% {
           transform: translateX(0);
@@ -613,6 +1410,89 @@
         }
       }
 
+      @keyframes stalledRoute {
+        0%,
+        100% {
+          width: 34%;
+          opacity: 0.72;
+        }
+        50% {
+          width: 58%;
+          opacity: 1;
+        }
+      }
+
+      @keyframes routePlane {
+        0% {
+          transform: translateX(0) translateY(4px);
+        }
+        58% {
+          transform: translateX(520px) translateY(-6px);
+        }
+        100% {
+          transform: translateX(520px) translateY(-6px);
+        }
+      }
+
+      @keyframes localTractorMove {
+        0% {
+          transform: translateX(0);
+        }
+        22% {
+          transform: translateX(170px);
+        }
+        42% {
+          transform: translateX(315px);
+        }
+        62% {
+          transform: translateX(455px);
+        }
+        82%,
+        100% {
+          transform: translateX(620px);
+        }
+      }
+
+      @keyframes checkpointDeduct {
+        0%,
+        22%,
+        100% {
+          border-color: rgba(239, 123, 69, 0.28);
+          box-shadow: 0 14px 32px rgba(23, 51, 37, 0.12);
+          transform: translateY(0);
+        }
+        33%,
+        43% {
+          border-color: rgba(220, 63, 63, 0.58);
+          box-shadow: 0 0 0 6px rgba(220, 63, 63, 0.12), 0 14px 32px rgba(23, 51, 37, 0.14);
+          transform: translateY(-4px);
+        }
+      }
+
+      @keyframes deductBadge {
+        0%,
+        22%,
+        100% {
+          opacity: 0;
+          transform: scale(0.72);
+        }
+        33%,
+        43% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes frictionPress {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(-7px);
+        }
+      }
+
       .solution-slide {
         position: relative;
         overflow: hidden;
@@ -644,6 +1524,781 @@
         color: var(--muted);
         font-size: 12px;
         line-height: 1.25;
+      }
+
+      .solution-hero {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        align-items: center;
+        gap: 28px;
+        min-height: 438px;
+        border: 1px solid rgba(55, 169, 107, 0.22);
+        border-radius: 8px;
+        padding: 30px;
+        background:
+          radial-gradient(circle at 18% 30%, rgba(55, 169, 107, 0.16), transparent 26%),
+          radial-gradient(circle at 88% 70%, rgba(255, 209, 102, 0.25), transparent 28%),
+          linear-gradient(rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.7);
+        background-size: 100% 100%, 100% 100%, 42px 42px, 42px 42px, 100% 100%;
+        box-shadow: 0 24px 70px rgba(23, 51, 37, 0.1);
+      }
+
+      .solution-copy {
+        display: grid;
+        align-content: center;
+        gap: 18px;
+        max-width: 920px;
+      }
+
+      .solution-kicker {
+        width: max-content;
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: rgba(55, 169, 107, 0.13);
+        color: var(--deep-green);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .solution-copy h1 {
+        max-width: 650px;
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(36px, 4.4vw, 58px);
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .solution-bullets {
+        display: grid;
+        gap: 12px;
+        max-width: 760px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        list-style-type: none;
+      }
+
+      .solution-bullets li::marker {
+        content: "";
+      }
+
+      .solution-bullets li {
+        position: relative;
+        border: 1px solid rgba(55, 169, 107, 0.18);
+        border-radius: 8px;
+        padding: 14px 16px 14px 46px;
+        background: rgba(255, 255, 255, 0.88);
+        color: var(--ink);
+        font-size: 20px;
+        font-weight: 850;
+        line-height: 1.18;
+        box-shadow: 0 14px 34px rgba(23, 51, 37, 0.08);
+      }
+
+      .solution-bullets li::before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: var(--green);
+        box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.76);
+      }
+
+      .prototype-panel {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 14px;
+        border: 1px solid rgba(23, 99, 66, 0.18);
+        border-radius: 8px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.12);
+        text-align: center;
+      }
+
+      .prototype-panel strong {
+        color: var(--ink);
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .prototype-panel img {
+        width: 188px;
+        height: 188px;
+        border-radius: 8px;
+        padding: 10px;
+        background: #ffffff;
+        box-shadow: inset 0 0 0 1px rgba(23, 51, 37, 0.08);
+      }
+
+      .prototype-panel a {
+        color: var(--deep-green);
+        font-size: 14px;
+        font-weight: 950;
+        text-decoration: none;
+      }
+
+      .solution-phone {
+        position: relative;
+        justify-self: center;
+        width: 330px;
+        height: 438px;
+        border: 10px solid var(--ink);
+        border-radius: 34px;
+        padding: 16px;
+        background: #ffffff;
+        box-shadow: 0 24px 52px rgba(23, 51, 37, 0.2);
+      }
+
+      .solution-phone::before {
+        content: "";
+        position: absolute;
+        top: 11px;
+        left: 50%;
+        width: 86px;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(23, 51, 37, 0.18);
+        transform: translateX(-50%);
+      }
+
+      .app-map-screen {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 22px;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(167, 217, 92, 0.54) 0 44px, transparent 45px),
+          radial-gradient(circle at 78% 24%, rgba(255, 209, 102, 0.55) 0 54px, transparent 55px),
+          radial-gradient(circle at 18% 82%, rgba(55, 169, 107, 0.22) 0 72px, transparent 73px),
+          linear-gradient(105deg, transparent 0 43%, rgba(255, 255, 255, 0.8) 43% 49%, transparent 49%),
+          linear-gradient(22deg, transparent 0 45%, rgba(255, 255, 255, 0.84) 45% 51%, transparent 51%),
+          linear-gradient(135deg, #eaf6df, #dbeed0);
+      }
+
+      .app-map-screen::before {
+        content: "";
+        position: absolute;
+        left: -32px;
+        right: -22px;
+        top: 168px;
+        height: 30px;
+        border: 5px solid rgba(255, 255, 255, 0.88);
+        border-radius: 999px;
+        transform: rotate(-18deg);
+      }
+
+      .app-top-bar {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        top: 14px;
+        z-index: 8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 999px;
+        padding: 9px 12px;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--deep-green);
+        font-size: 14px;
+        font-weight: 950;
+        box-shadow: 0 10px 24px rgba(23, 51, 37, 0.12);
+      }
+
+      .map-user-pin {
+        position: absolute;
+        left: 50%;
+        top: 48%;
+        z-index: 5;
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: rgba(55, 169, 107, 0.2);
+        transform: translate(-50%, -50%);
+      }
+
+      .map-user-pin::before {
+        content: "";
+        width: 30px;
+        height: 30px;
+        border: 5px solid #ffffff;
+        border-radius: 50%;
+        background: var(--deep-green);
+        box-shadow: 0 8px 20px rgba(23, 51, 37, 0.18);
+      }
+
+      .farmer-pop {
+        position: absolute;
+        z-index: 6;
+        min-width: 94px;
+        border-radius: 8px;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 12px 26px rgba(23, 51, 37, 0.16);
+        color: var(--ink);
+        animation: farmerPop 4.8s ease-in-out infinite;
+      }
+
+      .farmer-pop strong {
+        display: block;
+        font-size: 12px;
+      }
+
+      .farmer-pop span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 850;
+      }
+
+      .farmer-pop::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        border: 8px solid transparent;
+        border-top-color: rgba(255, 255, 255, 0.95);
+        transform: translateX(-50%);
+      }
+
+      .farm-meat {
+        left: 24px;
+        top: 86px;
+      }
+
+      .farm-potato {
+        right: 24px;
+        top: 124px;
+        animation-delay: 0.4s;
+      }
+
+      .farm-tomato {
+        left: 36px;
+        bottom: 136px;
+        animation-delay: 0.8s;
+      }
+
+      .farm-carrot {
+        right: 28px;
+        bottom: 156px;
+        animation-delay: 1.2s;
+      }
+
+      .order-sheet {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 9;
+        border-radius: 18px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 -12px 30px rgba(23, 51, 37, 0.16);
+        animation: orderSheetSlide 5.6s ease-in-out infinite;
+      }
+
+      .order-sheet strong {
+        display: block;
+        color: var(--ink);
+        font-size: 16px;
+      }
+
+      .order-sheet span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .order-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .order-controls button {
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 8px;
+        background: var(--deep-green);
+        color: #ffffff;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 950;
+      }
+
+      .order-controls button:first-child {
+        background: rgba(55, 169, 107, 0.14);
+        color: var(--deep-green);
+      }
+
+      @keyframes farmerPop {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-6px) scale(1.04);
+        }
+      }
+
+      @keyframes orderSheetSlide {
+        0%,
+        18% {
+          transform: translateY(112%);
+        }
+        34%,
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .progress-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 16% 24%, rgba(55, 169, 107, 0.18), transparent 27%),
+          radial-gradient(circle at 86% 72%, rgba(255, 209, 102, 0.28), transparent 28%),
+          linear-gradient(135deg, #f7fbf2 0%, #edf8eb 58%, #fff7df 100%);
+      }
+
+      .reveal h1.progress-title {
+        margin: 48px 0 22px;
+        color: var(--ink);
+        font-size: clamp(40px, 4.4vw, 56px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: none;
+        opacity: 1;
+      }
+
+      .progress-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        min-height: 390px;
+        border: 1px solid rgba(55, 169, 107, 0.22);
+        border-radius: 8px;
+        padding: 28px;
+        background:
+          linear-gradient(rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.66);
+        background-size: 42px 42px;
+        box-shadow: 0 24px 70px rgba(23, 51, 37, 0.1);
+      }
+
+      .progress-stage::before {
+        content: "";
+        position: absolute;
+        left: 12%;
+        right: 12%;
+        top: 50%;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--green), var(--lime), var(--yellow));
+        transform: translateY(-50%);
+      }
+
+      .progress-card {
+        position: relative;
+        z-index: 2;
+        align-self: center;
+        min-height: 220px;
+        border: 1px solid rgba(23, 99, 66, 0.16);
+        border-radius: 8px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.12);
+      }
+
+      .progress-icon {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: rgba(55, 169, 107, 0.14);
+        color: var(--deep-green);
+        font-size: 26px;
+        font-weight: 950;
+      }
+
+      .progress-card strong {
+        display: block;
+        margin-top: 18px;
+        color: var(--ink);
+        font-size: 24px;
+        line-height: 1.08;
+      }
+
+      .progress-card span {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        border-radius: 999px;
+        padding: 7px 10px;
+        background: rgba(55, 169, 107, 0.12);
+        color: var(--deep-green);
+        font-size: 12px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .future-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 18% 24%, rgba(55, 169, 107, 0.18), transparent 27%),
+          radial-gradient(circle at 82% 74%, rgba(255, 209, 102, 0.3), transparent 28%),
+          linear-gradient(135deg, #f7fbf2 0%, #edf8eb 58%, #fff7df 100%);
+      }
+
+      .reveal h1.future-title {
+        margin: 48px 0 22px;
+        color: var(--ink);
+        font-size: clamp(40px, 4.4vw, 56px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: none;
+        opacity: 1;
+      }
+
+      .future-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 24px;
+        min-height: 390px;
+        border: 1px solid rgba(55, 169, 107, 0.22);
+        border-radius: 8px;
+        padding: 28px;
+        background:
+          linear-gradient(rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.66);
+        background-size: 42px 42px;
+        box-shadow: 0 24px 70px rgba(23, 51, 37, 0.1);
+      }
+
+      .future-roadmap {
+        position: relative;
+        display: grid;
+        align-content: center;
+        gap: 12px;
+      }
+
+      .future-roadmap::before {
+        content: "";
+        position: absolute;
+        left: 34px;
+        top: 68px;
+        bottom: 68px;
+        width: 8px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, var(--green), var(--lime), var(--yellow));
+      }
+
+      .future-step {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .future-marker {
+        display: grid;
+        place-items: center;
+        width: 64px;
+        height: 64px;
+        border: 8px solid rgba(255, 255, 255, 0.88);
+        border-radius: 50%;
+        background: var(--green);
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: 950;
+        box-shadow: 0 14px 34px rgba(23, 51, 37, 0.16);
+      }
+
+      .future-card {
+        border: 1px solid rgba(55, 169, 107, 0.18);
+        border-radius: 8px;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.11);
+      }
+
+      .future-card small {
+        display: block;
+        color: var(--deep-green);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .future-card strong {
+        display: block;
+        margin-top: 8px;
+        color: var(--ink);
+        font-size: 20px;
+        line-height: 1.12;
+      }
+
+      .future-signal {
+        position: relative;
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 16px;
+        border: 1px solid rgba(23, 99, 66, 0.18);
+        border-radius: 8px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.12);
+        text-align: center;
+      }
+
+      .future-month {
+        display: grid;
+        place-items: center;
+        width: 154px;
+        height: 154px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 50%, #ffffff 0 42px, transparent 43px),
+          conic-gradient(var(--green), var(--lime), var(--yellow), var(--green));
+        color: var(--ink);
+        font-size: 27px;
+        font-weight: 950;
+        line-height: 1;
+      }
+
+      .future-signal span {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 850;
+        line-height: 1.28;
+      }
+
+      .team-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 18% 24%, rgba(55, 169, 107, 0.18), transparent 27%),
+          radial-gradient(circle at 84% 72%, rgba(255, 209, 102, 0.3), transparent 28%),
+          linear-gradient(135deg, #f7fbf2 0%, #edf8eb 58%, #fff7df 100%);
+      }
+
+      .reveal h1.team-title {
+        margin: 48px 0 22px;
+        color: var(--ink);
+        font-size: clamp(44px, 5vw, 68px);
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: none;
+        opacity: 1;
+      }
+
+      .team-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        gap: 22px;
+        min-height: 390px;
+        border: 1px solid rgba(55, 169, 107, 0.22);
+        border-radius: 8px;
+        padding: 28px;
+        background:
+          linear-gradient(rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.66);
+        background-size: 42px 42px;
+        box-shadow: 0 24px 70px rgba(23, 51, 37, 0.1);
+      }
+
+      .team-photo-panel {
+        display: grid;
+        align-content: center;
+        gap: 14px;
+        border: 1px solid rgba(23, 99, 66, 0.16);
+        border-radius: 8px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.12);
+      }
+
+      .team-photo-panel img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 8px;
+        object-fit: cover;
+        box-shadow: inset 0 0 0 1px rgba(23, 51, 37, 0.08);
+      }
+
+      .team-photo-panel strong {
+        color: var(--ink);
+        font-size: 21px;
+        line-height: 1;
+      }
+
+      .team-card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .team-card {
+        position: relative;
+        align-self: stretch;
+        border: 1px solid rgba(23, 99, 66, 0.16);
+        border-radius: 8px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.12);
+      }
+
+      .team-avatar {
+        display: grid;
+        place-items: center;
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--green), var(--lime));
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 950;
+        box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.28);
+      }
+
+      .team-card h2 {
+        margin: 18px 0 6px;
+        color: var(--ink);
+        font-size: 34px;
+        line-height: 1;
+        text-transform: none;
+      }
+
+      .team-degree {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .team-role {
+        display: inline-flex;
+        margin-top: 16px;
+        border-radius: 999px;
+        padding: 7px 10px;
+        background: rgba(55, 169, 107, 0.13);
+        color: var(--deep-green);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .team-focus {
+        margin-top: 18px;
+        color: var(--ink);
+        font-size: 22px;
+        font-weight: 850;
+        line-height: 1.16;
+      }
+
+      .ask-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 20% 25%, rgba(55, 169, 107, 0.2), transparent 28%),
+          radial-gradient(circle at 84% 72%, rgba(255, 209, 102, 0.34), transparent 30%),
+          linear-gradient(135deg, #f7fbf2 0%, #edf8eb 58%, #fff7df 100%);
+      }
+
+      .ask-stage {
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+      }
+
+      .reveal h1.ask-title {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(72px, 10vw, 132px);
+        line-height: 0.9;
+        letter-spacing: 0;
+        text-transform: none;
+        opacity: 1;
+      }
+
+      .ask-card {
+        margin-top: 26px;
+        border: 1px solid rgba(23, 99, 66, 0.18);
+        border-radius: 8px;
+        padding: 24px 32px;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--deep-green);
+        font-size: 26px;
+        font-weight: 950;
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.12);
+      }
+
+      .ask-qr {
+        display: grid;
+        justify-items: center;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .ask-qr img {
+        width: 172px;
+        height: 172px;
+        border-radius: 8px;
+        padding: 10px;
+        background: #ffffff;
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.12);
+      }
+
+      .ask-qr strong {
+        color: var(--ink);
+        font-size: 24px;
+        font-weight: 950;
+      }
+
+      .ask-qr a {
+        color: var(--deep-green);
+        font-size: 14px;
+        font-weight: 950;
+        text-decoration: none;
       }
 
       .solution-stage {
@@ -1146,10 +2801,10 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 288px 1fr;
-        gap: 16px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px;
         min-height: 392px;
-        padding: 14px 16px;
+        padding: 16px;
         border: 1px solid var(--line);
         border-radius: 8px;
         background:
@@ -1178,14 +2833,11 @@
       }
 
       .buy-badge {
-        position: absolute;
-        left: 18px;
-        top: 18px;
-        margin: 0;
+        margin: 0 0 10px;
       }
 
       .deal-badge {
-        margin: 0 0 8px;
+        margin: 0 0 10px;
       }
 
       .search-phone {
@@ -1193,22 +2845,178 @@
         z-index: 2;
         grid-column: 1;
         grid-row: 1;
-        align-self: end;
-        width: 268px;
-        height: 340px;
-        margin-top: 36px;
-        border: 5px solid var(--ink);
-        border-radius: 26px;
-        padding: 11px;
+        align-self: stretch;
+        width: auto;
+        height: auto;
+        margin-top: 0;
+        border: 3px solid rgba(23, 51, 37, 0.18);
+        border-radius: 16px;
+        padding: 12px;
         background: rgba(255, 255, 247, 0.96);
-        box-shadow: 0 22px 42px rgba(23, 51, 37, 0.22);
+        box-shadow: 0 18px 38px rgba(23, 51, 37, 0.14);
+      }
+
+      .phone-map {
+        position: relative;
+        height: 244px;
+        overflow: hidden;
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 32% 26%, rgba(167, 217, 92, 0.48) 0 46px, transparent 47px),
+          radial-gradient(circle at 76% 28%, rgba(255, 209, 102, 0.5) 0 58px, transparent 59px),
+          radial-gradient(circle at 12% 82%, rgba(91, 169, 137, 0.24) 0 72px, transparent 73px),
+          linear-gradient(102deg, transparent 0 46%, rgba(255, 255, 255, 0.88) 46% 51%, transparent 51%),
+          linear-gradient(18deg, transparent 0 44%, rgba(255, 255, 255, 0.86) 44% 49%, transparent 49%),
+          linear-gradient(135deg, #eaf6df, #dbeed0);
+        box-shadow: inset 0 0 0 1px rgba(23, 51, 37, 0.08);
+      }
+
+      .phone-map::before {
+        content: "";
+        position: absolute;
+        left: -30px;
+        right: -24px;
+        top: 120px;
+        height: 32px;
+        border-radius: 999px;
+        border: 5px solid #ffffff;
+        transform: rotate(-16deg);
+        background: transparent;
+      }
+
+      .map-control {
+        position: absolute;
+        z-index: 5;
+        top: 12px;
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.94);
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 950;
+        box-shadow: 0 10px 20px rgba(23, 51, 37, 0.12);
+      }
+
+      .map-back {
+        left: 12px;
+      }
+
+      .map-search {
+        right: 12px;
+      }
+
+      .farm-pop {
+        position: absolute;
+        z-index: 4;
+        min-width: 92px;
+        border-radius: 8px;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 12px 26px rgba(23, 51, 37, 0.16);
+        animation: farmerPinBounce 2.6s ease-in-out infinite;
+      }
+
+      .farm-pop strong {
+        display: block;
+        color: var(--ink);
+        font-size: 11px;
+      }
+
+      .farm-pop span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 850;
+      }
+
+      .farm-pop::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        border: 8px solid transparent;
+        border-top-color: rgba(255, 255, 255, 0.95);
+        transform: translateX(-50%);
+      }
+
+      .pop-tomato {
+        left: 76px;
+        top: 54px;
+      }
+
+      .pop-berry {
+        right: 74px;
+        top: 92px;
+        animation-delay: 0.25s;
+      }
+
+      .pop-cow {
+        right: 18px;
+        bottom: 44px;
+        animation-delay: 0.45s;
+      }
+
+      .user-location {
+        position: absolute;
+        left: 50%;
+        top: 54%;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(55, 169, 107, 0.22);
+      }
+
+      .user-location::before {
+        content: "●";
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border: 5px solid #ffffff;
+        border-radius: 50%;
+        background: var(--deep-green);
+        color: white;
+        font-size: 11px;
+      }
+
+      .map-bottom-card {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 8px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 12px 26px rgba(23, 51, 37, 0.13);
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 950;
+      }
+
+      .map-bottom-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 800;
       }
 
       .phone-status {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 30px 0 8px;
+        margin: 0 0 8px;
         color: var(--deep-green);
         font-size: 16px;
         font-weight: 950;
@@ -1414,12 +3222,17 @@
         z-index: 2;
         grid-column: 2;
         grid-row: 1;
-        align-self: end;
+        align-self: stretch;
         display: grid;
-        grid-template-rows: auto 132px 74px 122px;
+        grid-template-rows: auto 94px 70px 126px;
         gap: 10px;
         min-width: 0;
         margin-top: 0;
+        border: 3px solid rgba(23, 51, 37, 0.18);
+        border-radius: 16px;
+        padding: 12px;
+        background: rgba(255, 255, 247, 0.96);
+        box-shadow: 0 18px 38px rgba(23, 51, 37, 0.14);
       }
 
       .farm-map {
@@ -1447,16 +3260,16 @@
       }
 
       .farm-map::before {
-        left: 42px;
-        right: 42px;
-        top: 66px;
+        left: 28px;
+        right: 28px;
+        top: 52px;
         transform: rotate(-4deg);
       }
 
       .farm-map::after {
-        left: 95px;
-        width: 315px;
-        top: 86px;
+        left: 72px;
+        width: 250px;
+        top: 65px;
         transform: rotate(18deg);
       }
 
@@ -1465,10 +3278,10 @@
         z-index: 2;
         display: grid;
         place-items: center;
-        width: 48px;
-        height: 48px;
+        width: 42px;
+        height: 42px;
         border: 4px solid #ffffff;
-        border-radius: 14px;
+        border-radius: 12px;
         background: rgba(255, 255, 255, 0.92);
         box-shadow: 0 9px 18px rgba(23, 51, 37, 0.18);
         animation: farmerPinBounce 2.6s ease-in-out infinite;
@@ -1476,7 +3289,7 @@
 
       .map-marker::before {
         content: attr(data-icon);
-        font-size: 24px;
+        font-size: 21px;
         line-height: 1;
       }
 
@@ -1501,23 +3314,23 @@
       }
 
       .pin-a {
-        left: 82px;
-        top: 40px;
+        left: 58px;
+        top: 30px;
       }
 
       .pin-b {
-        left: 240px;
-        top: 82px;
+        left: 230px;
+        top: 62px;
       }
 
       .pin-c {
-        right: 118px;
-        top: 42px;
+        right: 90px;
+        top: 32px;
       }
 
       .pin-d {
-        right: 54px;
-        bottom: 30px;
+        right: 34px;
+        bottom: 24px;
       }
 
       .farm-card,
@@ -1700,6 +3513,366 @@
 
       .market-title span {
         color: var(--green);
+      }
+
+      .analytics-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 20px;
+        min-height: 456px;
+        margin-top: 14px;
+        border: 1px solid rgba(55, 169, 107, 0.2);
+        border-radius: 8px;
+        padding: 22px;
+        background:
+          linear-gradient(rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.66);
+        background-size: 42px 42px;
+        box-shadow: 0 24px 70px rgba(23, 51, 37, 0.1);
+      }
+
+      .analytics-figure {
+        display: grid;
+        align-content: center;
+        gap: 14px;
+        border: 1px solid rgba(23, 99, 66, 0.14);
+        border-radius: 8px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.93);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.11);
+      }
+
+      .analytics-figure img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: inset 0 0 0 1px rgba(23, 51, 37, 0.08);
+      }
+
+      .analytics-caption {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .analytics-insights {
+        display: grid;
+        gap: 14px;
+      }
+
+      .analytics-extra-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .analytics-card {
+        position: relative;
+        border: 1px solid rgba(55, 169, 107, 0.18);
+        border-radius: 8px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.11);
+      }
+
+      .analytics-card small {
+        display: block;
+        color: var(--deep-green);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .analytics-card strong {
+        display: block;
+        margin-top: 8px;
+        color: var(--ink);
+        font-size: 38px;
+        line-height: 0.95;
+      }
+
+      .analytics-card.compact {
+        padding: 14px;
+      }
+
+      .analytics-card.compact strong {
+        font-size: 32px;
+      }
+
+      .analytics-card.compact p {
+        font-size: 13px;
+      }
+
+      .analytics-card p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 850;
+        line-height: 1.28;
+      }
+
+      .country-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 12px;
+      }
+
+      .country-strip span {
+        border-radius: 999px;
+        padding: 6px 8px;
+        background: rgba(255, 209, 102, 0.22);
+        color: #6a4610;
+        font-size: 11px;
+        font-weight: 950;
+      }
+
+      .analytics-flow {
+        position: relative;
+        height: 56px;
+        margin-top: 14px;
+        border-radius: 999px;
+        background: rgba(23, 51, 37, 0.08);
+        overflow: hidden;
+      }
+
+      .analytics-flow::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 15%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--green), var(--lime));
+        animation: analyticsShare 3.4s ease-in-out infinite;
+      }
+
+      .analytics-flow::after {
+        content: "direct-to-consumer farm base";
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 950;
+        transform: translateY(-50%);
+      }
+
+      @keyframes analyticsShare {
+        0%,
+        100% {
+          width: 15%;
+        }
+        50% {
+          width: 23%;
+        }
+      }
+
+      .business-model-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 18% 24%, rgba(55, 169, 107, 0.2), transparent 28%),
+          radial-gradient(circle at 82% 68%, rgba(255, 209, 102, 0.28), transparent 26%),
+          linear-gradient(135deg, #f7fbf2 0%, #edf8ea 55%, #fff8df 100%);
+      }
+
+      .reveal h1.business-title {
+        max-width: 970px;
+        margin: 48px 0 18px;
+        color: var(--ink);
+        font-size: clamp(42px, 5vw, 66px);
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: none;
+        opacity: 1;
+      }
+
+      .business-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 330px;
+        gap: 22px;
+        min-height: 430px;
+        border: 1px solid rgba(55, 169, 107, 0.22);
+        border-radius: 8px;
+        padding: 26px;
+        background:
+          linear-gradient(rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 51, 37, 0.05) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.66);
+        background-size: 42px 42px;
+        box-shadow: 0 24px 70px rgba(23, 51, 37, 0.1);
+      }
+
+      .revenue-engine {
+        position: relative;
+        min-height: 360px;
+        border: 1px solid rgba(23, 99, 66, 0.14);
+        border-radius: 8px;
+        padding: 22px;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(55, 169, 107, 0.11), transparent 38%),
+          rgba(255, 255, 255, 0.88);
+        box-shadow: 0 18px 42px rgba(23, 51, 37, 0.11);
+      }
+
+      .engine-route {
+        position: absolute;
+        left: 78px;
+        right: 78px;
+        top: 162px;
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(23, 51, 37, 0.1);
+      }
+
+      .engine-route::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--green), var(--lime), var(--yellow));
+      }
+
+      .engine-node {
+        position: absolute;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        width: 112px;
+        height: 112px;
+        border: 6px solid rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        background: #ffffff;
+        color: var(--ink);
+        font-size: 34px;
+        font-weight: 950;
+        box-shadow: 0 16px 34px rgba(23, 51, 37, 0.14);
+      }
+
+      .farm-engine-node {
+        left: 24px;
+        top: 112px;
+      }
+
+      .platform-engine-node {
+        left: 50%;
+        top: 100px;
+        width: 138px;
+        height: 138px;
+        border-radius: 8px;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #ffffff, #eff9e9);
+        color: var(--deep-green);
+        font-size: 18px;
+        line-height: 1.05;
+        text-align: center;
+      }
+
+      .consumer-engine-node {
+        right: 24px;
+        top: 112px;
+      }
+
+      .order-token {
+        position: absolute;
+        left: 92px;
+        top: 146px;
+        z-index: 4;
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: var(--yellow);
+        color: #6a4610;
+        font-size: 18px;
+        font-weight: 950;
+        box-shadow: 0 10px 24px rgba(104, 71, 8, 0.2);
+        animation: orderFlow 5s ease-in-out infinite;
+      }
+
+      .commission-chip-big {
+        position: absolute;
+        left: 50%;
+        top: 252px;
+        z-index: 5;
+        border-radius: 999px;
+        padding: 9px 14px;
+        background: var(--deep-green);
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 950;
+        transform: translateX(-50%);
+        box-shadow: 0 14px 28px rgba(23, 51, 37, 0.16);
+      }
+
+      .revenue-bars {
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        bottom: 20px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .revenue-driver {
+        border-radius: 8px;
+        padding: 10px;
+        background: rgba(55, 169, 107, 0.1);
+        color: var(--deep-green);
+        font-size: 11px;
+        font-weight: 950;
+        text-align: center;
+      }
+
+      .business-points {
+        display: grid;
+        gap: 12px;
+      }
+
+      .business-point {
+        position: relative;
+        border: 1px solid rgba(55, 169, 107, 0.18);
+        border-radius: 8px;
+        padding: 14px 14px 14px 42px;
+        background: rgba(255, 255, 255, 0.94);
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 850;
+        line-height: 1.22;
+        box-shadow: 0 14px 34px rgba(23, 51, 37, 0.08);
+      }
+
+      .business-point::before {
+        content: "";
+        position: absolute;
+        left: 14px;
+        top: 18px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.78);
+      }
+
+      @keyframes orderFlow {
+        0%,
+        100% {
+          transform: translateX(0) scale(0.9);
+        }
+        45% {
+          transform: translateX(315px) scale(1);
+        }
+        78% {
+          transform: translateX(620px) scale(0.95);
+        }
       }
 
       .market-stage {
@@ -3904,16 +6077,79 @@
 
         .reveal h1.problem-title {
           max-width: 690px;
-          padding-right: 74px;
-          font-size: 43px;
+          padding-right: 82px;
+          font-size: 27px;
+          line-height: 1.06;
         }
 
         .problem-subtitle {
-          font-size: 18px;
+          max-width: 620px;
+          font-size: 16px;
         }
 
         .stage {
-          min-height: 650px;
+          min-height: 470px;
+        }
+
+        .price-card {
+          width: 220px;
+        }
+
+        .local-price-card {
+          left: 22px;
+          top: auto;
+          bottom: 38px;
+        }
+
+        .import-price-card {
+          left: 22px;
+          right: auto;
+          top: 38px;
+        }
+
+        .friction-stack {
+          left: 56%;
+          top: auto;
+          bottom: 48px;
+          width: min(360px, calc(100% - 44px));
+        }
+
+        .import-route {
+          left: 262px;
+          right: 150px;
+          top: 106px;
+        }
+
+        .local-route {
+          left: 262px;
+          right: 150px;
+          bottom: 89px;
+        }
+
+        .common-consumer {
+          right: 22px;
+          top: 50%;
+          bottom: auto;
+          left: auto;
+          transform: translateY(-50%);
+        }
+
+        .route-plane {
+          left: 270px;
+          top: 72px;
+          font-size: 38px;
+        }
+
+        .route-tractor {
+          left: 270px;
+          bottom: 104px;
+          transform: scale(0.9);
+        }
+
+        .carbon-note {
+          right: 22px;
+          bottom: 24px;
+          max-width: 220px;
         }
 
         .barriers {
@@ -3938,7 +6174,7 @@
 
         .consumer-dot {
           right: 22px;
-          bottom: 360px;
+          bottom: 184px;
         }
 
         .destination-dot {
@@ -3957,10 +6193,94 @@
           right: 134px;
         }
 
+        .consumer-dot.common-consumer {
+          right: 22px;
+          top: 50%;
+          bottom: auto;
+          left: auto;
+          transform: translateY(-50%);
+        }
+
+        .reveal h1.diagnosis-title {
+          margin-top: 42px;
+          font-size: 31px;
+        }
+
+        .diagnosis-stage {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          min-height: auto;
+          padding: 20px;
+        }
+
+        .diagnosis-card {
+          align-self: stretch;
+        }
+
+        .friction-diagnosis {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
         .solution-stage {
           grid-template-columns: 1fr;
           min-height: auto;
           padding: 18px;
+        }
+
+        .solution-hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          padding: 22px;
+        }
+
+        .solution-copy h1 {
+          font-size: 42px;
+        }
+
+        .solution-bullets li {
+          font-size: 18px;
+        }
+
+        .solution-phone {
+          width: min(330px, 88vw);
+          height: 420px;
+        }
+
+        .progress-stage {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .progress-stage::before {
+          display: none;
+        }
+
+        .progress-card {
+          min-height: 150px;
+        }
+
+        .future-stage {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .analytics-stage {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .business-stage {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .team-stage {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .team-card-grid {
+          grid-template-columns: 1fr;
         }
 
         .phone {
@@ -3969,6 +6289,215 @@
 
         .flow-arrow {
           display: none;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .reveal h1.problem-title {
+          padding-right: 0;
+          font-size: 25px;
+        }
+
+        .problem-subtitle {
+          font-size: 14px;
+        }
+
+        .stage {
+          min-height: 575px;
+        }
+
+        .price-card {
+          left: 18px;
+          right: 18px;
+          width: auto;
+        }
+
+        .local-price-card {
+          top: 204px;
+          bottom: auto;
+        }
+
+        .import-price-card {
+          top: 34px;
+        }
+
+        .friction-stack {
+          left: 50%;
+          top: 66%;
+          bottom: auto;
+          grid-template-columns: 1fr;
+          width: min(300px, calc(100% - 36px));
+        }
+
+        .route-plane {
+          left: 48px;
+          top: 160px;
+          font-size: 32px;
+        }
+
+        .route-tractor {
+          display: none;
+        }
+
+        .co2-badge {
+          font-size: 10px;
+        }
+
+        .common-consumer {
+          left: 50%;
+          right: auto;
+          top: auto;
+          bottom: 82px;
+          transform: translateX(-50%);
+        }
+
+        .import-route,
+        .local-route {
+          display: none;
+        }
+
+        .reveal h1.diagnosis-title {
+          margin-top: 74px;
+          font-size: 25px;
+          line-height: 1.08;
+        }
+
+        .diagnosis-stage {
+          padding: 16px;
+        }
+
+        .friction-diagnosis {
+          grid-template-columns: 1fr;
+        }
+
+        .friction-diagnosis::before {
+          display: none;
+        }
+
+        .carbon-note {
+          left: 18px;
+          right: 18px;
+          bottom: 24px;
+          max-width: none;
+          text-align: center;
+        }
+
+        .solution-hero {
+          padding: 16px;
+        }
+
+        .solution-copy h1 {
+          font-size: 34px;
+        }
+
+        .solution-bullets li {
+          padding: 12px 12px 12px 40px;
+          font-size: 15px;
+        }
+
+        .solution-phone {
+          width: min(300px, 86vw);
+          height: 390px;
+        }
+
+        .prototype-panel img {
+          width: 158px;
+          height: 158px;
+        }
+
+        .reveal h1.progress-title {
+          margin-top: 74px;
+          font-size: 42px;
+        }
+
+        .progress-stage {
+          padding: 16px;
+        }
+
+        .progress-card strong {
+          font-size: 20px;
+        }
+
+        .reveal h1.future-title {
+          margin-top: 74px;
+          font-size: 42px;
+        }
+
+        .future-stage {
+          padding: 16px;
+        }
+
+        .future-step {
+          grid-template-columns: 58px 1fr;
+          gap: 12px;
+        }
+
+        .future-marker {
+          width: 58px;
+          height: 58px;
+          font-size: 23px;
+        }
+
+        .future-card strong {
+          font-size: 18px;
+        }
+
+        .analytics-stage {
+          padding: 16px;
+        }
+
+        .analytics-card strong {
+          font-size: 32px;
+        }
+
+        .analytics-card p {
+          font-size: 13px;
+        }
+
+        .analytics-extra-row {
+          grid-template-columns: 1fr;
+        }
+
+        .reveal h1.business-title {
+          margin-top: 74px;
+          font-size: 42px;
+        }
+
+        .business-stage {
+          padding: 16px;
+        }
+
+        .revenue-engine {
+          min-height: 320px;
+        }
+
+        .business-point {
+          font-size: 14px;
+        }
+
+        .reveal h1.team-title {
+          margin-top: 74px;
+          font-size: 44px;
+        }
+
+        .team-stage {
+          padding: 16px;
+        }
+
+        .team-card h2 {
+          font-size: 28px;
+        }
+
+        .team-focus {
+          font-size: 18px;
+        }
+
+        .ask-stage {
+          min-height: 560px;
+        }
+
+        .ask-card {
+          font-size: 20px;
         }
       }
     </style>
@@ -3983,54 +6512,84 @@
             Local Food Access
           </div>
 
-          <h1 class="problem-title">High Food Cost, High Carbon, <span>Low Local Access</span></h1>
-          <p class="problem-subtitle">
-            Local food is close, but the system makes it expensive, carbon-heavy, and hard to reach.
-          </p>
-
-          <div class="stage" aria-label="Animated food system problem scene">
-            <div class="route-label import-label">Imported food route · <b>high CO₂</b></div>
-            <div class="world-dot" aria-label="Imported food origin">
-              🌍
-              <span class="dot-caption">Far away source</span>
-            </div>
-            <div class="destination-dot" aria-label="Big food retailer destination">
-              <div class="big-store"></div>
-              <span class="dot-caption">Big food retailer</span>
-            </div>
-            <div class="farmer-dot" aria-label="Local farmer with tractor">
-              <div class="farmer-scene">
-                <span class="farmer-person">🧑‍🌾</span>
-                <span class="tractor-icon"></span>
+          <div class="stage" aria-label="Local paprika producer price pain scene">
+            <div class="price-card local-price-card">
+              <small>Small local producer</small>
+              <strong>€1 /piece</strong>
+              <div class="local-producer-scene" aria-hidden="true">
+                <span class="farmer-mini"></span>
+                <div class="paprika-pile">
+                  <span class="paprika"></span>
+                  <span class="paprika"></span>
+                </div>
               </div>
-              <span class="dot-caption">Local farmer</span>
             </div>
-            <div class="consumer-dot" aria-label="Consumer table">
+
+            <div class="price-card import-price-card">
+              <small>Imported plastic covered paprika</small>
+              <strong>€1,5</strong>
+              <div class="paprika-pile covered" aria-hidden="true">
+                <span class="paprika"></span>
+                <span class="paprika"></span>
+                <span class="paprika"></span>
+              </div>
+            </div>
+
+            <div class="import-route" aria-hidden="true"></div>
+            <div class="local-route" aria-hidden="true"></div>
+            <div class="route-tractor" aria-label="Local farmer tractor route"></div>
+            <div class="route-plane" aria-label="Imported route carbon footprint">
+              <span aria-hidden="true">✈️</span>
+              <span class="co2-badge">CO₂ footprint</span>
+            </div>
+            <div class="consumer-dot common-consumer" aria-label="Consumer table">
               <div class="plate-icon"></div>
               <span class="dot-caption">Consumer table</span>
             </div>
 
-            <div class="import-path" aria-hidden="true"></div>
-            <div class="local-path" aria-hidden="true"></div>
-            <div class="plane" aria-hidden="true">✈️</div>
-            <div class="moving-tractor" aria-label="Farmer vehicle moving toward consumer table"></div>
+            <div class="friction-stack" aria-label="Reasons local producer cannot reach buyer easily">
+              <div class="friction-item">Collector<span>producer share deducted</span></div>
+              <div class="friction-item">Distribution channel<span>logistics fee deducted</span></div>
+              <div class="friction-item">Retailers<span>retail markup added</span></div>
+            </div>
+          </div>
+        </section>
 
-            <div class="carbon-cloud cloud-1">CO₂</div>
-            <div class="carbon-cloud cloud-2">CO₂</div>
-            <div class="carbon-cloud cloud-3">CO₂</div>
+        <section class="problem-diagnosis-slide" data-transition="fade">
+          <div class="deck-brand">
+            <img src="logo.png" alt="Company logo" />
+            Local Food Access
+          </div>
 
-            <div class="barriers" aria-label="Intermediary layers">
-              <div class="barrier">
-                <strong>Collector</strong>
-                <span>margin lost</span>
+          <h1 class="diagnosis-title">
+            Problem is Low margins for local producers high prices for end consumers low accessibility to local consumption
+          </h1>
+
+          <div class="diagnosis-stage" aria-label="Problem diagnosis across producer, channel friction, and consumer">
+            <div class="diagnosis-card producer-diagnosis producer-visual">
+              <small>Local producer</small>
+              <strong>Low margins<br />Low visibility</strong>
+              <div class="producer-actor" aria-hidden="true">
+                <span class="producer-wheels"></span>
               </div>
-              <div class="barrier">
-                <strong>Distributor</strong>
-                <span>margin lost</span>
+              <div class="value-token-row" aria-hidden="true">
+                <span class="value-token">€</span>
+                <span class="value-token faded">€</span>
+                <span class="value-token faded">€</span>
               </div>
-              <div class="barrier">
-                <strong>Retailer</strong>
-                <span>margin lost</span>
+            </div>
+
+            <div class="friction-diagnosis" aria-label="Intermediary friction layer">
+              <div class="friction-node">Collector<span>producer share compressed</span></div>
+              <div class="friction-node">Distribution channel<span>cost added to the route</span></div>
+              <div class="friction-node">Retailers<span>shelf markup expands</span></div>
+            </div>
+
+            <div class="diagnosis-card consumer-diagnosis consumer-visual">
+              <small>End consumer</small>
+              <strong>High prices<br />Low knowledge of local production</strong>
+              <div class="consumer-table-visual" aria-hidden="true">
+                <div class="plate-icon"></div>
               </div>
             </div>
           </div>
@@ -4042,103 +6601,129 @@
             FRSH Nearby
           </div>
 
-          <h1 class="solution-title">
-            <span>FRSH Nearby</span> makes local food searchable, direct, and easy to buy.
-          </h1>
-          <p class="solution-subtitle">
-            A local food platform where producer location, consumer distance, availability,
-            and product movement assumptions create an estimated transport-related footprint indicator.
-          </p>
+          <div class="solution-hero" aria-label="FRSH Nearby solution and prototype access">
+            <div class="solution-copy">
+              <div class="solution-kicker">Solution</div>
+              <h1>FRSH Nearby</h1>
+              <ul class="solution-bullets">
+                <li>Increase Accessibility To Local Produce</li>
+                <li>Through An Innovative Fun To Use Platform</li>
+                <li>Making It Easy To Make The Orders And Directly Sell To End Consumers</li>
+              </ul>
+            </div>
 
-          <div class="deal-stage" aria-label="FRSH Nearby direct farm deal screen">
-            <div class="search-phone" aria-label="Consumer search app screen">
-              <div class="mode-badge buy-badge">BUY NOW</div>
-              <div class="phone-status">
-                <span class="status-dot"></span>
-                <span>FRSH Nearby</span>
-                <span class="status-dot orange"></span>
-              </div>
-
-              <div class="search-box">
-                <small>Search grocery</small>
-                <span class="typing-word">Tomato</span>
-              </div>
-
-              <div class="category-row" aria-label="Product category filters">
-                <span>Tomato</span>
-                <span>Lettuce</span>
-                <span>Carrot</span>
-                <span>Spinach</span>
-              </div>
-
-              <div class="found-row">
-                <span>Nearby farmers found</span>
-                <span class="found-count">3</span>
-              </div>
-
-              <div class="farm-results">
-                <div class="farm-result active">
-                  <div class="produce-icon"></div>
-                  <div>
-                    <strong>Matti · Tomatoes</strong>
-                    <span>2.4 km | Tractor pickup today</span>
-                  </div>
-                  <div class="contact-chip">Contact</div>
+            <div class="solution-phone" aria-label="Animated FRSH Nearby mobile map and order flow">
+              <div class="app-map-screen">
+                <div class="app-top-bar">
+                  <span>FRSH Nearby</span>
+                  <span>⌕</span>
+                </div>
+                <div class="map-user-pin" aria-hidden="true"></div>
+                <div class="farmer-pop farm-meat">
+                  <strong>🥩 Meat</strong>
+                  <span>3.2 km</span>
+                </div>
+                <div class="farmer-pop farm-potato">
+                  <strong>🥔 Potato</strong>
+                  <span>1.8 km</span>
+                </div>
+                <div class="farmer-pop farm-tomato">
+                  <strong>🍅 Tomato</strong>
+                  <span>2.4 km</span>
+                </div>
+                <div class="farmer-pop farm-carrot">
+                  <strong>🥕 Carrot</strong>
+                  <span>4.1 km</span>
                 </div>
 
-                <div class="farm-result">
-                  <div class="produce-icon berry"></div>
-                  <div>
-                    <strong>Aino · Berries</strong>
-                    <span>3.1 km | Fresh picked</span>
+                <div class="order-sheet">
+                  <strong>Koivula Farm · Potato</strong>
+                  <span>5 kg available today</span>
+                  <div class="order-controls">
+                    <button>Buy</button>
+                    <button>Place order</button>
                   </div>
-                  <div class="contact-chip">Chat</div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <div class="farm-result">
-                  <div class="produce-icon cow"><span>🐄</span></div>
-                  <div>
-                    <strong>Jukka · Dairy</strong>
-                    <span>4.0 km | Local farm</span>
-                  </div>
-                  <div class="contact-chip">Order</div>
+        <section class="progress-slide" data-transition="fade">
+          <div class="deck-brand">
+            <img src="logo.png" alt="Company logo" />
+            FRSH Nearby
+          </div>
+
+          <h1 class="progress-title">Progress</h1>
+
+          <div class="progress-stage" aria-label="Progress milestones">
+            <div class="progress-card">
+              <div class="progress-icon">10+</div>
+              <strong>10+ local producers called</strong>
+              <span>Outreach</span>
+            </div>
+
+            <div class="progress-card">
+              <div class="progress-icon">✓</div>
+              <strong>Viable business plan created</strong>
+              <span>Planning</span>
+            </div>
+
+            <div class="progress-card">
+              <div class="progress-icon">€</div>
+              <strong>Starttiraha application was made waiting for response</strong>
+              <span>Funding</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="future-slide" data-transition="fade">
+          <div class="deck-brand">
+            <img src="logo.png" alt="Company logo" />
+            FRSH Nearby
+          </div>
+
+          <h1 class="future-title">Future</h1>
+
+          <div class="future-stage" aria-label="Next month future roadmap">
+            <div class="future-roadmap">
+              <div class="future-step">
+                <div class="future-marker">1</div>
+                <div class="future-card">
+                  <small>Next month</small>
+                  <strong>Continue customer acquisition in our main area.</strong>
+                </div>
+              </div>
+
+              <div class="future-step">
+                <div class="future-marker">2</div>
+                <div class="future-card">
+                  <small>Prototype + research</small>
+                  <strong>Keep developing the prototype according to the needs of the LFP and continue market research.</strong>
+                </div>
+              </div>
+
+              <div class="future-step">
+                <div class="future-marker">1Y</div>
+                <div class="future-card">
+                  <small>1 year</small>
+                  <strong>Fully integrate into the existing ecosystem, add more consumers, and spread to neighbouring EU-zone countries.</strong>
+                </div>
+              </div>
+
+              <div class="future-step">
+                <div class="future-marker">2Y</div>
+                <div class="future-card">
+                  <small>2 years</small>
+                  <strong>Reshape the local food ecosystem.</strong>
                 </div>
               </div>
             </div>
 
-            <div class="deal-board" aria-label="Nearby farm map and deal panel">
-              <div class="mode-badge deal-badge">DIRECT FARM DEAL</div>
-              <div class="farm-map" aria-label="Local farm map with nearby producer pins">
-                <span class="map-marker pin-a" data-icon="🚜"><small>Matti</small></span>
-                <span class="map-marker pin-b" data-icon="🍓"><small>Aino</small></span>
-                <span class="map-marker pin-c" data-icon="🐄"><small>Jukka</small></span>
-                <span class="map-marker red pin-d" data-icon="📍"><small>You</small></span>
-              </div>
-
-              <div class="farm-card">
-                <div class="farm-avatar"></div>
-                <div>
-                  <strong>Koivula Farm</strong>
-                  <span>2.4 km away | Tomatoes fresh today</span>
-                </div>
-                <div class="price">€2.40/kg</div>
-              </div>
-
-              <div class="negotiate-card">
-                <div class="chat-bubble">€2.10/kg for 5kg</div>
-                <div class="chat-bubble consumer">Can you do €2.00/kg?</div>
-                <div class="deal-meter">
-                  <span>Listed €2.40</span>
-                  <div class="deal-meter-bar"></div>
-                  <span>Deal €2.10</span>
-                </div>
-                <div class="deal-actions">
-                  <span>Contact</span>
-                  <span>Negotiate</span>
-                  <span>Order</span>
-                </div>
-              </div>
-
+            <div class="future-signal">
+              <div class="future-month">future<br />path</div>
+              <span>Move from focused acquisition to ecosystem integration, then reshape how local food reaches consumers.</span>
             </div>
           </div>
         </section>
@@ -4149,292 +6734,146 @@
             FRSH Nearby
           </div>
 
-          <h1 class="market-title">
-            A very conservative estimate can still become a <span>meaningful business.</span>
-          </h1>
+          <h1 class="market-title">Analytics</h1>
 
-          <div class="market-stage" aria-label="Market opportunity revenue model">
-            <div class="market-pool" aria-label="Europe local and direct food opportunity">
-              <div class="market-number">
-                <strong>€21B</strong>
-                <span>Europe local/direct food opportunity per year</span>
-              </div>
-
-              <div class="share-card">
-                <strong>1%</strong>
-                <span>target market share</span>
-              </div>
-
-              <div class="volume-card">
-                <strong>€210M</strong>
-                <span>transaction volume</span>
-              </div>
+          <div class="analytics-stage" aria-label="Direct-to-consumer farm analytics">
+            <div class="analytics-figure">
+              <img src="datas.jpeg" alt="Analytics data chart for direct farm sales" />
+              <div class="analytics-caption">Direct-to-consumer selling is already visible across EU farm markets.</div>
             </div>
 
-            <div class="network-card" aria-label="Farmers and consumers creating transactions">
-              <div class="network-title">
-                <strong>Every local order creates platform revenue</strong>
-                <span>5% commission</span>
+            <div class="analytics-insights">
+              <div class="analytics-card">
+                <small>EU farm behavior</small>
+                <strong>15%</strong>
+                <p>On average, 15% of EU farms sell more than half of their production directly to consumer, meaning 1,3 million farms.</p>
+                <div class="analytics-flow" aria-hidden="true"></div>
               </div>
 
-              <div class="network-map">
-                <div class="network-line line-one"></div>
-                <div class="network-line line-two"></div>
-                <div class="network-line line-three"></div>
+              <div class="analytics-card">
+                <small>Direct seller concentration</small>
+                <strong>1M+</strong>
+                <p>France, Italy, Greece, Hungary, Slovakia and Romania there are over 1 million farmers selling directly to consumers.</p>
+                <div class="country-strip" aria-hidden="true">
+                  <span>France</span>
+                  <span>Italy</span>
+                  <span>Greece</span>
+                  <span>Hungary</span>
+                  <span>Slovakia</span>
+                  <span>Romania</span>
+                </div>
+              </div>
 
-                <div class="market-node farm-node node-a">🚜</div>
-                <div class="market-node farm-node node-b">🍓</div>
-                <div class="market-node farm-node node-c">🐄</div>
-
-                <div class="platform-hub">
-                  FRSH<br />Nearby
-                  <span class="commission-chip">5% fee</span>
+              <div class="analytics-extra-row">
+                <div class="analytics-card compact">
+                  <small>Earnings impact</small>
+                  <strong>90%</strong>
+                  <p>90% of farmers say that direct sales improve earnings.</p>
                 </div>
 
-                <div class="market-node consumer-node node-a">🍽️</div>
-                <div class="market-node consumer-node node-b">🛒</div>
-                <div class="market-node consumer-node node-c">🏠</div>
-
-                <div class="transaction-token token-one">€24</div>
-                <div class="transaction-token token-two">€41</div>
-                <div class="transaction-token token-three">€18</div>
+                <div class="analytics-card compact">
+                  <small>Margin impact</small>
+                  <strong>35%</strong>
+                  <p>35% of farmers say that direct sales increase profit margins more than 25%.</p>
+                </div>
               </div>
             </div>
-
-            <div class="revenue-card">
-              <small>Annual platform revenue</small>
-              <strong>€10.5M</strong>
-              <span>from a small captured share</span>
-            </div>
-
-            <div class="formula-strip">€21B × 1% × 5% = €10.5M/year</div>
           </div>
         </section>
 
-        <section class="validation-slide" data-transition="fade">
+        <section class="business-model-slide" data-transition="fade">
           <div class="deck-brand">
             <img src="logo.png" alt="Company logo" />
             FRSH Nearby
           </div>
 
-          <h1 class="validation-title">Why this idea has <span>strategic depth.</span></h1>
-          <p class="validation-subtitle">
-            Six Hat thinking, presented as a strategic spectrum for market, emotion, risk, upside, ideas, and execution.
-          </p>
+          <h1 class="business-title">Business model</h1>
 
-          <div class="validation-stage spectrum-validation" aria-label="Interactive Six Hat strategic spectrum">
-            <div class="hat-dashboard interactive-hats">
-              <div class="hat-selector" aria-label="Select a Six Hat lens">
-                <button class="hat-button tab-white is-active" data-hat="white" data-color="#dfe8e2">
-                  <i class="hat-shape"></i>
-                  <strong>White Hat</strong>
-                  <span>Facts & Data</span>
-                </button>
-                <button class="hat-button tab-red" data-hat="red" data-color="#ef4d55">
-                  <i class="hat-shape"></i>
-                  <strong>Red Hat</strong>
-                  <span>Emotion</span>
-                </button>
-                <button class="hat-button tab-black" data-hat="black" data-color="#24352d">
-                  <i class="hat-shape"></i>
-                  <strong>Black Hat</strong>
-                  <span>Risk</span>
-                </button>
-                <button class="hat-button tab-yellow" data-hat="yellow" data-color="#ffd166">
-                  <i class="hat-shape"></i>
-                  <strong>Yellow Hat</strong>
-                  <span>Upside</span>
-                </button>
-                <button class="hat-button tab-green" data-hat="green" data-color="#37a96b">
-                  <i class="hat-shape"></i>
-                  <strong>Green Hat</strong>
-                  <span>Ideas</span>
-                </button>
-                <button class="hat-button tab-blue" data-hat="blue" data-color="#4d8cff">
-                  <i class="hat-shape"></i>
-                  <strong>Blue Hat</strong>
-                  <span>Execution</span>
-                </button>
+          <div class="business-stage" aria-label="FRSH Nearby business model revenue engine">
+            <div class="revenue-engine">
+              <div class="engine-route" aria-hidden="true"></div>
+              <div class="engine-node farm-engine-node">🚜</div>
+              <div class="engine-node platform-engine-node">FRSH<br />Nearby</div>
+              <div class="engine-node consumer-engine-node">🍽️</div>
+              <div class="order-token">€</div>
+              <div class="commission-chip-big">5% commission</div>
+              <div class="revenue-bars">
+                <div class="revenue-driver">registered users</div>
+                <div class="revenue-driver">retention</div>
+                <div class="revenue-driver">average transaction size</div>
+                <div class="revenue-driver">commission size</div>
+              </div>
+            </div>
+
+            <div class="business-points">
+              <div class="business-point">Platform provides accessibility, visibility and order book</div>
+              <div class="business-point">Commission and/or subscription as pricing policy</div>
+              <div class="business-point">5% flat commission per order</div>
+              <div class="business-point">Value drivers: registered users, retention, average transaction size, commission size</div>
+            </div>
+          </div>
+        </section>
+
+
+
+        <section class="team-slide" data-transition="fade">
+          <div class="deck-brand">
+            <img src="logo.png" alt="Company logo" />
+            FRSH Nearby
+          </div>
+
+          <h1 class="team-title">Team</h1>
+
+          <div class="team-stage" aria-label="Founding team">
+            <div class="team-photo-panel">
+              <img src="team.png" alt="FRSH Nearby founding team" />
+              <strong>Founding team</strong>
+            </div>
+
+            <div class="team-card-grid">
+              <div class="team-card">
+                <div class="team-avatar">J</div>
+                <h2>Joe</h2>
+                <div class="team-degree">M. Sc in Economy</div>
+                <div class="team-role">cofounder</div>
+                <div class="team-focus">Business Operations executions vision and leadership</div>
               </div>
 
-              <div class="hat-detail-panel">
-                <div class="active-hat-visual">
-                  <div class="big-hat" id="activeHatVisual"></div>
-                  <div class="hat-name-badge" id="activeHatName">White Hat</div>
-                </div>
+              <div class="team-card">
+                <div class="team-avatar">S</div>
+                <h2>Suresh</h2>
+                <div class="team-degree">M.S in Engineering</div>
+                <div class="team-role">Cofounder</div>
+                <div class="team-focus">Product Development and System Thinking</div>
+              </div>
 
-                <div class="fact-panel" id="whiteHatPanel">
-                  <div class="fact-kicker">Facts & Data</div>
-                  <h2>White Hat facts</h2>
-                  <div class="fact-list">
-                    <div class="fact-item">
-                      <div class="fact-icon">€</div>
-                      <div>
-                        <strong>Lidl and major retailers are in profits.</strong>
-                        <span>Proof that large food retail can be commercially durable.</span>
-                      </div>
-                    </div>
-                    <div class="fact-item">
-                      <div class="fact-icon">60+</div>
-                      <div>
-                        <strong>Average REKO user is 60+ age.</strong>
-                        <span>Existing local-food behavior exists, but current users skew older.</span>
-                      </div>
-                    </div>
-                    <div class="fact-item">
-                      <div class="fact-icon">21B</div>
-                      <div>
-                        <strong>€21B market opportunity.</strong>
-                        <span>The opportunity is large enough for a focused platform wedge.</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="team-card">
+                <div class="team-avatar">J</div>
+                <h2>Jiri</h2>
+                <div class="team-degree">B. Sc in Economy</div>
+                <div class="team-role">Cofounder</div>
+                <div class="team-focus">Business Intelligence and Generalist</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <div class="red-spectrum-panel" id="redHatPanel">
-                  <div class="fact-kicker">Emotion & Decision</div>
-                  <h2>Emotion follows beliefs and values.</h2>
-                  <p>
-                    Beliefs and values are often influenced by the political spectrum, shaping
-                    why local food feels appealing.
-                  </p>
+        <section class="ask-slide" data-transition="fade">
+          <div class="deck-brand">
+            <img src="logo.png" alt="Company logo" />
+            FRSH Nearby
+          </div>
 
-                  <div class="political-spectrum">
-                    <div class="spectrum-axis" aria-hidden="true"></div>
-                    <div class="spectrum-side left-side">
-                      <strong>Left appeal</strong>
-                      <div class="emotion-chips">
-                        <span class="emotion-chip">carbon footprint reducing</span>
-                        <span class="emotion-chip">local sustainability</span>
-                        <span class="emotion-chip">climate responsibility</span>
-                      </div>
-                    </div>
-
-                    <div class="spectrum-side right-side">
-                      <strong>Right appeal</strong>
-                      <div class="emotion-chips">
-                        <span class="emotion-chip">make farmer great again</span>
-                        <span class="emotion-chip">less imports</span>
-                        <span class="emotion-chip">local production</span>
-                        <span class="emotion-chip">food security</span>
-                      </div>
-                    </div>
-
-                    <div class="spectrum-center-note">
-                      Same platform, different emotional reasons to care.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="risk-radar-panel" id="blackHatPanel">
-                  <div class="fact-kicker">Critical Risk</div>
-                  <h2>Risk radar</h2>
-                  <p>
-                    Cold start, onboarding, older REKO users, trust, logistics, and retail platform competition.
-                  </p>
-
-                  <div class="risk-radar" aria-label="Black Hat risk radar">
-                    <div class="risk-center">risks to solve</div>
-                    <span class="risk-node">cold start</span>
-                    <span class="risk-node">farmer onboarding</span>
-                    <span class="risk-node">older REKO users</span>
-                    <span class="risk-node">trust</span>
-                    <span class="risk-node">logistics</span>
-                    <span class="risk-node">retail platform competition</span>
-                  </div>
-
-                  <div class="risk-priority">
-                    Validation priority: prove supply, demand, trust, and repeat logistics.
-                  </div>
-                </div>
-
-                <div class="opportunity-panel" id="yellowHatPanel">
-                  <div class="fact-kicker">Opportunity</div>
-                  <h2>Untapped younger consumer segment.</h2>
-                  <p>
-                    The opportunity is not only selling local food to existing buyers. It is
-                    expanding the category through younger appeal, ecosystem creation, and
-                    regional resilience.
-                  </p>
-
-                  <div class="opportunity-flow">
-                    <div class="generation-card">
-                      <strong>Younger consumer appeal</strong>
-                      <span>Growing awareness around food origin, sustainability, freshness, and local impact.</span>
-                    </div>
-                    <div class="generation-card">
-                      <strong>New local ecosystem</strong>
-                      <span>Connect producers, consumers, pickup points, communities, and local delivery partners.</span>
-                    </div>
-                    <div class="generation-card">
-                      <strong>Food security & resilience</strong>
-                      <span>Global instability, war, climate disruption, and supply-chain shocks make local systems strategic.</span>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="idea-panel" id="greenHatPanel">
-                  <div class="fact-kicker">Generate Ideas</div>
-                  <h2>Idea lab: local food system design.</h2>
-                  <p>
-                    Green Hat explores product and system ideas: youth appeal, older-user
-                    compatibility, local market-making, and resilient fallback communication.
-                  </p>
-
-                  <div class="idea-lab-grid">
-                    <div class="idea-card">
-                      <div class="idea-icon">Y</div>
-                      <strong>Youth-appealing product</strong>
-                      <span>Make farmer-consumer discovery simple, modern, social, and attractive for younger users.</span>
-                    </div>
-                    <div class="idea-card">
-                      <div class="idea-icon">R</div>
-                      <strong>REKO-compatible older-user path</strong>
-                      <span>Keep familiar community-style features for older users who already use REKO/Facebook-like local buying.</span>
-                    </div>
-                    <div class="idea-card">
-                      <div class="idea-icon">L</div>
-                      <strong>New local marketplace layer</strong>
-                      <span>Connect farmers and consumers directly, while creating local makeup around pickup, delivery, and community coordination.</span>
-                    </div>
-                    <div class="idea-card">
-                      <div class="idea-icon">M</div>
-                      <strong>Distributed fallback system</strong>
-                      <span>Location-based decentralized system that can run anywhere, with Bluetooth mesh as last-resort communication.</span>
-                      <span class="research-badge">research pipeline</span>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="execution-panel" id="blueHatPanel">
-                  <div class="fact-kicker">Execution</div>
-                  <h2>Putting it together.</h2>
-                  <p>
-                    Blue Hat organizes who validates the idea, who builds the business case,
-                    and who turns the concept into a product prototype.
-                  </p>
-
-                  <div class="execution-grid">
-                    <div class="execution-card">
-                      <strong>Jiri</strong>
-                      <span>Focuses on numbers and business analysis.</span>
-                    </div>
-                    <div class="execution-card">
-                      <strong>Joe</strong>
-                      <span>Focuses on business development and validation.</span>
-                    </div>
-                    <div class="execution-card">
-                      <strong>Suresh</strong>
-                      <span>Focuses on product development and system thinking.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hat-placeholder" id="hatPlaceholder">
-                  Add this hat data next. The selected hat color and title are ready.
-                </div>
+          <div class="ask-stage">
+            <div>
+              <h1 class="ask-title">ASK</h1>
+              <div class="ask-qr">
+                <strong>Scan Prototype</strong>
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&amp;margin=10&amp;data=https%3A%2F%2Ffrshnearby.com%2F"
+                  alt="QR code for https://frshnearby.com/"
+                />
+                <a href="https://frshnearby.com/">frshnearby.com</a>
               </div>
             </div>
           </div>
