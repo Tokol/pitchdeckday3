@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1280,720 --screenshot=/private/tmp/claude-501/-Users-suresh-Development-summer-program-pitchdeck/0ddcb927-34d6-44e1-b7bb-2fbf14c7a33d/scratchpad/slide1.png --virtual-time-budget=3000 'file:///Users/suresh/Development/summer_program/pitchdeck/index.html#/0')"
+    ]
+  }
+}

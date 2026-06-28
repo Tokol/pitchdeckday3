@@ -10,21 +10,745 @@
 
     <style>
       :root {
-        --bg: #f7fbf2;
-        --ink: #173325;
-        --muted: #5c6e61;
-        --green: #37a96b;
-        --deep-green: #176342;
+        /* App-matched Material 3 farm palette */
+        --bg: #f9faf5; /* warm off-white app background */
+        --ink: #1a1c19; /* M3 onSurface, near-black */
+        --muted: #5c6e61; /* secondary grey-green text */
+        --green: #2f6b45; /* brand seed / primary forest green */
+        --deep-green: #234f34; /* darker primary for contrast */
+        --pale-green: #dcebdd; /* nav highlight / chip fill */
+        --surface: #ffffff; /* near-white cards/surfaces */
         --lime: #a7d95c;
         --yellow: #ffd166;
         --orange: #ef7b45;
         --red: #dc3f3f;
         --cream: #fff8e6;
-        --line: rgba(23, 51, 37, 0.16);
+        --line: rgba(26, 28, 25, 0.14);
+        /* Shape + motion */
+        --r-btn: 14px;
+        --r-card: 20px;
+        --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
       }
 
-      body {
-        background: var(--bg);
+      /* Build-on-click reveals: elements rise + fade once as you advance.
+         Reveal.js adds .visible to the current fragment. */
+      .reveal .fragment.rise {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.5s var(--ease),
+          transform 0.5s var(--ease);
+      }
+      .reveal .fragment.rise.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ===== Slide 1: Problem — full-bleed natural supply-chain scene ===== */
+      .problem-slide {
+        padding: 0 !important;
+      }
+      .p1nature {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, #d9eefb 0%, #e9f5ee 36%, #eef7e2 50%);
+      }
+
+      /* sun */
+      .p1-sun {
+        position: absolute;
+        right: 9%;
+        top: 12%;
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 50% 50%, #fff4cc, #ffd86b 70%);
+        box-shadow:
+          0 0 0 18px rgba(255, 216, 107, 0.16),
+          0 0 70px 24px rgba(255, 216, 107, 0.28);
+        animation: p1Sun 6s ease-in-out infinite;
+      }
+      @keyframes p1Sun {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      /* clouds */
+      .p1-cloud {
+        position: absolute;
+        width: 120px;
+        height: 36px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow:
+          30px -14px 0 -6px rgba(255, 255, 255, 0.88),
+          -28px -8px 0 -10px rgba(255, 255, 255, 0.82);
+        animation: p1Drift 24s ease-in-out infinite;
+      }
+      .p1-cloud.c1 {
+        top: 13%;
+        left: 16%;
+      }
+      .p1-cloud.c2 {
+        top: 26%;
+        left: 50%;
+        transform: scale(0.8);
+        animation-duration: 32s;
+      }
+      @keyframes p1Drift {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(46px);
+        }
+      }
+
+      /* rolling hills */
+      .p1-hill {
+        position: absolute;
+        bottom: 0;
+        left: -8%;
+        right: -8%;
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      }
+      .p1-hill.back {
+        height: 50%;
+        background: linear-gradient(180deg, #cfe7b6, #a9d68b);
+      }
+      .p1-hill.mid {
+        height: 40%;
+        left: -14%;
+        right: -2%;
+        border-radius: 50% 50% 0 0 / 130% 130% 0 0;
+        background: linear-gradient(180deg, #b6dd92, #8ec96d);
+      }
+      .p1-hill.front {
+        height: 30%;
+        left: -4%;
+        right: -16%;
+        border-radius: 50% 50% 0 0 / 140% 140% 0 0;
+        background: linear-gradient(180deg, #93c96f, #6fb551);
+      }
+      .p1-hill.front::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: repeating-linear-gradient(
+          86deg,
+          rgba(255, 255, 255, 0.06) 0 2px,
+          transparent 2px 26px
+        );
+      }
+
+      /* winding road */
+      .p1-road {
+        position: absolute;
+        inset: 0;
+        width: 1280px;
+        height: 720px;
+        z-index: 2;
+      }
+      .road-edge {
+        fill: none;
+        stroke: #c9bb96;
+        stroke-width: 40;
+        stroke-linecap: round;
+        opacity: 0.5;
+      }
+      .road-base {
+        fill: none;
+        stroke: #ece2c8;
+        stroke-width: 32;
+        stroke-linecap: round;
+      }
+      .road-dash {
+        fill: none;
+        stroke: #ffffff;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-dasharray: 14 20;
+        animation: p1Flow 1s linear infinite;
+      }
+      @keyframes p1Flow {
+        to {
+          stroke-dashoffset: -34;
+        }
+      }
+
+      /* farm scenery filling the field inside the loop */
+      .p1-scn {
+        position: absolute;
+        z-index: 3;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+      }
+      .p1-scn.s-tree {
+        left: 296px;
+        top: 430px;
+        font-size: 50px;
+      }
+      .p1-scn.s-flowers {
+        left: 818px;
+        top: 486px;
+        font-size: 34px;
+      }
+      .p1-scn.s-tractor {
+        left: 656px;
+        top: 476px;
+        font-size: 42px;
+        animation: p1Work 3s ease-in-out infinite;
+      }
+      .p1-scn.s-cow {
+        left: 430px;
+        top: 492px;
+        font-size: 40px;
+        animation: p1Graze 4s ease-in-out infinite;
+      }
+      .p1-scn.s-sheep {
+        left: 536px;
+        top: 508px;
+        font-size: 32px;
+        animation: p1Graze 4s ease-in-out infinite;
+        animation-delay: 0.9s;
+      }
+      @keyframes p1Graze {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-2px) rotate(-4deg);
+        }
+      }
+      @keyframes p1Work {
+        0%,
+        100% {
+          transform: translateX(0) rotate(0deg);
+        }
+        50% {
+          transform: translateX(5px) rotate(1.5deg);
+        }
+      }
+
+      /* the app's direct farmer→consumer route (the solution) */
+      .direct-glow {
+        fill: none;
+        stroke: rgba(47, 107, 69, 0.16);
+        stroke-width: 16;
+        stroke-linecap: round;
+      }
+      .direct-route {
+        fill: none;
+        stroke: var(--green);
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-dasharray: 12 12;
+        animation: p1Flow3 0.9s linear infinite;
+      }
+      @keyframes p1Flow3 {
+        to {
+          stroke-dashoffset: -23;
+        }
+      }
+      .p1-direct {
+        position: absolute;
+        left: 1068px;
+        top: 580px;
+        transform: translateX(-50%);
+        z-index: 6;
+        border-radius: 999px;
+        padding: 9px 20px;
+        background: var(--green);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 850;
+        white-space: nowrap;
+        box-shadow: 0 8px 18px rgba(47, 107, 69, 0.34);
+      }
+
+      /* shared attribute badge (local + import) */
+      .p1-badge {
+        display: grid;
+        gap: 1px;
+        border-radius: 14px;
+        padding: 8px 14px;
+        background: #ffffff;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+      .p1-badge .price {
+        font-size: 21px;
+        font-weight: 850;
+        line-height: 1.05;
+      }
+      .p1-badge .attrs {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+      .p1-badge.local {
+        border: 1px solid rgba(47, 107, 69, 0.32);
+      }
+      .p1-badge.local .price {
+        color: var(--green);
+      }
+      .p1-badge.local .attrs {
+        color: var(--deep-green);
+      }
+      .p1-badge.import {
+        border: 1px solid rgba(96, 104, 98, 0.3);
+      }
+      .p1-badge.import .price {
+        color: var(--orange);
+      }
+      .p1-badge.import .attrs {
+        color: #5d645e;
+      }
+
+      /* actors */
+      .p1a {
+        position: absolute;
+        z-index: 4;
+      }
+      /* local farmer — sits right next to the consumer, but routes the long way */
+      .p1-farmer {
+        left: 906px;
+        bottom: 150px;
+        z-index: 5;
+        display: grid;
+        justify-items: center;
+        gap: 8px;
+      }
+      .p1-farmer .who {
+        font-size: 54px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.15));
+      }
+      .p1-farmer .pap {
+        font-size: 34px;
+        margin-left: -8px;
+        vertical-align: -4px;
+      }
+
+      /* imported by air — plane flies left→right carrying its label + CO₂ smoke */
+      .p1-plane {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 7;
+        font-size: 44px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.16));
+        offset-path: path("M-280,118 C320,84 900,96 1330,116");
+        offset-rotate: 0deg;
+        animation: p1Fly 15s linear infinite;
+      }
+      @keyframes p1Fly {
+        from {
+          offset-distance: 0%;
+        }
+        to {
+          offset-distance: 100%;
+        }
+      }
+      /* the imported label travelling under the plane */
+      .p1-plane .p1-badge.import {
+        position: absolute;
+        top: 48px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      /* smoke trail behind the plane */
+      .p1-co2 {
+        position: absolute;
+        right: 40px;
+        top: 18px;
+        width: 64px;
+        height: 34px;
+      }
+      .p1-co2 i {
+        position: absolute;
+        bottom: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgba(96, 104, 98, 0.5);
+        opacity: 0;
+        animation: p1Puff 2.6s ease-in-out infinite;
+      }
+      .p1-co2 i:nth-child(1) {
+        right: 0;
+      }
+      .p1-co2 i:nth-child(2) {
+        right: 18px;
+        animation-delay: 0.6s;
+      }
+      .p1-co2 i:nth-child(3) {
+        right: 36px;
+        animation-delay: 1.2s;
+      }
+      @keyframes p1Puff {
+        0% {
+          opacity: 0;
+          transform: translateY(8px) scale(0.5);
+        }
+        30% {
+          opacity: 0.85;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-16px) scale(1.35);
+        }
+      }
+
+      /* consumer cart — neighbour to the farmer, yet reached only via the long loop */
+      .p1-consumer {
+        right: 44px;
+        bottom: 178px;
+        z-index: 5;
+        display: grid;
+        justify-items: center;
+        gap: 8px;
+      }
+      .p1-consumer .face {
+        font-size: 56px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.15));
+      }
+      .p1-consumer .price {
+        border-radius: 999px;
+        padding: 8px 16px;
+        background: #ffffff;
+        color: var(--red);
+        font-size: 22px;
+        font-weight: 850;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+      }
+
+      /* deduction booths */
+      .booth {
+        position: absolute;
+        z-index: 5;
+        display: grid;
+        justify-items: center;
+        gap: 5px;
+        transform: translateX(-50%);
+      }
+      .booth .ico {
+        font-size: 40px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.14));
+      }
+      /* flip the delivery truck so it faces the retailer (to the right) */
+      .b-distributor .ico {
+        display: inline-block;
+        transform: scaleX(-1);
+      }
+      .booth strong {
+        border-radius: 999px;
+        padding: 5px 12px;
+        background: #ffffff;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 850;
+        white-space: nowrap;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      }
+      /* a "cut" minus badge that pops as the crate passes each middleman */
+      .booth .cut {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--red);
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1;
+        opacity: 0;
+        box-shadow: 0 6px 14px rgba(220, 63, 63, 0.36);
+      }
+      .b-collector {
+        left: 206px;
+        top: 300px;
+      }
+      .b-distributor {
+        left: 560px;
+        top: 266px;
+      }
+      .b-retailer {
+        left: 900px;
+        top: 298px;
+      }
+      .b-collector .cut {
+        animation: cutC 8s ease-in-out infinite;
+      }
+      .b-distributor .cut {
+        animation: cutD 8s ease-in-out infinite;
+      }
+      .b-retailer .cut {
+        animation: cutR 8s ease-in-out infinite;
+      }
+      @keyframes cutC {
+        0%,
+        40% {
+          opacity: 0;
+          transform: translate(-50%, 6px) scale(0.5);
+        }
+        46% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        54% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        60%,
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -8px) scale(0.85);
+        }
+      }
+      @keyframes cutD {
+        0%,
+        57% {
+          opacity: 0;
+          transform: translate(-50%, 6px) scale(0.5);
+        }
+        63% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        71% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        77%,
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -8px) scale(0.85);
+        }
+      }
+      @keyframes cutR {
+        0%,
+        73% {
+          opacity: 0;
+          transform: translate(-50%, 6px) scale(0.5);
+        }
+        79% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        87% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        93%,
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -8px) scale(0.85);
+        }
+      }
+      @keyframes popC {
+        0%,
+        24% {
+          opacity: 0;
+          transform: translate(-50%, 8px) scale(0.7);
+        }
+        30% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        38% {
+          opacity: 1;
+          transform: translate(-50%, -4px) scale(1);
+        }
+        46%,
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -16px) scale(0.9);
+        }
+      }
+      @keyframes popD {
+        0%,
+        46% {
+          opacity: 0;
+          transform: translate(-50%, 8px) scale(0.7);
+        }
+        52% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        60% {
+          opacity: 1;
+          transform: translate(-50%, -4px) scale(1);
+        }
+        68%,
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -16px) scale(0.9);
+        }
+      }
+      @keyframes popR {
+        0%,
+        70% {
+          opacity: 0;
+          transform: translate(-50%, 8px) scale(0.7);
+        }
+        76% {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+        84% {
+          opacity: 1;
+          transform: translate(-50%, -4px) scale(1);
+        }
+        92%,
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -16px) scale(0.9);
+        }
+      }
+
+      /* the producer's product (crate) travelling, with a price that ticks up */
+      .p1-product {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 6;
+        offset-path: path(
+          "M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512"
+        );
+        offset-rotate: 0deg;
+        animation: p1Move 8s linear infinite;
+      }
+      .p1-product .crate {
+        display: block;
+        font-size: 40px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.2));
+      }
+      .p1-product .ptag {
+        position: absolute;
+        top: 46px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 56px;
+        height: 26px;
+      }
+      .p1-product .pv {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: #ffffff;
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 900;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+        opacity: 0;
+      }
+      .pv1 {
+        animation: showP1 7s linear infinite;
+      }
+      .pv2 {
+        animation: showP2 7s linear infinite;
+      }
+      .pv3 {
+        animation: showP3 7s linear infinite;
+      }
+      .pv4 {
+        color: var(--red);
+        animation: showP4 7s linear infinite;
+      }
+      @keyframes p1Move {
+        0% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
+        6% {
+          opacity: 1;
+        }
+        92% {
+          offset-distance: 100%;
+          opacity: 1;
+        }
+        100% {
+          offset-distance: 100%;
+          opacity: 0;
+        }
+      }
+      @keyframes showP1 {
+        0%,
+        4% {
+          opacity: 0;
+        }
+        6%,
+        26% {
+          opacity: 1;
+        }
+        29%,
+        100% {
+          opacity: 0;
+        }
+      }
+      @keyframes showP2 {
+        0%,
+        28% {
+          opacity: 0;
+        }
+        30%,
+        48% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+      @keyframes showP3 {
+        0%,
+        50% {
+          opacity: 0;
+        }
+        52%,
+        70% {
+          opacity: 1;
+        }
+        73%,
+        100% {
+          opacity: 0;
+        }
+      }
+      @keyframes showP4 {
+        0%,
+        72% {
+          opacity: 0;
+        }
+        74%,
+        92% {
+          opacity: 1;
+        }
+        95%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      body,
+      html,
+      .reveal {
+        /* sky→grass so reveal's letterbox bands blend into the farm slides */
+        background: linear-gradient(180deg, #d9eefb 0%, #d3e9da 46%, #6fb551 100%);
       }
 
       .reveal {
@@ -49,10 +773,7 @@
         overflow: hidden;
         height: 100%;
         min-height: 100%;
-        background:
-          radial-gradient(circle at 8% 14%, rgba(167, 217, 92, 0.23), transparent 27%),
-          radial-gradient(circle at 88% 74%, rgba(255, 209, 102, 0.22), transparent 28%),
-          linear-gradient(135deg, #f7fbf2 0%, #eef8e8 58%, #fff7df 100%);
+        background: transparent;
       }
 
       .deck-brand {
@@ -524,7 +1245,210 @@
         font-weight: 900;
       }
 
+      /* ===== Slide 2: Diagnosis — three pains on the farm landscape ===== */
       .problem-diagnosis-slide {
+        padding: 0 !important;
+      }
+      .reveal h1.p2-title {
+        position: absolute;
+        left: 50%;
+        top: 108px;
+        transform: translateX(-50%);
+        z-index: 6;
+        width: 94%;
+        max-width: 1130px;
+        margin: 0;
+        text-align: center;
+        color: var(--ink);
+        font-size: clamp(23px, 2.8vw, 35px);
+        line-height: 1.2;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      .p2-title .hl {
+        font-weight: 850;
+      }
+      .p2-title .hl.m {
+        color: var(--deep-green);
+      }
+      .p2-title .hl.p {
+        color: var(--red);
+      }
+      .p2-title .hl.a {
+        color: var(--orange);
+      }
+
+      /* producer / consumer groups */
+      .p2-grp {
+        position: absolute;
+        z-index: 5;
+        top: 360px;
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        width: 290px;
+      }
+      .p2-producer {
+        left: 60px;
+      }
+      .p2-consumer {
+        right: 60px;
+      }
+      .p2-emoji {
+        font-size: 66px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.16));
+      }
+      .p2-card {
+        display: grid;
+        justify-items: center;
+        gap: 8px;
+        border-radius: 20px;
+        padding: 16px 22px;
+        background: #ffffff;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+        text-align: center;
+      }
+      .p2-card small {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .p2-card strong {
+        font-size: 23px;
+        line-height: 1;
+      }
+      .p2-producer .p2-card strong {
+        color: var(--deep-green);
+      }
+      .p2-consumer .p2-card strong {
+        color: var(--red);
+      }
+      .p2-sub {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 750;
+        max-width: 210px;
+        line-height: 1.25;
+      }
+      /* low-margin meter (mostly empty) */
+      .p2-meter {
+        width: 160px;
+        height: 13px;
+        border-radius: 999px;
+        background: rgba(26, 28, 25, 0.1);
+        overflow: hidden;
+      }
+      .p2-meter span {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--green), var(--lime));
+        animation: p2Margin 2.6s ease-in-out infinite;
+      }
+      @keyframes p2Margin {
+        0%,
+        100% {
+          width: 16%;
+        }
+        50% {
+          width: 26%;
+        }
+      }
+      /* rising price bars (high) */
+      .p2-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        height: 38px;
+      }
+      .p2-bars span {
+        width: 16px;
+        border-radius: 5px 5px 0 0;
+        background: linear-gradient(180deg, #ff8a65, var(--red));
+      }
+      .p2-bars span:nth-child(1) {
+        height: 15px;
+      }
+      .p2-bars span:nth-child(2) {
+        height: 26px;
+      }
+      .p2-bars span:nth-child(3) {
+        height: 38px;
+        animation: p2Rise 2.2s ease-in-out infinite;
+      }
+      @keyframes p2Rise {
+        0%,
+        100% {
+          transform: scaleY(0.92);
+          transform-origin: bottom;
+        }
+        50% {
+          transform: scaleY(1.05);
+          transform-origin: bottom;
+        }
+      }
+      /* broken / locked direct link in the centre */
+      .p2-link {
+        position: absolute;
+        inset: 0;
+        width: 1280px;
+        height: 720px;
+        z-index: 4;
+      }
+      .p2-dash {
+        fill: none;
+        stroke: var(--green);
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 12 12;
+        opacity: 0.6;
+      }
+      .p2-lock {
+        position: absolute;
+        left: 640px;
+        top: 392px;
+        z-index: 6;
+        font-size: 42px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.16));
+        animation: p2Shake 2.4s ease-in-out infinite;
+      }
+      @keyframes p2Shake {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) rotate(-7deg);
+        }
+        50% {
+          transform: translate(-50%, -50%) rotate(7deg);
+        }
+      }
+      .p2-access {
+        position: absolute;
+        left: 640px;
+        top: 452px;
+        transform: translateX(-50%);
+        z-index: 6;
+        display: grid;
+        justify-items: center;
+        gap: 4px;
+        border-radius: 20px;
+        padding: 13px 20px;
+        background: #ffffff;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+        text-align: center;
+      }
+      .p2-access strong {
+        color: var(--orange);
+        font-size: 21px;
+      }
+      .p2-access small {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .problem-diagnosis-slide-OLD {
         position: relative;
         overflow: hidden;
         height: 100%;
@@ -1498,10 +2422,359 @@
         overflow: hidden;
         height: 100%;
         min-height: 100%;
+        padding: 0 !important;
+        background: transparent;
+      }
+
+      /* ===== Slide 3: Solution — two connected phones on the farm ===== */
+      .p3-copy {
+        position: absolute;
+        left: 60px;
+        top: 132px;
+        z-index: 5;
+        width: 400px;
+      }
+      .reveal h1.p3-title {
+        margin: 0 0 20px;
+        color: var(--green);
+        font-size: clamp(40px, 5vw, 62px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      .p3-bullets {
+        display: grid;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        list-style-type: none;
+      }
+      .p3-bullets li::marker {
+        content: "";
+      }
+      .p3-bullets li {
+        position: relative;
+        border-radius: 16px;
+        padding: 13px 16px 13px 46px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(47, 107, 69, 0.18);
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 750;
+        line-height: 1.22;
+        box-shadow: 0 12px 28px rgba(26, 28, 25, 0.08);
+      }
+      .p3-bullets li + li {
+        margin-top: 20px;
+      }
+      .p3-bullets li::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: var(--green);
+        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.82);
+      }
+
+      /* phones */
+      .p3-phone {
+        position: absolute;
+        top: 170px;
+        width: 244px;
+        height: 380px;
+        border: 9px solid #1a1c19;
+        border-radius: 34px;
+        background: #fff;
+        box-shadow: 0 26px 52px rgba(26, 28, 25, 0.3);
+        overflow: hidden;
+        z-index: 4;
+      }
+      .p3-consumer {
+        left: 486px;
+        transform: rotate(-6deg);
+      }
+      .p3-farmer {
+        left: 948px;
+        transform: rotate(6deg);
+      }
+      .p3-phone::after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 66px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.6);
+        z-index: 9;
+      }
+      .p3-screen {
+        position: absolute;
+        inset: 0;
+        border-radius: 25px;
+        overflow: hidden;
+      }
+      .p3-bar {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        z-index: 8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 999px;
+        padding: 8px 13px;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--deep-green);
+        font-size: 13px;
+        font-weight: 850;
+        box-shadow: 0 8px 18px rgba(26, 28, 25, 0.12);
+      }
+
+      /* consumer map screen */
+      .p3-map {
         background:
-          radial-gradient(circle at 13% 22%, rgba(55, 169, 107, 0.18), transparent 28%),
-          radial-gradient(circle at 84% 58%, rgba(255, 209, 102, 0.22), transparent 25%),
-          linear-gradient(135deg, #f6fbf2 0%, #ecf8eb 54%, #fff7dd 100%);
+          radial-gradient(circle at 22% 24%, rgba(167, 217, 92, 0.34) 0 28px, transparent 29px),
+          radial-gradient(circle at 80% 66%, rgba(120, 189, 89, 0.22) 0 30px, transparent 31px),
+          linear-gradient(135deg, #eaf6df, #d9ecce);
+      }
+      .p3-map::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        right: -20px;
+        top: 168px;
+        height: 22px;
+        background: rgba(255, 255, 255, 0.7);
+        transform: rotate(-14deg);
+      }
+      .p3-me {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--deep-green);
+        border: 4px solid #fff;
+        box-shadow: 0 0 0 6px rgba(47, 107, 69, 0.2);
+        transform: translate(-50%, -50%);
+        z-index: 4;
+      }
+      .p3-pin {
+        position: absolute;
+        z-index: 5;
+        display: grid;
+        justify-items: center;
+        gap: 1px;
+        font-size: 23px;
+        animation: p3Drop 3.8s ease-in-out infinite;
+      }
+      .p3-pin small {
+        font-size: 8px;
+        font-weight: 850;
+        color: var(--deep-green);
+        background: #fff;
+        border-radius: 999px;
+        padding: 1px 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+      }
+      .p3-pin.pin1 {
+        left: 28px;
+        top: 78px;
+      }
+      .p3-pin.pin2 {
+        right: 24px;
+        top: 96px;
+        animation-delay: 0.3s;
+      }
+      .p3-pin.pin3 {
+        left: 46px;
+        top: 152px;
+        animation-delay: 0.6s;
+      }
+      .p3-pin.pin4 {
+        right: 34px;
+        top: 172px;
+        animation-delay: 0.9s;
+      }
+      @keyframes p3Drop {
+        0%,
+        72%,
+        100% {
+          transform: translateY(0);
+        }
+        84% {
+          transform: translateY(-7px);
+        }
+      }
+      .p3-order {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        z-index: 7;
+        border-radius: 16px;
+        padding: 11px 13px;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 -8px 22px rgba(26, 28, 25, 0.16);
+      }
+      .p3-order strong {
+        display: block;
+        color: var(--ink);
+        font-size: 13px;
+      }
+      .p3-order span {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .p3-order button {
+        margin-top: 9px;
+        width: 100%;
+        border: 0;
+        border-radius: 999px;
+        padding: 9px;
+        background: var(--deep-green);
+        color: #fff;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      /* farmer screen */
+      .p3-farm {
+        background: linear-gradient(180deg, #f3faef, #e7f3df);
+      }
+      .p3-notif {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: 54px;
+        z-index: 6;
+        display: grid;
+        gap: 2px;
+        border-radius: 14px;
+        padding: 12px 14px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 850;
+        border-left: 5px solid var(--green);
+        box-shadow: 0 10px 24px rgba(26, 28, 25, 0.16);
+        animation: p3Notif 3.8s ease-in-out infinite;
+      }
+      .p3-notif small {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+      }
+      @keyframes p3Notif {
+        0%,
+        20% {
+          transform: translateY(-8px) scale(0.96);
+        }
+        32%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+      }
+      .p3-list {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: 150px;
+        z-index: 5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 14px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 800;
+      }
+      .p3-accept {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        z-index: 6;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px;
+        background: var(--deep-green);
+        color: #fff;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      /* green connecting link + basket token */
+      .p3-link {
+        position: absolute;
+        inset: 0;
+        width: 1280px;
+        height: 720px;
+        z-index: 3;
+      }
+      .p3-wire {
+        fill: none;
+        stroke: var(--green);
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 12 12;
+        animation: p3Flow 0.9s linear infinite;
+      }
+      .p3-wire-glow {
+        fill: none;
+        stroke: rgba(47, 107, 69, 0.16);
+        stroke-width: 15;
+        stroke-linecap: round;
+      }
+      @keyframes p3Flow {
+        to {
+          stroke-dashoffset: -24;
+        }
+      }
+      .p3-token {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 6;
+        font-size: 34px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.2));
+        offset-path: path("M742,372 Q845,316 948,372");
+        offset-rotate: 0deg;
+        animation: p3Move 3.8s ease-in-out infinite;
+      }
+      @keyframes p3Move {
+        0% {
+          offset-distance: 100%;
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        56% {
+          offset-distance: 0%;
+          opacity: 1;
+        }
+        70%,
+        100% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
       }
 
       .reveal h1.solution-title {
@@ -6507,143 +7780,172 @@
     <div class="reveal">
       <div class="slides">
         <section class="problem-slide" data-transition="fade">
-          <div class="deck-brand">
-            <img src="logo.png" alt="Company logo" />
-            Local Food Access
-          </div>
+          <div class="p1nature">
+            <div class="p1-sun" aria-hidden="true"></div>
+            <div class="p1-cloud c1" aria-hidden="true"></div>
+            <div class="p1-cloud c2" aria-hidden="true"></div>
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
 
-          <div class="stage" aria-label="Local paprika producer price pain scene">
-            <div class="price-card local-price-card">
-              <small>Small local producer</small>
-              <strong>€1 /piece</strong>
-              <div class="local-producer-scene" aria-hidden="true">
-                <span class="farmer-mini"></span>
-                <div class="paprika-pile">
-                  <span class="paprika"></span>
-                  <span class="paprika"></span>
-                </div>
-              </div>
+            <svg class="p1-road" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+              <path class="road-edge" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
+              <path class="road-base" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
+              <path class="road-dash" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
+              <path class="direct-glow" d="M952,532 Q1068,668 1196,520" />
+              <path class="direct-route" d="M952,532 Q1068,668 1196,520" />
+            </svg>
+
+            <!-- farm life filling the field inside the loop -->
+            <div class="p1-scn s-tree" aria-hidden="true">🌳</div>
+            <div class="p1-scn s-cow" aria-hidden="true">🐄</div>
+            <div class="p1-scn s-sheep" aria-hidden="true">🐑</div>
+            <div class="p1-scn s-tractor" aria-hidden="true">🚜</div>
+            <div class="p1-scn s-flowers" aria-hidden="true">🌻</div>
+
+            <!-- imported by air: plane flies left→right with its label + CO₂ smoke -->
+            <div class="p1-plane" aria-label="Imported by air: one euro fifty, plastic-wrapped, high CO2">
+              ✈️<span class="p1-co2" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="p1-badge import">
+                <span class="price">Imported · €1.5</span>
+                <span class="attrs">plastic-wrapped · high CO₂</span>
+              </span>
             </div>
 
-            <div class="price-card import-price-card">
-              <small>Imported plastic covered paprika</small>
-              <strong>€1,5</strong>
-              <div class="paprika-pile covered" aria-hidden="true">
-                <span class="paprika"></span>
-                <span class="paprika"></span>
-                <span class="paprika"></span>
-              </div>
+            <!-- local producer: right next to the consumer, fresh and cheap -->
+            <div class="p1a p1-farmer" aria-label="Local producer: one euro, fresh, low CO2">
+              <span class="who">🧑‍🌾<span class="pap">🫑</span></span>
+              <span class="p1-badge local">
+                <span class="price">Local · €1</span>
+                <span class="attrs">Fresh · low CO₂</span>
+              </span>
             </div>
 
-            <div class="import-route" aria-hidden="true"></div>
-            <div class="local-route" aria-hidden="true"></div>
-            <div class="route-tractor" aria-label="Local farmer tractor route"></div>
-            <div class="route-plane" aria-label="Imported route carbon footprint">
-              <span aria-hidden="true">✈️</span>
-              <span class="co2-badge">CO₂ footprint</span>
+            <!-- the middleman channels the product must route through; each takes a cut -->
+            <div class="booth b-collector">
+              <span class="cut">−</span>
+              <span class="ico">🏚️</span>
+              <strong>Collector</strong>
             </div>
-            <div class="consumer-dot common-consumer" aria-label="Consumer table">
-              <div class="plate-icon"></div>
-              <span class="dot-caption">Consumer table</span>
+            <div class="booth b-distributor">
+              <span class="cut">−</span>
+              <span class="ico">🚚</span>
+              <strong>Distributor</strong>
+            </div>
+            <div class="booth b-retailer">
+              <span class="cut">−</span>
+              <span class="ico">🏪</span>
+              <strong>Retailer</strong>
             </div>
 
-            <div class="friction-stack" aria-label="Reasons local producer cannot reach buyer easily">
-              <div class="friction-item">Collector<span>producer share deducted</span></div>
-              <div class="friction-item">Distribution channel<span>logistics fee deducted</span></div>
-              <div class="friction-item">Retailers<span>retail markup added</span></div>
+            <!-- the app's direct route: farmer straight to the consumer next door -->
+            <div class="p1-direct">FRSH Nearby</div>
+
+            <!-- producer's product looping the long way to the consumer next door -->
+            <div class="p1-product" aria-hidden="true">
+              <span class="crate">📦</span>
+            </div>
+
+            <div class="p1a p1-consumer" aria-label="Consumer">
+              <span class="face">🛒</span>
             </div>
           </div>
         </section>
 
         <section class="problem-diagnosis-slide" data-transition="fade">
-          <div class="deck-brand">
-            <img src="logo.png" alt="Company logo" />
-            Local Food Access
-          </div>
+          <div class="p1nature">
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
 
-          <h1 class="diagnosis-title">
-            Problem is Low margins for local producers high prices for end consumers low accessibility to local consumption
-          </h1>
+            <h1 class="p2-title">
+              Problem is <span class="hl m">Low margins for local producers</span>
+              <span class="hl p">high prices for end consumers</span>
+              <span class="hl a">low accessibility to local consumption</span>
+            </h1>
 
-          <div class="diagnosis-stage" aria-label="Problem diagnosis across producer, channel friction, and consumer">
-            <div class="diagnosis-card producer-diagnosis producer-visual">
-              <small>Local producer</small>
-              <strong>Low margins<br />Low visibility</strong>
-              <div class="producer-actor" aria-hidden="true">
-                <span class="producer-wheels"></span>
-              </div>
-              <div class="value-token-row" aria-hidden="true">
-                <span class="value-token">€</span>
-                <span class="value-token faded">€</span>
-                <span class="value-token faded">€</span>
+            <!-- broken / locked direct link between producer and consumer -->
+            <svg class="p2-link" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+              <path class="p2-dash" d="M345,392 L582,392" />
+              <path class="p2-dash" d="M698,392 L935,392" />
+            </svg>
+            <div class="p2-lock" aria-hidden="true">🔒</div>
+            <div class="p2-access" aria-label="Low accessibility to local consumption">
+              <strong>Low accessibility</strong>
+              <small>to local consumption</small>
+            </div>
+
+            <!-- local producer: low margins -->
+            <div class="p2-grp p2-producer" aria-label="Local producer: low margins, low visibility">
+              <span class="p2-emoji">🧑‍🌾</span>
+              <div class="p2-card">
+                <small>Local producer</small>
+                <strong>Low margins</strong>
+                <div class="p2-meter" aria-hidden="true"><span></span></div>
+                <span class="p2-sub">Low visibility</span>
               </div>
             </div>
 
-            <div class="friction-diagnosis" aria-label="Intermediary friction layer">
-              <div class="friction-node">Collector<span>producer share compressed</span></div>
-              <div class="friction-node">Distribution channel<span>cost added to the route</span></div>
-              <div class="friction-node">Retailers<span>shelf markup expands</span></div>
-            </div>
-
-            <div class="diagnosis-card consumer-diagnosis consumer-visual">
-              <small>End consumer</small>
-              <strong>High prices<br />Low knowledge of local production</strong>
-              <div class="consumer-table-visual" aria-hidden="true">
-                <div class="plate-icon"></div>
+            <!-- end consumer: high prices -->
+            <div class="p2-grp p2-consumer" aria-label="End consumer: high prices, low knowledge of local production">
+              <span class="p2-emoji">🛒</span>
+              <div class="p2-card">
+                <small>End consumer</small>
+                <strong>High prices</strong>
+                <div class="p2-bars" aria-hidden="true"><span></span><span></span><span></span></div>
+                <span class="p2-sub">Low knowledge of local production</span>
               </div>
             </div>
           </div>
         </section>
 
         <section class="solution-slide" data-transition="fade">
-          <div class="deck-brand">
-            <img src="logo.png" alt="Company logo" />
-            FRSH Nearby
-          </div>
+          <div class="p1nature">
+            <div class="p1-sun" aria-hidden="true"></div>
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
 
-          <div class="solution-hero" aria-label="FRSH Nearby solution and prototype access">
-            <div class="solution-copy">
-              <div class="solution-kicker">Solution</div>
-              <h1>FRSH Nearby</h1>
-              <ul class="solution-bullets">
+            <div class="p3-copy">
+              <h1 class="p3-title">Solution</h1>
+              <ul class="p3-bullets">
                 <li>Increase Accessibility To Local Produce</li>
                 <li>Through An Innovative Fun To Use Platform</li>
                 <li>Making It Easy To Make The Orders And Directly Sell To End Consumers</li>
               </ul>
             </div>
 
-            <div class="solution-phone" aria-label="Animated FRSH Nearby mobile map and order flow">
-              <div class="app-map-screen">
-                <div class="app-top-bar">
-                  <span>FRSH Nearby</span>
-                  <span>⌕</span>
-                </div>
-                <div class="map-user-pin" aria-hidden="true"></div>
-                <div class="farmer-pop farm-meat">
-                  <strong>🥩 Meat</strong>
-                  <span>3.2 km</span>
-                </div>
-                <div class="farmer-pop farm-potato">
-                  <strong>🥔 Potato</strong>
-                  <span>1.8 km</span>
-                </div>
-                <div class="farmer-pop farm-tomato">
-                  <strong>🍅 Tomato</strong>
-                  <span>2.4 km</span>
-                </div>
-                <div class="farmer-pop farm-carrot">
-                  <strong>🥕 Carrot</strong>
-                  <span>4.1 km</span>
-                </div>
+            <!-- the app directly connects consumer and farmer -->
+            <svg class="p3-link" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+              <path class="p3-wire-glow" d="M742,372 Q845,316 948,372" />
+              <path class="p3-wire" d="M742,372 Q845,316 948,372" />
+            </svg>
+            <div class="p3-token" aria-hidden="true">🧺</div>
 
-                <div class="order-sheet">
+            <!-- consumer phone: discover nearby farmers and order -->
+            <div class="p3-phone p3-consumer" aria-label="Consumer app: discover nearby farms and order">
+              <div class="p3-screen p3-map">
+                <div class="p3-bar"><span>Nearby</span><span>⌕</span></div>
+                <div class="p3-me" aria-hidden="true"></div>
+                <div class="p3-pin pin1">🥕<small>4.1 km</small></div>
+                <div class="p3-pin pin2">🍅<small>2.4 km</small></div>
+                <div class="p3-pin pin3">🥔<small>1.8 km</small></div>
+                <div class="p3-pin pin4">🥩<small>3.2 km</small></div>
+                <div class="p3-order">
                   <strong>Koivula Farm · Potato</strong>
                   <span>5 kg available today</span>
-                  <div class="order-controls">
-                    <button>Buy</button>
-                    <button>Place order</button>
-                  </div>
+                  <button>Order</button>
                 </div>
+              </div>
+            </div>
+
+            <!-- farmer phone: receives the order directly -->
+            <div class="p3-phone p3-farmer" aria-label="Farmer app: receives the order directly">
+              <div class="p3-screen p3-farm">
+                <div class="p3-bar"><span>Your farm</span><span>🧑‍🌾</span></div>
+                <div class="p3-notif">🔔 New order<small>5 kg Potato</small></div>
+                <div class="p3-list"><span>🥔 Potato</span><b>5 kg</b></div>
+                <button class="p3-accept">Accept order</button>
               </div>
             </div>
           </div>
