@@ -419,6 +419,339 @@
         }
       }
 
+      /* copied slide variant: imports by air + sea, local chain lowered intact */
+      .import-story-slide .p1nature {
+        background: linear-gradient(180deg, #d9eefb 0%, #e9f5ee 34%, #eef7e2 50%);
+      }
+      .import-story-slide .p1-cloud {
+        opacity: 0.62;
+      }
+      .import-story-slide .p1-cloud.c1 {
+        top: 9%;
+        left: 19%;
+      }
+      .import-story-slide .p1-cloud.c2 {
+        top: 22%;
+        left: 60%;
+      }
+      .import-story-slide .local-chain {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        transform: translate(102px, 6px) scale(0.88);
+        transform-origin: top left;
+      }
+      .import-airplane {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 8;
+        offset-path: path("M-180,118 C250,56 790,72 1390,126");
+        offset-rotate: 0deg;
+        animation: importAir 18s linear infinite;
+      }
+      @keyframes importAir {
+        from {
+          offset-distance: 0%;
+        }
+        to {
+          offset-distance: 100%;
+        }
+      }
+      .import-airplane .aircraft {
+        display: block;
+        font-size: 58px;
+        line-height: 1;
+        transform: rotate(8deg);
+        filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.18));
+      }
+      .import-airplane .p1-badge.import {
+        position: absolute;
+        left: 68px;
+        top: 58px;
+        width: max-content;
+      }
+      .import-story-slide .p1-badge.import .price {
+        font-size: 18px;
+      }
+      .import-story-slide .p1-badge.import .attrs {
+        font-size: 11px;
+      }
+      .import-smoke {
+        position: absolute;
+        right: 44px;
+        top: 20px;
+        width: 96px;
+        height: 42px;
+      }
+      .import-smoke i {
+        position: absolute;
+        bottom: 2px;
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 22px;
+        border-radius: 999px;
+        background: rgba(94, 101, 96, 0.68);
+        color: #ffffff;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 900;
+        opacity: 0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        animation: importPuff 2.8s ease-in-out infinite;
+      }
+      .import-smoke i:nth-child(1) {
+        right: 0;
+      }
+      .import-smoke i:nth-child(2) {
+        right: 24px;
+        animation-delay: 0.7s;
+      }
+      .import-smoke i:nth-child(3) {
+        right: 48px;
+        animation-delay: 1.4s;
+      }
+      @keyframes importPuff {
+        0% {
+          opacity: 0;
+          transform: translate(0, 10px) scale(0.58);
+        }
+        28% {
+          opacity: 0.9;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-22px, -18px) scale(1.18);
+        }
+      }
+      .import-harbor {
+        position: absolute;
+        left: -6px;
+        bottom: 0;
+        z-index: 4;
+        width: 460px;
+        height: 158px;
+        pointer-events: none;
+      }
+      .import-harbor::before {
+        content: "";
+        position: absolute;
+        inset: 38px 0 0;
+        border-top-right-radius: 86% 68%;
+        background:
+          radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.54) 0 4px, transparent 5px),
+          repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.34) 0 2px,
+            transparent 2px 22px
+          ),
+          linear-gradient(135deg, #62bce7 0%, #2387c1 56%, #12669c 100%);
+        box-shadow:
+          inset 0 14px 24px rgba(255, 255, 255, 0.28),
+          0 -8px 0 rgba(255, 248, 220, 0.38);
+        animation: importWater 5s ease-in-out infinite;
+      }
+      .import-harbor::after {
+        content: "";
+        position: absolute;
+        left: 36px;
+        bottom: 35px;
+        width: 180px;
+        height: 13px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(117, 90, 52, 0.82), rgba(80, 59, 35, 0.92));
+        box-shadow:
+          55px 11px 0 -5px rgba(80, 59, 35, 0.72),
+          0 10px 12px rgba(17, 63, 91, 0.18);
+      }
+      @keyframes importWater {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(5px);
+        }
+      }
+      .harbor-crane {
+        position: absolute;
+        left: 128px;
+        bottom: 62px;
+        z-index: 2;
+        font-size: 38px;
+        filter: drop-shadow(0 7px 8px rgba(0, 0, 0, 0.16));
+      }
+      .import-ship {
+        position: absolute;
+        left: 238px;
+        bottom: 36px;
+        z-index: 4;
+        width: 168px;
+        height: 84px;
+        animation: shipCruise 14s linear infinite;
+      }
+      @keyframes shipCruise {
+        0% {
+          opacity: 0;
+          transform: translateX(-188px);
+        }
+        12% {
+          opacity: 1;
+          transform: translateX(-164px);
+        }
+        84% {
+          opacity: 1;
+          transform: translateX(38px);
+        }
+        96% {
+          opacity: 0;
+          transform: translateX(52px);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-188px);
+        }
+      }
+      .ship-tag {
+        position: absolute;
+        left: 14px;
+        bottom: -11px;
+        z-index: 2;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 999px;
+        padding: 4px 10px;
+        background: rgba(9, 70, 105, 0.72);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 900;
+        line-height: 1;
+        white-space: nowrap;
+        box-shadow: 0 7px 14px rgba(9, 70, 105, 0.22);
+        animation: shipTagReveal 14s linear infinite;
+      }
+      @keyframes shipTagReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(4px) scale(0.96);
+        }
+        12% {
+          opacity: 0.48;
+          transform: translateY(3px) scale(0.96);
+        }
+        34%,
+        82% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        96%,
+        100% {
+          opacity: 0;
+          transform: translateY(4px) scale(0.96);
+        }
+      }
+      .cargo-ship {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 168px;
+        height: 78px;
+        filter: drop-shadow(0 9px 10px rgba(0, 0, 0, 0.22));
+        animation: shipBob 3.4s ease-in-out infinite;
+      }
+      .cargo-ship::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        bottom: 8px;
+        width: 146px;
+        height: 34px;
+        border-radius: 6px 8px 22px 26px;
+        background:
+          linear-gradient(180deg, #fff6e8 0 48%, #d8453a 49% 100%);
+        clip-path: polygon(0 0, 100% 0, 90% 100%, 13% 100%);
+      }
+      .cargo-ship::after {
+        content: "";
+        position: absolute;
+        left: -12px;
+        bottom: 6px;
+        width: 182px;
+        height: 6px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.82), transparent);
+      }
+      .ship-deck {
+        position: absolute;
+        left: 30px;
+        bottom: 42px;
+        width: 78px;
+        height: 7px;
+        border-radius: 999px;
+        background: #2f5068;
+      }
+      .ship-container {
+        position: absolute;
+        bottom: 49px;
+        width: 25px;
+        height: 18px;
+        border-radius: 3px;
+        box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.14);
+      }
+      .ship-container.c1 {
+        left: 32px;
+        background: #ffd166;
+      }
+      .ship-container.c2 {
+        left: 59px;
+        background: #ef7b45;
+      }
+      .ship-container.c3 {
+        left: 86px;
+        background: #2f6b45;
+      }
+      .ship-container.c4 {
+        left: 48px;
+        bottom: 68px;
+        background: #5aa9e6;
+      }
+      .ship-bridge {
+        position: absolute;
+        right: 20px;
+        bottom: 43px;
+        width: 34px;
+        height: 31px;
+        border-radius: 5px 5px 3px 3px;
+        background:
+          linear-gradient(90deg, #57768d 0 5px, transparent 5px 12px, #57768d 12px 17px, transparent 17px),
+          #fff7ea;
+        box-shadow: inset 0 -5px 0 rgba(47, 80, 104, 0.12);
+      }
+      .ship-stack {
+        position: absolute;
+        right: 54px;
+        bottom: 64px;
+        width: 14px;
+        height: 19px;
+        border-radius: 3px 3px 1px 1px;
+        background: linear-gradient(180deg, #2f5068 0 26%, #ef7b45 27% 100%);
+      }
+      @keyframes shipBob {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% {
+          transform: translateY(4px) rotate(1deg);
+        }
+      }
+      .import-ship .import-smoke {
+        right: 42px;
+        top: -8px;
+        transform: scale(0.82);
+        transform-origin: right top;
+      }
+
       /* consumer cart — neighbour to the farmer, yet reached only via the long loop */
       .p1-consumer {
         right: 44px;
@@ -8897,7 +9230,8 @@
           </div>
         </section>
 
-        <section class="problem-slide" data-transition="fade">
+        <!-- Slide 1: import story -->
+        <section class="problem-slide import-story-slide" data-transition="fade">
           <div class="p1nature">
             <div class="p1-sun" aria-hidden="true"></div>
             <div class="p1-cloud c1" aria-hidden="true"></div>
@@ -8906,67 +9240,85 @@
             <div class="p1-hill mid" aria-hidden="true"></div>
             <div class="p1-hill front" aria-hidden="true"></div>
 
-            <svg class="p1-road" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
-              <path class="road-edge" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
-              <path class="road-base" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
-              <path class="road-dash" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
-              <path class="direct-glow" d="M952,532 Q1068,668 1196,520" />
-              <path class="direct-route" d="M952,532 Q1068,668 1196,520" />
-            </svg>
-
-            <!-- farm life filling the field inside the loop -->
-            <div class="p1-scn s-tree" aria-hidden="true">🌳</div>
-            <div class="p1-scn s-cow" aria-hidden="true">🐄</div>
-            <div class="p1-scn s-sheep" aria-hidden="true">🐑</div>
-            <div class="p1-scn s-tractor" aria-hidden="true">🚜</div>
-            <div class="p1-scn s-flowers" aria-hidden="true">🌻</div>
-
-            <!-- imported = heavy carbon: a grey CO₂ cloud drifts across with the label -->
-            <div class="p1-plane" aria-label="Imported: one euro fifty, plastic-wrapped, high CO2 footprint">
-              <span class="p1-carbon" aria-hidden="true"></span>
-              <span class="p1-co2" aria-hidden="true"><i></i><i></i><i></i></span>
+            <div class="import-airplane" aria-label="Air import: high CO2, long distance">
+              <span class="aircraft" aria-hidden="true">✈️</span>
+              <span class="import-smoke" aria-hidden="true"><i>CO₂</i><i>CO₂</i><i>CO₂</i></span>
               <span class="p1-badge import">
-                <span class="price">Imported · €1.5</span>
-                <span class="attrs">plastic-wrapped · high CO₂</span>
+                <span class="price">Air import · high CO₂</span>
+                <span class="attrs">far away · plastic-wrapped</span>
               </span>
             </div>
 
-            <!-- local producer: right next to the consumer, fresh and cheap -->
-            <div class="p1a p1-farmer" aria-label="Local producer: one euro, fresh, low CO2">
-              <span class="who">🧑‍🌾<span class="pap">🫑</span></span>
-              <span class="p1-badge local">
-                <span class="price">Local · €1</span>
-                <span class="attrs">Fresh · low CO₂</span>
-              </span>
+            <div class="import-harbor" aria-label="Sea import: cargo ship emitting CO2">
+              <div class="harbor-crane" aria-hidden="true">🏗️</div>
+              <div class="import-ship">
+                <div class="cargo-ship" aria-hidden="true">
+                  <span class="ship-deck"></span>
+                  <span class="ship-container c1"></span>
+                  <span class="ship-container c2"></span>
+                  <span class="ship-container c3"></span>
+                  <span class="ship-container c4"></span>
+                  <span class="ship-bridge"></span>
+                  <span class="ship-stack"></span>
+                </div>
+                <span class="ship-tag">Sea import · CO₂</span>
+                <span class="import-smoke" aria-hidden="true"><i>CO₂</i><i>CO₂</i><i>CO₂</i></span>
+              </div>
             </div>
 
-            <!-- the middleman channels the product must route through; each takes a cut -->
-            <div class="booth b-collector">
-              <span class="cut">−</span>
-              <span class="ico">🏚️</span>
-              <strong>Collector</strong>
-            </div>
-            <div class="booth b-distributor">
-              <span class="cut">−</span>
-              <span class="ico">🚚</span>
-              <strong>Distributor</strong>
-            </div>
-            <div class="booth b-retailer">
-              <span class="cut">−</span>
-              <span class="ico">🏪</span>
-              <strong>Retailer</strong>
-            </div>
+            <div class="local-chain">
+              <svg class="p1-road" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+                <path class="road-edge" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
+                <path class="road-base" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
+                <path class="road-dash" d="M960,548 C760,582 420,582 215,548 C115,524 128,432 206,386 C300,330 440,330 560,332 C700,338 802,344 900,360 C1010,380 1110,470 1180,512" />
+                <path class="direct-glow" d="M952,532 Q1068,668 1196,520" />
+                <path class="direct-route" d="M952,532 Q1068,668 1196,520" />
+              </svg>
 
-            <!-- the app's direct route: farmer straight to the consumer next door -->
-            <div class="p1-direct">FRSH Nearby</div>
+              <!-- farm life filling the field inside the loop -->
+              <div class="p1-scn s-tree" aria-hidden="true">🌳</div>
+              <div class="p1-scn s-cow" aria-hidden="true">🐄</div>
+              <div class="p1-scn s-sheep" aria-hidden="true">🐑</div>
+              <div class="p1-scn s-tractor" aria-hidden="true">🚜</div>
+              <div class="p1-scn s-flowers" aria-hidden="true">🌻</div>
 
-            <!-- producer's product looping the long way to the consumer next door -->
-            <div class="p1-product" aria-hidden="true">
-              <span class="crate">📦</span>
-            </div>
+              <!-- local producer: right next to the consumer, fresh and cheap -->
+              <div class="p1a p1-farmer" aria-label="Local producer: one euro, fresh, low CO2">
+                <span class="who">🧑‍🌾<span class="pap">🫑</span></span>
+                <span class="p1-badge local">
+                  <span class="price">Local · €1</span>
+                  <span class="attrs">Fresh · low CO₂</span>
+                </span>
+              </div>
 
-            <div class="p1a p1-consumer" aria-label="Consumer">
-              <span class="face">🛒</span>
+              <!-- the middleman channels the product must route through; each takes a cut -->
+              <div class="booth b-collector">
+                <span class="cut">−</span>
+                <span class="ico">🏚️</span>
+                <strong>Collector</strong>
+              </div>
+              <div class="booth b-distributor">
+                <span class="cut">−</span>
+                <span class="ico">🚚</span>
+                <strong>Distributor</strong>
+              </div>
+              <div class="booth b-retailer">
+                <span class="cut">−</span>
+                <span class="ico">🏪</span>
+                <strong>Retailer</strong>
+              </div>
+
+              <!-- the app's direct route: farmer straight to the consumer next door -->
+              <div class="p1-direct">FRSH Nearby</div>
+
+              <!-- producer's product looping the long way to the consumer next door -->
+              <div class="p1-product" aria-hidden="true">
+                <span class="crate">📦</span>
+              </div>
+
+              <div class="p1a p1-consumer" aria-label="Consumer">
+                <span class="face">🛒</span>
+              </div>
             </div>
           </div>
         </section>
