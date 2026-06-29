@@ -751,6 +751,88 @@
         background: linear-gradient(180deg, #d9eefb 0%, #d3e9da 46%, #6fb551 100%);
       }
 
+      /* ===== Cover slide — logo + FRSH Nearby on the farm ===== */
+      .cover-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        padding: 0 !important;
+        background: transparent;
+      }
+      .cover-center {
+        position: absolute;
+        left: 50%;
+        top: 43%;
+        transform: translate(-50%, -50%);
+        z-index: 6;
+        display: grid;
+        justify-items: center;
+        gap: 24px;
+        text-align: center;
+      }
+      .cover-logo {
+        width: 130px;
+        height: 130px;
+        object-fit: contain;
+        border-radius: 28px;
+        padding: 14px;
+        background: #ffffff;
+        box-shadow: 0 20px 46px rgba(26, 28, 25, 0.16);
+        animation: coverFloat 5s ease-in-out infinite;
+      }
+      @keyframes coverFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-7px);
+        }
+      }
+      .reveal h1.cover-title {
+        margin: 0;
+        color: var(--green);
+        font-weight: 900;
+        font-size: clamp(66px, 9vw, 116px);
+        line-height: 0.9;
+        letter-spacing: -1px;
+        text-transform: none;
+      }
+      .cover-title .nb {
+        color: var(--deep-green);
+        font-weight: 800;
+      }
+      .cov-scn {
+        position: absolute;
+        z-index: 2;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+      }
+      .cov-scn.cs-tree {
+        left: 150px;
+        bottom: 96px;
+        font-size: 48px;
+      }
+      .cov-scn.cs-cow {
+        left: 320px;
+        bottom: 70px;
+        font-size: 40px;
+        animation: p1Graze 4s ease-in-out infinite;
+      }
+      .cov-scn.cs-crop {
+        right: 300px;
+        bottom: 74px;
+        font-size: 38px;
+        animation: p1Graze 4s ease-in-out infinite;
+        animation-delay: 0.8s;
+      }
+      .cov-scn.cs-tractor {
+        right: 150px;
+        bottom: 88px;
+        font-size: 44px;
+        animation: p1Work 3s ease-in-out infinite;
+      }
+
       .reveal {
         color: var(--ink);
         font-family:
@@ -1343,18 +1425,9 @@
       .p2-meter span {
         display: block;
         height: 100%;
+        width: 20%;
         border-radius: 999px;
-        background: linear-gradient(90deg, var(--green), var(--lime));
-        animation: p2Margin 2.6s ease-in-out infinite;
-      }
-      @keyframes p2Margin {
-        0%,
-        100% {
-          width: 16%;
-        }
-        50% {
-          width: 26%;
-        }
+        background: linear-gradient(90deg, #dc3f3f, #ff7a5c);
       }
       /* rising price bars (high) */
       .p2-bars {
@@ -2736,29 +2809,29 @@
         stroke-dasharray: 12 12;
         animation: p3Flow 0.9s linear infinite;
       }
-      .p3-wire-glow {
-        fill: none;
-        stroke: rgba(47, 107, 69, 0.16);
-        stroke-width: 15;
-        stroke-linecap: round;
+      .p3-wire.money {
+        stroke: #f5b83c;
       }
       @keyframes p3Flow {
         to {
           stroke-dashoffset: -24;
         }
       }
-      .p3-token {
+      /* a bunch of potatoes travels farmer → consumer */
+      .p3-produce {
         position: absolute;
         left: 0;
         top: 0;
         z-index: 6;
-        font-size: 34px;
-        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.2));
-        offset-path: path("M742,372 Q845,316 948,372");
+        font-size: 23px;
+        letter-spacing: -8px;
+        white-space: nowrap;
+        filter: drop-shadow(0 5px 7px rgba(0, 0, 0, 0.22));
+        offset-path: path("M742,358 Q845,300 948,358");
         offset-rotate: 0deg;
-        animation: p3Move 3.8s ease-in-out infinite;
+        animation: p3Produce 3.8s ease-in-out infinite;
       }
-      @keyframes p3Move {
+      @keyframes p3Produce {
         0% {
           offset-distance: 100%;
           opacity: 0;
@@ -2766,13 +2839,51 @@
         10% {
           opacity: 1;
         }
-        56% {
+        58% {
           offset-distance: 0%;
           opacity: 1;
         }
-        70%,
+        72%,
         100% {
           offset-distance: 0%;
+          opacity: 0;
+        }
+      }
+      /* euro payment travels consumer → farmer (closing the loop) */
+      .p3-money {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 6;
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: radial-gradient(circle at 38% 34%, #ffe9a8, #f1b62e 70%);
+        color: #7a5300;
+        font-size: 17px;
+        font-weight: 900;
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        offset-path: path("M742,388 Q845,448 948,388");
+        offset-rotate: 0deg;
+        animation: p3Money 3.8s ease-in-out infinite;
+      }
+      @keyframes p3Money {
+        0% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        60% {
+          offset-distance: 100%;
+          opacity: 1;
+        }
+        74%,
+        100% {
+          offset-distance: 100%;
           opacity: 0;
         }
       }
@@ -3527,10 +3638,12 @@
       .fut-glossary {
         position: absolute;
         right: 40px;
-        bottom: 28px;
+        bottom: 26px;
         z-index: 6;
-        border-radius: 999px;
-        padding: 8px 16px;
+        display: grid;
+        gap: 3px;
+        border-radius: 16px;
+        padding: 10px 16px;
         background: rgba(255, 255, 255, 0.92);
         border: 1px solid rgba(47, 107, 69, 0.2);
         color: var(--muted);
@@ -3540,6 +3653,135 @@
       }
       .fut-glossary b {
         color: var(--deep-green);
+      }
+      .fut-badge.bp {
+        font-size: 17px;
+      }
+
+      /* destination 2Y+: Europe market capture + courier run from the app */
+      .eu-name {
+        position: absolute;
+        left: 1096px;
+        top: 70px;
+        transform: translateX(-50%);
+        z-index: 6;
+        border-radius: 999px;
+        padding: 6px 16px;
+        background: #ffffff;
+        color: var(--deep-green);
+        font-size: 14px;
+        font-weight: 850;
+        white-space: nowrap;
+        box-shadow: 0 8px 16px rgba(26, 28, 25, 0.12);
+      }
+      .eu-map {
+        position: absolute;
+        left: 958px;
+        top: 100px;
+        width: 278px;
+        height: 140px;
+        z-index: 4;
+        border-radius: 46% 54% 52% 48% / 58% 48% 52% 42%;
+        background: rgba(47, 107, 69, 0.13);
+        border: 2px dashed rgba(47, 107, 69, 0.42);
+      }
+      .eu-routes {
+        position: absolute;
+        inset: 0;
+        width: 1280px;
+        height: 720px;
+        z-index: 5;
+      }
+      .eu-routes path {
+        fill: none;
+        stroke: var(--green);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-dasharray: 5 6;
+        opacity: 0.7;
+        animation: euFlow 1s linear infinite;
+      }
+      @keyframes euFlow {
+        to {
+          stroke-dashoffset: -11;
+        }
+      }
+      .eu-pin {
+        position: absolute;
+        z-index: 6;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: var(--green);
+        border: 3px solid #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        animation: euPin 2.4s ease-in-out infinite;
+      }
+      .eu-pin.a {
+        left: 1068px;
+        top: 121px;
+      }
+      .eu-pin.b {
+        left: 1151px;
+        top: 139px;
+        animation-delay: 0.4s;
+      }
+      .eu-pin.c {
+        left: 1111px;
+        top: 189px;
+        animation-delay: 0.8s;
+      }
+      @keyframes euPin {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.3);
+        }
+      }
+      .eu-app {
+        position: absolute;
+        left: 972px;
+        top: 186px;
+        z-index: 6;
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        background: linear-gradient(180deg, #3a8a59, #2f6b45);
+        font-size: 22px;
+        box-shadow: 0 8px 18px rgba(47, 107, 69, 0.4);
+      }
+      .eu-courier {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 7;
+        font-size: 25px;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        offset-path: path("M993,206 L1075,128");
+        offset-rotate: 0deg;
+        animation: euCourier 3s ease-in-out infinite;
+      }
+      @keyframes euCourier {
+        0% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        70% {
+          offset-distance: 100%;
+          opacity: 1;
+        }
+        84%,
+        100% {
+          offset-distance: 100%;
+          opacity: 0;
+        }
       }
 
       /* the reshaped food ecosystem at the road's end (replaces the sun) */
@@ -5263,10 +5505,105 @@
         overflow: hidden;
         height: 100%;
         min-height: 100%;
-        background:
-          radial-gradient(circle at 18% 24%, rgba(55, 169, 107, 0.2), transparent 28%),
-          radial-gradient(circle at 82% 68%, rgba(255, 209, 102, 0.25), transparent 26%),
-          linear-gradient(135deg, #f7fbf2 0%, #edf8ea 55%, #fff8df 100%);
+        padding: 0 !important;
+        background: transparent;
+      }
+
+      /* ===== Slide 6: Analytics — 2x2 stat dashboard on the farm ===== */
+      .reveal h1.an-title {
+        position: absolute;
+        left: 64px;
+        top: 54px;
+        z-index: 6;
+        margin: 0;
+        color: var(--green);
+        font-size: clamp(40px, 5vw, 56px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      .an-grid {
+        position: absolute;
+        left: 64px;
+        right: 64px;
+        top: 150px;
+        bottom: 48px;
+        z-index: 5;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 26px;
+      }
+      .an-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 24px;
+        border-radius: 22px;
+        padding: 24px 32px;
+        background: #fff;
+        box-shadow: 0 16px 36px rgba(26, 28, 25, 0.1);
+        animation: anLift 5s ease-in-out infinite;
+      }
+      .an-card.c2 {
+        animation-delay: 0.4s;
+      }
+      .an-card.c3 {
+        animation-delay: 0.8s;
+      }
+      .an-card.c4 {
+        animation-delay: 1.2s;
+      }
+      @keyframes anLift {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+      .an-viz {
+        width: 104px;
+        height: 104px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font-size: 50px;
+      }
+      .an-viz.donut {
+        background: conic-gradient(var(--green) 0 90%, rgba(26, 28, 25, 0.1) 90% 100%);
+      }
+      .an-viz.donut::after {
+        content: "";
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .an-viz.tint-green {
+        background: var(--pale-green);
+      }
+      .an-viz.tint-orange {
+        background: rgba(239, 123, 69, 0.16);
+      }
+      .an-num {
+        display: block;
+        color: var(--green);
+        font-size: 56px;
+        font-weight: 900;
+        line-height: 1;
+      }
+      .an-card.c2 .an-num {
+        color: var(--orange);
+      }
+      .an-desc {
+        display: block;
+        margin-top: 8px;
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.26;
       }
 
       .reveal h1.market-title {
@@ -5442,10 +5779,230 @@
         overflow: hidden;
         height: 100%;
         min-height: 100%;
-        background:
-          radial-gradient(circle at 18% 24%, rgba(55, 169, 107, 0.2), transparent 28%),
-          radial-gradient(circle at 82% 68%, rgba(255, 209, 102, 0.28), transparent 26%),
-          linear-gradient(135deg, #f7fbf2 0%, #edf8ea 55%, #fff8df 100%);
+        padding: 0 !important;
+        background: transparent;
+      }
+
+      /* ===== Slide 7: Business model — commission engine on the farm ===== */
+      .reveal h1.bm-title {
+        position: absolute;
+        left: 64px;
+        top: 50px;
+        z-index: 6;
+        margin: 0;
+        color: var(--green);
+        font-size: clamp(38px, 4.6vw, 56px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      .bm-points {
+        position: absolute;
+        left: 64px;
+        top: 156px;
+        width: 432px;
+        z-index: 5;
+        display: grid;
+        gap: 14px;
+      }
+      .bm-point {
+        position: relative;
+        border-radius: 16px;
+        padding: 14px 16px 14px 44px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(47, 107, 69, 0.18);
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.26;
+        box-shadow: 0 12px 26px rgba(26, 28, 25, 0.08);
+      }
+      .bm-point::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: var(--green);
+        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.82);
+      }
+      /* commission engine (right) */
+      .bm-node {
+        position: absolute;
+        z-index: 5;
+        display: grid;
+        justify-items: center;
+        gap: 7px;
+        transform: translateX(-50%);
+      }
+      .bm-node .ic {
+        width: 72px;
+        height: 72px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #fff;
+        font-size: 36px;
+        box-shadow: 0 12px 26px rgba(26, 28, 25, 0.12);
+      }
+      .bm-node.frsh .ic {
+        width: 84px;
+        height: 84px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, #3a8a59, #2f6b45);
+        font-size: 36px;
+        box-shadow: 0 14px 30px rgba(47, 107, 69, 0.4);
+      }
+      .bm-node small {
+        font-size: 12px;
+        font-weight: 850;
+        color: var(--muted);
+      }
+      .bm-node.frsh small {
+        color: var(--deep-green);
+      }
+      .bm-farmer {
+        left: 660px;
+        top: 214px;
+      }
+      .bm-frsh {
+        left: 885px;
+        top: 208px;
+      }
+      .bm-consumer {
+        left: 1110px;
+        top: 214px;
+      }
+      .bm-line {
+        position: absolute;
+        inset: 0;
+        width: 1280px;
+        height: 720px;
+        z-index: 3;
+      }
+      .bm-line path {
+        fill: none;
+        stroke: var(--green);
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-dasharray: 10 12;
+        animation: bmFlow 1s linear infinite;
+      }
+      @keyframes bmFlow {
+        to {
+          stroke-dashoffset: -22;
+        }
+      }
+      .bm-orders-lbl {
+        position: absolute;
+        left: 612px;
+        top: 176px;
+        transform: translateX(-50%);
+        z-index: 6;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 850;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .bm-order {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 6;
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: radial-gradient(circle at 38% 34%, #ffe9a8, #f1b62e 70%);
+        color: #7a5300;
+        font-size: 15px;
+        font-weight: 900;
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        offset-path: path("M600,210 L842,210");
+        offset-rotate: 0deg;
+        animation: bmOrder 3s linear infinite;
+      }
+      .bm-order.o2 {
+        animation-delay: 1s;
+      }
+      .bm-order.o3 {
+        animation-delay: 2s;
+      }
+      @keyframes bmOrder {
+        0% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        82% {
+          offset-distance: 100%;
+          opacity: 1;
+        }
+        92%,
+        100% {
+          offset-distance: 100%;
+          opacity: 0;
+        }
+      }
+      /* the 5% commission — primary revenue */
+      .bm-comm {
+        position: absolute;
+        left: 885px;
+        top: 372px;
+        transform: translateX(-50%);
+        z-index: 6;
+        display: grid;
+        justify-items: center;
+        gap: 2px;
+        text-align: center;
+      }
+      .bm-comm .pct {
+        color: var(--green);
+        font-size: 98px;
+        font-weight: 900;
+        line-height: 0.86;
+      }
+      .bm-comm .lbl {
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 850;
+      }
+      .bm-comm .tag {
+        margin-bottom: 6px;
+        border-radius: 999px;
+        padding: 3px 12px;
+        background: var(--pale-green);
+        color: var(--deep-green);
+        font-size: 11px;
+        font-weight: 850;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      /* subscription — secondary */
+      .bm-sub {
+        position: absolute;
+        left: 885px;
+        top: 540px;
+        transform: translateX(-50%);
+        z-index: 6;
+        border-radius: 999px;
+        padding: 8px 18px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px dashed rgba(47, 107, 69, 0.45);
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+      .bm-sub b {
+        color: var(--deep-green);
       }
 
       .reveal h1.business-title {
@@ -8274,6 +8831,25 @@
   <body>
     <div class="reveal">
       <div class="slides">
+        <section class="cover-slide" data-transition="fade">
+          <div class="p1nature">
+            <div class="p1-sun" aria-hidden="true"></div>
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
+
+            <div class="cov-scn cs-tree" aria-hidden="true">🌳</div>
+            <div class="cov-scn cs-cow" aria-hidden="true">🐄</div>
+            <div class="cov-scn cs-crop" aria-hidden="true">🌾</div>
+            <div class="cov-scn cs-tractor" aria-hidden="true">🚜</div>
+
+            <div class="cover-center">
+              <img class="cover-logo" src="logo.png" alt="FRSH Nearby logo" />
+              <h1 class="cover-title">FRSH <span class="nb">Nearby</span></h1>
+            </div>
+          </div>
+        </section>
+
         <section class="problem-slide" data-transition="fade">
           <div class="p1nature">
             <div class="p1-sun" aria-hidden="true"></div>
@@ -8410,12 +8986,13 @@
               </ul>
             </div>
 
-            <!-- the app directly connects consumer and farmer -->
+            <!-- the app directly connects consumer and farmer: produce one way, € the other -->
             <svg class="p3-link" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
-              <path class="p3-wire-glow" d="M742,372 Q845,316 948,372" />
-              <path class="p3-wire" d="M742,372 Q845,316 948,372" />
+              <path class="p3-wire" d="M742,358 Q845,300 948,358" />
+              <path class="p3-wire money" d="M742,388 Q845,448 948,388" />
             </svg>
-            <div class="p3-token" aria-hidden="true">🧺</div>
+            <div class="p3-produce" aria-hidden="true">🥔🥔🥔</div>
+            <div class="p3-money" aria-hidden="true">€</div>
 
             <!-- consumer phone: discover nearby farmers and order -->
             <div class="p3-phone p3-consumer" aria-label="Consumer app: discover nearby farms and order">
@@ -8481,7 +9058,7 @@
               <div class="prog-badge">€</div>
               <div class="prog-card">
                 <span class="prog-tag">Funding</span>
-                <strong>Starttiraha application was made waiting for response</strong>
+                <strong>First funding applications will be turned in this week (Starttiraha)</strong>
               </div>
             </div>
           </div>
@@ -8506,36 +9083,36 @@
 
             <svg class="fut-path" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
               <path class="fut-road" d="M100,580 C160,558 190,530 230,511 C340,478 400,470 480,441 C600,402 660,398 730,371 C840,330 910,312 990,281" />
-              <path class="fut-ahead" d="M990,281 C1020,250 1042,222 1062,196" />
+              <path class="fut-ahead" d="M990,281 C992,262 990,250 988,238" />
             </svg>
 
-            <!-- destination: the reshaped local food ecosystem, app at the centre -->
-            <div class="eco-glow" aria-hidden="true"></div>
-            <svg class="eco-links" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
-              <line x1="1130" y1="158" x2="1130" y2="92" />
-              <line x1="1130" y1="158" x2="1200" y2="158" />
-              <line x1="1130" y1="158" x2="1130" y2="224" />
-              <line x1="1130" y1="158" x2="1060" y2="158" />
+            <!-- destination 2Y+: capture the whole European market, courier run from the app -->
+            <div class="eu-name" aria-label="Capturing the whole European market with courier service">🇪🇺 Whole Europe</div>
+            <div class="eu-map" aria-hidden="true"></div>
+            <svg class="eu-routes" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M993,206 L1075,128" />
+              <path d="M993,206 L1158,146" />
+              <path d="M993,206 L1118,196" />
             </svg>
-            <div class="eco-app" aria-label="FRSH Nearby app at the centre of the local food ecosystem">📱</div>
-            <div class="eco-node n-farmer" aria-hidden="true">🧑‍🌾</div>
-            <div class="eco-node n-cow" aria-hidden="true">🐄</div>
-            <div class="eco-node n-prod" aria-hidden="true">🥕</div>
-            <div class="eco-node n-cons" aria-hidden="true">🛒</div>
+            <span class="eu-pin a" aria-hidden="true"></span>
+            <span class="eu-pin b" aria-hidden="true"></span>
+            <span class="eu-pin c" aria-hidden="true"></span>
+            <div class="eu-app" aria-hidden="true">📱</div>
+            <div class="eu-courier" aria-hidden="true">🛵</div>
 
             <div class="fut-stop f1">
               <div class="fut-badge">1</div>
               <div class="fut-card">
                 <span class="fut-when">Next month</span>
-                <strong>Continue customer acquisition in our main area.</strong>
+                <strong>We will launch the MVP</strong>
               </div>
             </div>
 
             <div class="fut-stop f2">
               <div class="fut-badge">2</div>
               <div class="fut-card">
-                <span class="fut-when">Prototype + research</span>
-                <strong>Keep developing the prototype according to the needs of the LFP and continue market research.</strong>
+                <span class="fut-when">Evolution</span>
+                <strong>Evolutionary product — keep evolving with market research</strong>
               </div>
             </div>
 
@@ -8548,64 +9125,59 @@
             </div>
 
             <div class="fut-stop f4">
-              <div class="fut-badge">2Y</div>
+              <div class="fut-badge bp">2Y+</div>
               <div class="fut-card">
-                <span class="fut-when">2 years</span>
-                <strong>Reshape the local food ecosystem.</strong>
+                <span class="fut-when">2 years +</span>
+                <strong>Reshape the local food ecosystem — whole Europe, with courier service</strong>
               </div>
             </div>
 
-            <div class="fut-glossary"><b>LFP</b> = Local Food Producer</div>
+            <div class="fut-glossary">
+              <span><b>LFP</b> = Local Food Producer</span>
+              <span><b>MVP</b> = Minimal Viable Product</span>
+            </div>
           </div>
         </section>
 
         <section class="market-slide" data-transition="fade">
-          <div class="deck-brand">
-            <img src="logo.png" alt="Company logo" />
-            FRSH Nearby
-          </div>
+          <div class="p1nature">
+            <div class="p1-sun" aria-hidden="true"></div>
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
 
-          <h1 class="market-title">Analytics</h1>
+            <h1 class="an-title">Analytics</h1>
 
-          <div class="analytics-stage" aria-label="Direct-to-consumer farm analytics">
-            <div class="analytics-figure">
-              <img src="datas.jpeg" alt="Analytics data chart for direct farm sales" />
-              <div class="analytics-caption">Direct-to-consumer selling is already visible across EU farm markets.</div>
-            </div>
-
-            <div class="analytics-insights">
-              <div class="analytics-card">
-                <small>EU farm behavior</small>
-                <strong>15%</strong>
-                <p>On average, 15% of EU farms sell more than half of their production directly to consumer, meaning 1,3 million farms.</p>
-                <div class="analytics-flow" aria-hidden="true"></div>
-              </div>
-
-              <div class="analytics-card">
-                <small>Direct seller concentration</small>
-                <strong>1M+</strong>
-                <p>France, Italy, Greece, Hungary, Slovakia and Romania there are over 1 million farmers selling directly to consumers.</p>
-                <div class="country-strip" aria-hidden="true">
-                  <span>France</span>
-                  <span>Italy</span>
-                  <span>Greece</span>
-                  <span>Hungary</span>
-                  <span>Slovakia</span>
-                  <span>Romania</span>
+            <div class="an-grid">
+              <div class="an-card c1">
+                <div class="an-viz donut" aria-hidden="true"></div>
+                <div>
+                  <span class="an-num">90%</span>
+                  <span class="an-desc">of farmers say that direct selling increases profits</span>
                 </div>
               </div>
 
-              <div class="analytics-extra-row">
-                <div class="analytics-card compact">
-                  <small>Earnings impact</small>
-                  <strong>90%</strong>
-                  <p>90% of farmers say that direct sales improve earnings.</p>
+              <div class="an-card c2">
+                <div class="an-viz tint-orange" aria-hidden="true">🎯</div>
+                <div>
+                  <span class="an-num">250</span>
+                  <span class="an-desc">Breakeven — producers</span>
                 </div>
+              </div>
 
-                <div class="analytics-card compact">
-                  <small>Margin impact</small>
-                  <strong>35%</strong>
-                  <p>35% of farmers say that direct sales increase profit margins more than 25%.</p>
+              <div class="an-card c3">
+                <div class="an-viz tint-green" aria-hidden="true">🇪🇺</div>
+                <div>
+                  <span class="an-num">1.3M</span>
+                  <span class="an-desc">farmers in Europe selling directly to consumer</span>
+                </div>
+              </div>
+
+              <div class="an-card c4">
+                <div class="an-viz tint-green" aria-hidden="true">🇳🇱</div>
+                <div>
+                  <span class="an-num">€1.5B</span>
+                  <span class="an-desc">Market size in Netherlands (1,5 BEUR)</span>
                 </div>
               </div>
             </div>
@@ -8613,35 +9185,39 @@
         </section>
 
         <section class="business-model-slide" data-transition="fade">
-          <div class="deck-brand">
-            <img src="logo.png" alt="Company logo" />
-            FRSH Nearby
-          </div>
+          <div class="p1nature">
+            <div class="p1-sun" aria-hidden="true"></div>
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
 
-          <h1 class="business-title">Business model</h1>
+            <h1 class="bm-title">Business model</h1>
 
-          <div class="business-stage" aria-label="FRSH Nearby business model revenue engine">
-            <div class="revenue-engine">
-              <div class="engine-route" aria-hidden="true"></div>
-              <div class="engine-node farm-engine-node">🚜</div>
-              <div class="engine-node platform-engine-node">FRSH<br />Nearby</div>
-              <div class="engine-node consumer-engine-node">🍽️</div>
-              <div class="order-token">€</div>
-              <div class="commission-chip-big">5% commission</div>
-              <div class="revenue-bars">
-                <div class="revenue-driver">registered users</div>
-                <div class="revenue-driver">retention</div>
-                <div class="revenue-driver">average transaction size</div>
-                <div class="revenue-driver">commission size</div>
-              </div>
+            <div class="bm-points">
+              <div class="bm-point">Platform provides accessibility, visibility and order book</div>
+              <div class="bm-point">Commission and/or subscription as pricing policy</div>
+              <div class="bm-point">5% flat commission per order</div>
+              <div class="bm-point">Value drivers: registered users, retention, average transaction size, commission size</div>
             </div>
 
-            <div class="business-points">
-              <div class="business-point">Platform provides accessibility, visibility and order book</div>
-              <div class="business-point">Commission and/or subscription as pricing policy</div>
-              <div class="business-point">5% flat commission per order</div>
-              <div class="business-point">Value drivers: registered users, retention, average transaction size, commission size</div>
+            <!-- the platform earns a small 5% on every order it processes -->
+            <svg class="bm-line" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M600,210 L842,210" />
+              <path d="M885,256 L885,338" />
+            </svg>
+            <div class="bm-orders-lbl">Every order</div>
+            <div class="bm-order o1" aria-hidden="true">€</div>
+            <div class="bm-order o2" aria-hidden="true">€</div>
+            <div class="bm-order o3" aria-hidden="true">€</div>
+            <div class="bm-node bm-frsh frsh"><span class="ic">📱</span><small>FRSH Nearby</small></div>
+
+            <div class="bm-comm" aria-label="5 percent commission per order, primary revenue">
+              <span class="tag">Primary revenue</span>
+              <span class="pct">5%</span>
+              <span class="lbl">commission per order</span>
             </div>
+
+            <div class="bm-sub">Secondary: <b>subscription</b></div>
           </div>
         </section>
 
@@ -8666,7 +9242,7 @@
               <div class="team-info">
                 <h2>Jiri</h2>
                 <div class="team-meta">
-                  <span class="team-degree">B. Sc in Economy</span>
+                  <span class="team-degree">B. Sc in Economics and Business Administration</span>
                   <span class="team-role">Cofounder</span>
                 </div>
                 <div class="team-focus">Business Intelligence and Generalist</div>
@@ -8690,7 +9266,7 @@
               <div class="team-info">
                 <h2>Joe</h2>
                 <div class="team-meta">
-                  <span class="team-degree">M. Sc in Economy</span>
+                  <span class="team-degree">M. Sc in Economics and Business Administration</span>
                   <span class="team-role">cofounder</span>
                 </div>
                 <div class="team-focus">Business Operations executions vision and leadership</div>
