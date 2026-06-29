@@ -4009,129 +4009,246 @@
         font-size: 17px;
       }
 
-      /* destination 2Y+: Europe market capture + courier run from the app */
-      .eu-name {
+      /* destination 2Y+: Europe-wide product and euro marketplace activity */
+      .europe-ecosystem {
         position: absolute;
-        left: 1096px;
-        top: 70px;
-        transform: translateX(-50%);
-        z-index: 6;
-        border-radius: 999px;
-        padding: 6px 16px;
-        background: #ffffff;
-        color: var(--deep-green);
-        font-size: 14px;
-        font-weight: 850;
-        white-space: nowrap;
-        box-shadow: 0 8px 16px rgba(26, 28, 25, 0.12);
-      }
-      .eu-map {
-        position: absolute;
-        left: 958px;
-        top: 100px;
-        width: 278px;
-        height: 140px;
+        left: 760px;
+        top: -2px;
         z-index: 4;
-        border-radius: 46% 54% 52% 48% / 58% 48% 52% 42%;
-        background: rgba(47, 107, 69, 0.13);
-        border: 2px dashed rgba(47, 107, 69, 0.42);
+        width: 490px;
+        height: 365px;
+        overflow: visible;
+        pointer-events: none;
       }
-      .eu-routes {
+      .europe-ecosystem::before {
+        content: "";
+        position: absolute;
+        inset: 18px 4px 18px 10px;
+        z-index: 0;
+        border-radius: 44%;
+        background:
+          radial-gradient(circle at 63% 34%, rgba(255, 255, 255, 0.86), transparent 38%),
+          radial-gradient(circle at 52% 56%, rgba(47, 107, 69, 0.22), transparent 64%);
+        filter: blur(0.5px);
+      }
+      .europe-map-scene {
         position: absolute;
         inset: 0;
-        width: 1280px;
-        height: 720px;
-        z-index: 5;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        filter: drop-shadow(0 14px 24px rgba(47, 107, 69, 0.16));
       }
-      .eu-routes path {
+      .europe-map-base {
+        opacity: 0.98;
+      }
+      .finland-ring {
         fill: none;
-        stroke: var(--green);
-        stroke-width: 2.5;
-        stroke-linecap: round;
-        stroke-dasharray: 5 6;
-        opacity: 0.7;
-        animation: euFlow 1s linear infinite;
+        stroke: rgba(47, 107, 69, 0.35);
+        stroke-width: 5;
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: finlandPulse 3s ease-in-out infinite;
       }
-      @keyframes euFlow {
-        to {
-          stroke-dashoffset: -11;
-        }
+      .finland-ring.r2 {
+        animation-delay: 1s;
       }
-      .eu-pin {
-        position: absolute;
-        z-index: 6;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: var(--green);
-        border: 3px solid #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        animation: euPin 2.4s ease-in-out infinite;
+      .finland-ring.r3 {
+        animation-delay: 2s;
       }
-      .eu-pin.a {
-        left: 1068px;
-        top: 121px;
+      .origin-dot {
+        fill: #ffffff;
+        stroke: #2f6b45;
+        stroke-width: 4;
+        filter: drop-shadow(0 8px 14px rgba(47, 107, 69, 0.26));
       }
-      .eu-pin.b {
-        left: 1151px;
-        top: 139px;
-        animation-delay: 0.4s;
-      }
-      .eu-pin.c {
-        left: 1111px;
-        top: 189px;
-        animation-delay: 0.8s;
-      }
-      @keyframes euPin {
+      @keyframes finlandPulse {
         0%,
         100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.3);
-        }
-      }
-      .eu-app {
-        position: absolute;
-        left: 972px;
-        top: 186px;
-        z-index: 6;
-        width: 44px;
-        height: 44px;
-        display: grid;
-        place-items: center;
-        border-radius: 13px;
-        background: linear-gradient(180deg, #3a8a59, #2f6b45);
-        font-size: 22px;
-        box-shadow: 0 8px 18px rgba(47, 107, 69, 0.4);
-      }
-      .eu-courier {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 7;
-        font-size: 25px;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
-        offset-path: path("M993,206 L1075,128");
-        offset-rotate: 0deg;
-        animation: euCourier 3s ease-in-out infinite;
-      }
-      @keyframes euCourier {
-        0% {
-          offset-distance: 0%;
           opacity: 0;
+          transform: scale(0.62);
         }
-        12% {
+        18% {
+          opacity: 0.42;
+        }
+        68% {
+          opacity: 0.08;
+          transform: scale(1.48);
+        }
+      }
+      .trade-pop {
+        opacity: 0;
+        transform: scale(0.62);
+        transform-box: fill-box;
+        transform-origin: center;
+        filter: drop-shadow(0 8px 12px rgba(26, 28, 25, 0.18));
+      }
+      .trade-pop.product {
+        animation: tradeProductPop 14.4s ease-in-out infinite;
+      }
+      .trade-pop.euro {
+        animation: tradeEuroPop 14.4s ease-in-out infinite;
+      }
+      .trade-pop circle {
+        fill: rgba(255, 255, 255, 0.98);
+        stroke-width: 2.2;
+      }
+      .trade-pop.product circle {
+        stroke: rgba(47, 107, 69, 0.38);
+      }
+      .trade-pop.euro circle {
+        fill: #fff8f2;
+        stroke: rgba(239, 123, 69, 0.58);
+      }
+      .trade-pop text {
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+      .trade-pop.product text {
+        font-size: 28px;
+      }
+      .trade-pop.euro text {
+        fill: var(--orange);
+        font-size: 24px;
+        font-weight: 950;
+      }
+      .trade-pop.p1 {
+        animation-delay: 0.05s;
+      }
+      .trade-pop.e1 {
+        animation-delay: 0.45s;
+      }
+      .trade-pop.p2 {
+        animation-delay: 1.05s;
+      }
+      .trade-pop.e2 {
+        animation-delay: 1.45s;
+      }
+      .trade-pop.p3 {
+        animation-delay: 2.05s;
+      }
+      .trade-pop.e3 {
+        animation-delay: 2.45s;
+      }
+      .trade-pop.p4 {
+        animation-delay: 3.05s;
+      }
+      .trade-pop.e4 {
+        animation-delay: 3.45s;
+      }
+      .trade-pop.p5 {
+        animation-delay: 4.05s;
+      }
+      .trade-pop.e5 {
+        animation-delay: 4.45s;
+      }
+      .trade-pop.p6 {
+        animation-delay: 5.05s;
+      }
+      .trade-pop.e6 {
+        animation-delay: 5.45s;
+      }
+      .trade-pop.p7 {
+        animation-delay: 6.05s;
+      }
+      .trade-pop.e7 {
+        animation-delay: 6.45s;
+      }
+      .trade-pop.p8 {
+        animation-delay: 7.05s;
+      }
+      .trade-pop.e8 {
+        animation-delay: 7.45s;
+      }
+      .trade-pop.p9 {
+        animation-delay: 8.05s;
+      }
+      .trade-pop.e9 {
+        animation-delay: 8.45s;
+      }
+      .trade-pop.p10 {
+        animation-delay: 9.05s;
+      }
+      .trade-pop.e10 {
+        animation-delay: 9.45s;
+      }
+      .trade-pop.p11 {
+        animation-delay: 9.85s;
+      }
+      .trade-pop.e11 {
+        animation-delay: 10.2s;
+      }
+      .trade-pop.p12 {
+        animation-delay: 10.65s;
+      }
+      .trade-pop.e12 {
+        animation-delay: 11s;
+      }
+      .trade-pop.p13 {
+        animation-delay: 11.45s;
+      }
+      .trade-pop.e13 {
+        animation-delay: 11.8s;
+      }
+      .trade-pop.p14 {
+        animation-delay: 12.25s;
+      }
+      .trade-pop.e14 {
+        animation-delay: 12.6s;
+      }
+      .trade-pop.p15 {
+        animation-delay: 13.05s;
+      }
+      .trade-pop.e15 {
+        animation-delay: 13.4s;
+      }
+      .trade-pop.p16 {
+        animation-delay: 13.85s;
+      }
+      .trade-pop.e16 {
+        animation-delay: 14.2s;
+      }
+      @keyframes tradeProductPop {
+        0%,
+        5% {
+          opacity: 0;
+          transform: scale(0.62) translateY(5px);
+        }
+        8% {
           opacity: 1;
+          transform: scale(1.16) translateY(0);
         }
-        70% {
-          offset-distance: 100%;
+        13%,
+        21% {
           opacity: 1;
+          transform: scale(1) translateY(0);
         }
-        84%,
+        30%,
         100% {
-          offset-distance: 100%;
           opacity: 0;
+          transform: scale(0.76) translateY(-3px);
+        }
+      }
+      @keyframes tradeEuroPop {
+        0%,
+        5% {
+          opacity: 0;
+          transform: scale(0.58) translateY(4px);
+        }
+        8% {
+          opacity: 1;
+          transform: scale(1.12) translateY(0);
+        }
+        13%,
+        20% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+        28%,
+        100% {
+          opacity: 0;
+          transform: scale(0.72) translateY(-4px);
         }
       }
 
@@ -5903,7 +6020,7 @@
         background: transparent;
       }
 
-      /* ===== Slide 6: Analytics — 2x2 stat dashboard on the farm ===== */
+      /* ===== Slide 6: Analytics — evidence dashboard on the farm ===== */
       .reveal h1.an-title {
         position: absolute;
         left: 64px;
@@ -5920,84 +6037,275 @@
         position: absolute;
         left: 64px;
         right: 64px;
-        top: 150px;
-        bottom: 48px;
+        top: 142px;
+        bottom: 44px;
         z-index: 5;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        gap: 26px;
+        gap: 22px;
       }
       .an-card {
+        position: relative;
+        overflow: hidden;
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 190px minmax(0, 1fr);
         align-items: center;
         gap: 24px;
-        border-radius: 22px;
-        padding: 24px 32px;
-        background: #fff;
-        box-shadow: 0 16px 36px rgba(26, 28, 25, 0.1);
-        animation: anLift 5s ease-in-out infinite;
+        border: 1px solid rgba(47, 107, 69, 0.12);
+        border-radius: 18px;
+        padding: 22px 30px;
+        background:
+          radial-gradient(circle at 88% 88%, rgba(167, 217, 92, 0.2), transparent 34%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 255, 245, 0.93));
+        box-shadow: 0 18px 42px rgba(26, 28, 25, 0.11);
       }
-      .an-card.c2 {
-        animation-delay: 0.4s;
+      .an-card::before {
+        content: "";
+        position: absolute;
+        right: -52px;
+        bottom: -68px;
+        width: 200px;
+        height: 150px;
+        border-radius: 50%;
+        background: rgba(47, 107, 69, 0.08);
       }
-      .an-card.c3 {
-        animation-delay: 0.8s;
+      .an-card > * {
+        position: relative;
+        z-index: 1;
       }
-      .an-card.c4 {
-        animation-delay: 1.2s;
+      .an-viz {
+        position: relative;
+        width: 172px;
+        height: 172px;
+        display: grid;
+        place-items: center;
+        justify-self: center;
       }
-      @keyframes anLift {
+      .an-viz.gauge {
+        border-radius: 50%;
+        background: conic-gradient(var(--green) 0 324deg, rgba(26, 28, 25, 0.1) 324deg 360deg);
+        box-shadow: inset 0 0 0 1px rgba(47, 107, 69, 0.16), 0 14px 24px rgba(47, 107, 69, 0.15);
+        animation: anGaugePulse 5.4s ease-in-out infinite;
+      }
+      .an-viz.gauge::before {
+        content: "";
+        position: absolute;
+        inset: 20px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 52% 40%, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.9)),
+          #ffffff;
+        box-shadow: inset 0 0 0 1px rgba(47, 107, 69, 0.1);
+      }
+      .an-viz.gauge::after {
+        content: "🧑‍🌾";
+        position: relative;
+        z-index: 2;
+        font-size: 58px;
+        line-height: 1;
+        filter: drop-shadow(0 6px 8px rgba(26, 28, 25, 0.16));
+      }
+      @keyframes anGaugePulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.025);
+        }
+      }
+      .an-viz.break-even {
+        align-content: center;
+        grid-template-columns: repeat(5, 20px);
+        gap: 10px 12px;
+        padding: 22px 20px;
+        border-radius: 18px;
+        background:
+          linear-gradient(90deg, rgba(239, 123, 69, 0.18), transparent 45%),
+          rgba(255, 247, 237, 0.95);
+        box-shadow: inset 0 0 0 1px rgba(239, 123, 69, 0.18), 0 14px 24px rgba(239, 123, 69, 0.12);
+      }
+      .an-viz.break-even span:not(.target-line) {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(47, 107, 69, 0.23);
+        box-shadow: 0 4px 8px rgba(26, 28, 25, 0.08);
+        animation: anDotBuild 4.8s ease-in-out infinite;
+      }
+      .an-viz.break-even span:nth-child(n + 2):nth-child(-n + 12) {
+        background: var(--green);
+      }
+      .an-viz.break-even span:nth-child(6),
+      .an-viz.break-even span:nth-child(10),
+      .an-viz.break-even span:nth-child(14) {
+        background: var(--orange);
+      }
+      .an-viz.break-even .target-line {
+        position: absolute;
+        left: 104px;
+        top: 24px;
+        bottom: 24px;
+        width: 5px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #ffd166, var(--orange));
+        box-shadow: 0 0 0 6px rgba(239, 123, 69, 0.12);
+      }
+      @keyframes anDotBuild {
         0%,
         100% {
           transform: translateY(0);
         }
         50% {
-          transform: translateY(-4px);
+          transform: translateY(-3px);
         }
       }
-      .an-viz {
-        width: 104px;
-        height: 104px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        font-size: 50px;
+      .an-viz.europe-scale {
+        width: 190px;
+        height: 172px;
+        border-radius: 18px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 55% 48%, rgba(255, 255, 255, 0.94), transparent 46%),
+          linear-gradient(180deg, rgba(220, 235, 221, 0.95), rgba(181, 220, 163, 0.66));
+        box-shadow: inset 0 0 0 1px rgba(47, 107, 69, 0.13), 0 14px 24px rgba(47, 107, 69, 0.13);
       }
-      .an-viz.donut {
-        background: conic-gradient(var(--green) 0 90%, rgba(26, 28, 25, 0.1) 90% 100%);
+      .an-viz.europe-scale svg {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
       }
-      .an-viz.donut::after {
-        content: "";
-        width: 76px;
-        height: 76px;
-        border-radius: 50%;
-        background: #fff;
+      .an-viz.europe-scale image {
+        opacity: 0.9;
       }
-      .an-viz.tint-green {
-        background: var(--pale-green);
+      .scale-dot {
+        fill: #ffffff;
+        stroke: var(--green);
+        stroke-width: 3;
+        transform-box: fill-box;
+        transform-origin: center;
+        filter: drop-shadow(0 6px 8px rgba(47, 107, 69, 0.22));
+        animation: anScaleDot 3.6s ease-in-out infinite;
       }
-      .an-viz.tint-orange {
-        background: rgba(239, 123, 69, 0.16);
+      .scale-dot.d2 {
+        animation-delay: 0.3s;
+      }
+      .scale-dot.d3 {
+        animation-delay: 0.6s;
+      }
+      .scale-dot.d4 {
+        animation-delay: 0.9s;
+      }
+      .scale-dot.d5 {
+        animation-delay: 1.2s;
+      }
+      .scale-dot.d6 {
+        animation-delay: 1.5s;
+      }
+      .scale-dot.d7 {
+        animation-delay: 1.8s;
+      }
+      .scale-dot.d8 {
+        animation-delay: 2.1s;
+      }
+      @keyframes anScaleDot {
+        0%,
+        100% {
+          opacity: 0.72;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.36);
+        }
+      }
+      .an-viz.nl-market {
+        width: 178px;
+        height: 172px;
+        border-radius: 18px;
+        background:
+          radial-gradient(circle at 78% 22%, rgba(255, 209, 102, 0.5), transparent 24%),
+          linear-gradient(180deg, rgba(255, 248, 230, 0.98), rgba(232, 247, 229, 0.9));
+        box-shadow: inset 0 0 0 1px rgba(47, 107, 69, 0.13), 0 14px 24px rgba(47, 107, 69, 0.13);
+      }
+      .an-viz.nl-market svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .nl-shape {
+        fill: rgba(47, 107, 69, 0.16);
+        stroke: rgba(47, 107, 69, 0.48);
+        stroke-width: 3;
+      }
+      .nl-bar {
+        fill: var(--green);
+        transform-box: fill-box;
+        transform-origin: bottom;
+        animation: nlBarRise 4.6s ease-in-out infinite;
+      }
+      .nl-bar.b2 {
+        fill: #6fb551;
+        animation-delay: 0.35s;
+      }
+      .nl-bar.b3 {
+        fill: var(--orange);
+        animation-delay: 0.7s;
+      }
+      .nl-coin {
+        fill: #ffd166;
+        stroke: #efb545;
+        stroke-width: 3;
+        transform-box: fill-box;
+        transform-origin: center;
+        filter: drop-shadow(0 5px 7px rgba(104, 71, 8, 0.18));
+        animation: nlCoinFloat 3.8s ease-in-out infinite;
+      }
+      .nl-coin.c2 {
+        animation-delay: 0.5s;
+      }
+      .nl-coin.c3 {
+        animation-delay: 1s;
+      }
+      @keyframes nlBarRise {
+        0%,
+        100% {
+          transform: scaleY(0.86);
+        }
+        50% {
+          transform: scaleY(1.04);
+        }
+      }
+      @keyframes nlCoinFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
       }
       .an-num {
         display: block;
         color: var(--green);
-        font-size: 56px;
+        font-size: 60px;
         font-weight: 900;
         line-height: 1;
       }
       .an-card.c2 .an-num {
         color: var(--orange);
       }
+      .an-card.c4 .an-num {
+        color: var(--deep-green);
+      }
       .an-desc {
         display: block;
         margin-top: 8px;
         color: var(--ink);
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 1.26;
+        font-size: 17px;
+        font-weight: 760;
+        line-height: 1.24;
       }
 
       .reveal h1.market-title {
@@ -9489,35 +9797,230 @@
             <h1 class="fut-title">Future</h1>
            
 
-            <!-- light farm life on the open field -->
-            <div class="fut-scn sc-tree" aria-hidden="true">🌳</div>
-            <div class="fut-scn sc-pig" aria-hidden="true">🐷</div>
-            <div class="fut-scn sc-sheep" aria-hidden="true">🐑</div>
-            <div class="fut-scn sc-cow" aria-hidden="true">🐄</div>
-            <div class="fut-scn sc-crop" aria-hidden="true">🌾</div>
-            <div class="fut-scn sc-chick" aria-hidden="true">🐔</div>
-            <div class="fut-scn sc-eggs" aria-hidden="true">🥚🥚</div>
-            <div class="fut-scn sc-corn" aria-hidden="true">🌽</div>
-            <div class="fut-scn sc-tomato" aria-hidden="true">🍅</div>
-
             <svg class="fut-path" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
               <path class="fut-road" d="M100,580 C160,558 190,530 230,511 C340,478 400,470 480,441 C600,402 660,398 730,371 C840,330 910,312 990,281" />
               <path class="fut-ahead" d="M990,281 C992,262 990,250 988,238" />
             </svg>
 
-            <!-- destination 2Y+: capture the whole European market, courier run from the app -->
-            <div class="eu-name" aria-label="Capturing the whole European market with courier service">🇪🇺 Whole Europe</div>
-            <div class="eu-map" aria-hidden="true"></div>
-            <svg class="eu-routes" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M993,206 L1075,128" />
-              <path d="M993,206 L1158,146" />
-              <path d="M993,206 L1118,196" />
-            </svg>
-            <span class="eu-pin a" aria-hidden="true"></span>
-            <span class="eu-pin b" aria-hidden="true"></span>
-            <span class="eu-pin c" aria-hidden="true"></span>
-            <div class="eu-app" aria-hidden="true">📱</div>
-            <div class="eu-courier" aria-hidden="true">🛵</div>
+            <!-- destination 2Y+: Europe-wide product and euro marketplace activity -->
+            <div class="europe-ecosystem" aria-label="Europe-wide product and euro marketplace activity">
+              <svg class="europe-map-scene" viewBox="285 75 610 530" aria-hidden="true">
+                <image class="europe-map-base" href="europe.svg" x="0" y="0" width="1000" height="684" />
+
+                <circle class="finland-ring r1" cx="624" cy="227" r="28" />
+                <circle class="finland-ring r2" cx="624" cy="227" r="28" />
+                <circle class="finland-ring r3" cx="624" cy="227" r="28" />
+                <circle class="origin-dot" cx="624" cy="227" r="10" />
+
+                <g transform="translate(624 227)">
+                  <g class="trade-pop product p1">
+                    <circle r="19" />
+                    <text y="1">🥚</text>
+                  </g>
+                </g>
+                <g transform="translate(650 241)">
+                  <g class="trade-pop euro e1">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(515 220)">
+                  <g class="trade-pop product p2">
+                    <circle r="19" />
+                    <text y="1">🥔</text>
+                  </g>
+                </g>
+                <g transform="translate(540 230)">
+                  <g class="trade-pop euro e2">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(565 160)">
+                  <g class="trade-pop product p3">
+                    <circle r="19" />
+                    <text y="1">🍗</text>
+                  </g>
+                </g>
+                <g transform="translate(590 172)">
+                  <g class="trade-pop euro e3">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(592 270)">
+                  <g class="trade-pop product p4">
+                    <circle r="19" />
+                    <text y="1">🍅</text>
+                  </g>
+                </g>
+                <g transform="translate(620 282)">
+                  <g class="trade-pop euro e4">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(528 330)">
+                  <g class="trade-pop product p5">
+                    <circle r="19" />
+                    <text y="1">🥩</text>
+                  </g>
+                </g>
+                <g transform="translate(550 338)">
+                  <g class="trade-pop euro e5">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(310 360)">
+                  <g class="trade-pop product p6">
+                    <circle r="19" />
+                    <text y="1">🥚</text>
+                  </g>
+                </g>
+                <g transform="translate(327 374)">
+                  <g class="trade-pop euro e6">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(415 360)">
+                  <g class="trade-pop product p7">
+                    <circle r="19" />
+                    <text y="1">🥔</text>
+                  </g>
+                </g>
+                <g transform="translate(442 372)">
+                  <g class="trade-pop euro e7">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(705 320)">
+                  <g class="trade-pop product p8">
+                    <circle r="19" />
+                    <text y="1">🍅</text>
+                  </g>
+                </g>
+                <g transform="translate(735 332)">
+                  <g class="trade-pop euro e8">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(560 390)">
+                  <g class="trade-pop product p9">
+                    <circle r="19" />
+                    <text y="1">🍗</text>
+                  </g>
+                </g>
+                <g transform="translate(586 405)">
+                  <g class="trade-pop euro e9">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(450 445)">
+                  <g class="trade-pop product p10">
+                    <circle r="19" />
+                    <text y="1">🥩</text>
+                  </g>
+                </g>
+                <g transform="translate(478 456)">
+                  <g class="trade-pop euro e10">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(390 535)">
+                  <g class="trade-pop product p11">
+                    <circle r="19" />
+                    <text y="1">🍅</text>
+                  </g>
+                </g>
+                <g transform="translate(418 535)">
+                  <g class="trade-pop euro e11">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(570 470)">
+                  <g class="trade-pop product p12">
+                    <circle r="19" />
+                    <text y="1">🥚</text>
+                  </g>
+                </g>
+                <g transform="translate(595 486)">
+                  <g class="trade-pop euro e12">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(720 525)">
+                  <g class="trade-pop product p13">
+                    <circle r="19" />
+                    <text y="1">🥔</text>
+                  </g>
+                </g>
+                <g transform="translate(748 532)">
+                  <g class="trade-pop euro e13">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(810 405)">
+                  <g class="trade-pop product p14">
+                    <circle r="19" />
+                    <text y="1">🍗</text>
+                  </g>
+                </g>
+                <g transform="translate(835 418)">
+                  <g class="trade-pop euro e14">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(480 400)">
+                  <g class="trade-pop product p15">
+                    <circle r="19" />
+                    <text y="1">🥩</text>
+                  </g>
+                </g>
+                <g transform="translate(505 410)">
+                  <g class="trade-pop euro e15">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+
+                <g transform="translate(650 365)">
+                  <g class="trade-pop product p16">
+                    <circle r="19" />
+                    <text y="1">🥚</text>
+                  </g>
+                </g>
+                <g transform="translate(678 377)">
+                  <g class="trade-pop euro e16">
+                    <circle r="16" />
+                    <text y="1">€</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
 
             <div class="fut-stop f1">
               <div class="fut-badge">1</div>
@@ -9531,7 +10034,7 @@
               <div class="fut-badge">2</div>
               <div class="fut-card">
                 <span class="fut-when">Evolution</span>
-                <strong>Evolutionary product — keep evolving with market research</strong>
+                <strong>Evolutionary product that keeps evolving with market research</strong>
               </div>
             </div>
 
@@ -9539,7 +10042,7 @@
               <div class="fut-badge">1Y</div>
               <div class="fut-card">
                 <span class="fut-when">1 year</span>
-                <strong>Fully integrate into the existing ecosystem in Finland, expansion to neighbouring countries.</strong>
+                <strong>Fully integrate into the existing ecosystem in Finland and expand to neighbouring countries.</strong>
               </div>
             </div>
 
@@ -9547,7 +10050,7 @@
               <div class="fut-badge bp">2Y+</div>
               <div class="fut-card">
                 <span class="fut-when">2 years +</span>
-                <strong>Reshape the local food ecosystem — whole Europe, with courier service</strong>
+                <strong>Reshape the local food ecosystem into a producer and consumer network across Europe</strong>
               </div>
             </div>
 
@@ -9566,7 +10069,7 @@
 
             <div class="an-grid">
               <div class="an-card c1">
-                <div class="an-viz donut" aria-hidden="true"></div>
+                <div class="an-viz gauge" aria-hidden="true"></div>
                 <div>
                   <span class="an-num">90%</span>
                   <span class="an-desc">of farmers say that direct selling increases profits</span>
@@ -9574,15 +10077,33 @@
               </div>
 
               <div class="an-card c2">
-                <div class="an-viz tint-orange" aria-hidden="true">🎯</div>
+                <div class="an-viz break-even" aria-hidden="true">
+                  <span class="target-line"></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
                 <div>
                   <span class="an-num">250</span>
-                  <span class="an-desc">Breakeven — producers</span>
+                  <span class="an-desc">producers to break even</span>
                 </div>
               </div>
 
               <div class="an-card c3">
-                <div class="an-viz tint-green" aria-hidden="true">🇪🇺</div>
+                <div class="an-viz europe-scale" aria-hidden="true">
+                  <svg viewBox="220 70 660 500">
+                    <image href="europe.svg" x="0" y="0" width="1000" height="684" />
+                    <circle class="scale-dot d1" cx="626" cy="225" r="12" />
+                    <circle class="scale-dot d2" cx="520" cy="220" r="10" />
+                    <circle class="scale-dot d3" cx="585" cy="306" r="10" />
+                    <circle class="scale-dot d4" cx="470" cy="392" r="10" />
+                    <circle class="scale-dot d5" cx="560" cy="405" r="10" />
+                    <circle class="scale-dot d6" cx="395" cy="354" r="9" />
+                    <circle class="scale-dot d7" cx="675" cy="360" r="9" />
+                    <circle class="scale-dot d8" cx="590" cy="482" r="9" />
+                  </svg>
+                </div>
                 <div>
                   <span class="an-num">1.3M</span>
                   <span class="an-desc">farmers in Europe selling directly to consumer</span>
@@ -9590,7 +10111,17 @@
               </div>
 
               <div class="an-card c4">
-                <div class="an-viz tint-green" aria-hidden="true">🇳🇱</div>
+                <div class="an-viz nl-market" aria-hidden="true">
+                  <svg viewBox="0 0 178 172">
+                    <path class="nl-shape" d="M78,27 C98,20 124,28 133,47 C145,70 132,91 144,111 C154,128 143,146 119,146 C96,146 84,134 62,139 C42,143 27,132 31,113 C36,89 51,85 46,62 C42,43 56,33 78,27 Z" />
+                    <rect class="nl-bar b1" x="52" y="100" width="20" height="42" rx="6" />
+                    <rect class="nl-bar b2" x="80" y="78" width="20" height="64" rx="6" />
+                    <rect class="nl-bar b3" x="108" y="52" width="20" height="90" rx="6" />
+                    <circle class="nl-coin c1" cx="127" cy="41" r="14" />
+                    <circle class="nl-coin c2" cx="145" cy="66" r="11" />
+                    <circle class="nl-coin c3" cx="37" cy="83" r="10" />
+                  </svg>
+                </div>
                 <div>
                   <span class="an-num">€1.5B</span>
                   <span class="an-desc">Market size in the Netherlands (1.5 BEUR)</span>
