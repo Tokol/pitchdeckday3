@@ -344,11 +344,22 @@
         left: 0;
         top: 0;
         z-index: 7;
-        font-size: 44px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.16));
         offset-path: path("M-280,118 C320,84 900,96 1330,116");
         offset-rotate: 0deg;
         animation: p1Fly 15s linear infinite;
+      }
+      /* grey carbon cloud (imports = heavy carbon footprint) */
+      .p1-carbon {
+        display: block;
+        width: 78px;
+        height: 30px;
+        border-radius: 999px;
+        background: rgba(126, 134, 128, 0.92);
+        box-shadow:
+          24px -13px 0 -5px rgba(126, 134, 128, 0.92),
+          -22px -9px 0 -9px rgba(126, 134, 128, 0.92),
+          48px -2px 0 -7px rgba(126, 134, 128, 0.92),
+          0 8px 14px rgba(0, 0, 0, 0.12);
       }
       @keyframes p1Fly {
         from {
@@ -3894,6 +3905,42 @@
         font-size: 34px;
         animation: p1Graze 4s ease-in-out infinite;
         animation-delay: 0.8s;
+      }
+      .fut-scn.sc-pig {
+        left: 432px;
+        top: 652px;
+        font-size: 34px;
+        animation: p1Graze 4s ease-in-out infinite;
+        animation-delay: 0.3s;
+      }
+      .fut-scn.sc-sheep {
+        left: 624px;
+        top: 660px;
+        font-size: 31px;
+        animation: p1Graze 4s ease-in-out infinite;
+        animation-delay: 1.1s;
+      }
+      .fut-scn.sc-chick {
+        left: 968px;
+        top: 656px;
+        font-size: 27px;
+        animation: p1Graze 3.4s ease-in-out infinite;
+        animation-delay: 0.6s;
+      }
+      .fut-scn.sc-corn {
+        left: 1068px;
+        top: 638px;
+        font-size: 32px;
+      }
+      .fut-scn.sc-tomato {
+        left: 1166px;
+        top: 654px;
+        font-size: 28px;
+      }
+      .fut-scn.sc-barn {
+        left: 150px;
+        top: 632px;
+        font-size: 40px;
       }
 
       .reveal h1.future-title {
@@ -8874,9 +8921,10 @@
             <div class="p1-scn s-tractor" aria-hidden="true">🚜</div>
             <div class="p1-scn s-flowers" aria-hidden="true">🌻</div>
 
-            <!-- imported by air: plane flies left→right with its label + CO₂ smoke -->
-            <div class="p1-plane" aria-label="Imported by air: one euro fifty, plastic-wrapped, high CO2">
-              ✈️<span class="p1-co2" aria-hidden="true"><i></i><i></i><i></i></span>
+            <!-- imported = heavy carbon: a grey CO₂ cloud drifts across with the label -->
+            <div class="p1-plane" aria-label="Imported: one euro fifty, plastic-wrapped, high CO2 footprint">
+              <span class="p1-carbon" aria-hidden="true"></span>
+              <span class="p1-co2" aria-hidden="true"><i></i><i></i><i></i></span>
               <span class="p1-badge import">
                 <span class="price">Imported · €1.5</span>
                 <span class="attrs">plastic-wrapped · high CO₂</span>
@@ -8930,7 +8978,7 @@
             <div class="p1-hill front" aria-hidden="true"></div>
 
             <h1 class="p2-title">
-              Problem is <span class="hl m">Low margins for local producers</span>
+              <span class="hl m">Low margins for food producers</span>
               <span class="hl p">high prices for end consumers</span>
               <span class="hl a">low accessibility to local consumption</span>
             </h1>
@@ -8951,7 +8999,7 @@
               <span class="p2-emoji">🧑‍🌾</span>
               <div class="p2-card">
                 <small>Local producer</small>
-                <strong>Low margins</strong>
+                <strong>Low margins for Food Producers</strong>
                 <div class="p2-meter" aria-hidden="true"><span></span></div>
                 <span class="p2-sub">Low visibility</span>
               </div>
@@ -8964,7 +9012,7 @@
                 <small>End consumer</small>
                 <strong>High prices</strong>
                 <div class="p2-bars" aria-hidden="true"><span></span><span></span><span></span></div>
-                <span class="p2-sub">Low knowledge of local production</span>
+                <span class="p2-sub">Missed Opportunity to consume Locally</span>
               </div>
             </div>
           </div>
@@ -8980,9 +9028,10 @@
             <div class="p3-copy">
               <h1 class="p3-title">Solution</h1>
               <ul class="p3-bullets">
-                <li>Increase Accessibility To Local Produce</li>
-                <li>Through An Innovative Fun To Use Platform</li>
-                <li>Making It Easy To Make The Orders And Directly Sell To End Consumers</li>
+                <li>Create a marketplace that connects food producers directly to local consumers</li>
+                <li>Through an innovative and easy to use platform</li>
+                <li>Making it easy to sell, take orders and buy locally produced food</li>
+              
               </ul>
             </div>
 
@@ -9038,10 +9087,10 @@
             </svg>
 
             <div class="prog-stop s1">
-              <div class="prog-badge">10+</div>
+              <div class="prog-badge">20+</div>
               <div class="prog-card">
                 <span class="prog-tag">Outreach</span>
-                <strong>10+ local producers called</strong>
+                <strong>20+ local producers called</strong>
               </div>
             </div>
 
@@ -9071,15 +9120,17 @@
             <div class="p1-hill front" aria-hidden="true"></div>
 
             <h1 class="fut-title">Future</h1>
-            <p class="fut-sub">
-              Move from focused acquisition to ecosystem integration, then reshape how local food
-              reaches consumers.
-            </p>
+           
 
             <!-- light farm life on the open field -->
             <div class="fut-scn sc-tree" aria-hidden="true">🌳</div>
+            <div class="fut-scn sc-pig" aria-hidden="true">🐷</div>
+            <div class="fut-scn sc-sheep" aria-hidden="true">🐑</div>
             <div class="fut-scn sc-cow" aria-hidden="true">🐄</div>
             <div class="fut-scn sc-crop" aria-hidden="true">🌾</div>
+            <div class="fut-scn sc-chick" aria-hidden="true">🐔</div>
+            <div class="fut-scn sc-corn" aria-hidden="true">🌽</div>
+            <div class="fut-scn sc-tomato" aria-hidden="true">🍅</div>
 
             <svg class="fut-path" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
               <path class="fut-road" d="M100,580 C160,558 190,530 230,511 C340,478 400,470 480,441 C600,402 660,398 730,371 C840,330 910,312 990,281" />
@@ -9104,7 +9155,7 @@
               <div class="fut-badge">1</div>
               <div class="fut-card">
                 <span class="fut-when">Next month</span>
-                <strong>We will launch the MVP</strong>
+                <strong>Acquire more users from the waiting list and aim to launch the MVP.</strong>
               </div>
             </div>
 
@@ -9120,7 +9171,7 @@
               <div class="fut-badge">1Y</div>
               <div class="fut-card">
                 <span class="fut-when">1 year</span>
-                <strong>Fully integrate into the existing ecosystem, add more consumers, and spread to neighbouring EU-zone countries.</strong>
+                <strong>Fully integrate into the existing ecosystem in Finland, expansion to neighbouring countries.</strong>
               </div>
             </div>
 
@@ -9132,10 +9183,7 @@
               </div>
             </div>
 
-            <div class="fut-glossary">
-              <span><b>LFP</b> = Local Food Producer</span>
-              <span><b>MVP</b> = Minimal Viable Product</span>
-            </div>
+           
           </div>
         </section>
 
@@ -9177,7 +9225,7 @@
                 <div class="an-viz tint-green" aria-hidden="true">🇳🇱</div>
                 <div>
                   <span class="an-num">€1.5B</span>
-                  <span class="an-desc">Market size in Netherlands (1,5 BEUR)</span>
+                  <span class="an-desc">Market size in the Netherlands (1.5 BEUR)</span>
                 </div>
               </div>
             </div>
@@ -9245,7 +9293,7 @@
                   <span class="team-degree">B. Sc in Economics and Business Administration</span>
                   <span class="team-role">Cofounder</span>
                 </div>
-                <div class="team-focus">Business Intelligence and Generalist</div>
+                <div class="team-focus">Business intelligence and generalist</div>
               </div>
             </div>
 
@@ -9257,7 +9305,7 @@
                   <span class="team-degree">M.S in Engineering</span>
                   <span class="team-role">Cofounder</span>
                 </div>
-                <div class="team-focus">Product Development and System Thinking</div>
+                <div class="team-focus">Product development and system thinking</div>
               </div>
             </div>
 
@@ -9269,7 +9317,7 @@
                   <span class="team-degree">M. Sc in Economics and Business Administration</span>
                   <span class="team-role">cofounder</span>
                 </div>
-                <div class="team-focus">Business Operations executions vision and leadership</div>
+                <div class="team-focus">Business operations executions vision and leadership</div>
               </div>
             </div>
           </div>
