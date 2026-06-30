@@ -6484,227 +6484,283 @@
         padding: 0 !important;
         background: transparent;
       }
+      .business-model-slide .p1-sun,
+      .business-model-slide .p1-hill {
+        animation: none !important;
+      }
 
-      /* ===== Slide 7: Business model — commission engine on the farm ===== */
+      /* ===== Slide 7: Business model - static premium monetization board ===== */
       .reveal h1.bm-title {
         position: absolute;
         left: 64px;
-        top: 50px;
+        top: 54px;
         z-index: 6;
         margin: 0;
         color: var(--green);
-        font-size: clamp(38px, 4.6vw, 56px);
+        font-size: clamp(40px, 5vw, 56px);
         line-height: 1;
         letter-spacing: 0;
         text-transform: none;
       }
-      .bm-points {
+      .bm-stage {
         position: absolute;
         left: 64px;
-        top: 156px;
-        width: 432px;
+        right: 64px;
+        top: 142px;
+        bottom: 40px;
         z-index: 5;
         display: grid;
-        gap: 14px;
+        grid-template-columns: 342px 46px minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr) 64px;
+        gap: 18px;
+        align-items: stretch;
       }
-      .bm-point {
-        position: relative;
-        border-radius: 16px;
-        padding: 14px 16px 14px 44px;
-        background: rgba(255, 255, 255, 0.92);
-        border: 1px solid rgba(47, 107, 69, 0.18);
-        color: var(--ink);
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 1.26;
-        box-shadow: 0 12px 26px rgba(26, 28, 25, 0.08);
+
+      .bm-source {
+        grid-column: 1;
+        grid-row: 1;
+        display: grid;
+        grid-template-columns: 1fr 48px 1fr;
+        align-items: center;
+        gap: 8px;
+        align-self: center;
+        min-height: 258px;
+        border-radius: 8px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(47, 107, 69, 0.16);
+        box-shadow: 0 18px 44px rgba(26, 28, 25, 0.08);
       }
-      .bm-point::before {
-        content: "";
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        transform: translateY(-50%);
-        background: var(--green);
-        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.82);
-      }
-      /* commission engine (right) */
       .bm-node {
-        position: absolute;
-        z-index: 5;
-        display: grid;
-        justify-items: center;
-        gap: 7px;
-        transform: translateX(-50%);
-      }
-      .bm-node .ic {
-        width: 72px;
-        height: 72px;
         display: grid;
         place-items: center;
-        border-radius: 50%;
-        background: #fff;
-        font-size: 36px;
-        box-shadow: 0 12px 26px rgba(26, 28, 25, 0.12);
+        gap: 10px;
+        min-height: 178px;
+        padding: 18px 12px;
+        text-align: center;
+        border-radius: 8px;
+        border: 1px solid rgba(47, 107, 69, 0.18);
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 14px 30px rgba(26, 28, 25, 0.08);
       }
-      .bm-node.frsh .ic {
-        width: 84px;
-        height: 84px;
-        border-radius: 22px;
-        background: linear-gradient(180deg, #3a8a59, #2f6b45);
-        font-size: 36px;
-        box-shadow: 0 14px 30px rgba(47, 107, 69, 0.4);
+      .bm-node.platform {
+        border-color: rgba(47, 107, 69, 0.34);
+        background: linear-gradient(180deg, #ffffff, #eff9e9);
       }
       .bm-node small {
-        font-size: 12px;
-        font-weight: 850;
         color: var(--muted);
-      }
-      .bm-node.frsh small {
-        color: var(--deep-green);
-      }
-      .bm-farmer {
-        left: 660px;
-        top: 214px;
-      }
-      .bm-frsh {
-        left: 885px;
-        top: 208px;
-      }
-      .bm-consumer {
-        left: 1110px;
-        top: 214px;
-      }
-      .bm-line {
-        position: absolute;
-        inset: 0;
-        width: 1280px;
-        height: 720px;
-        z-index: 3;
-      }
-      .bm-line path {
-        fill: none;
-        stroke: var(--green);
-        stroke-width: 4;
-        stroke-linecap: round;
-        stroke-dasharray: 10 12;
-        animation: bmFlow 1s linear infinite;
-      }
-      @keyframes bmFlow {
-        to {
-          stroke-dashoffset: -22;
-        }
-      }
-      .bm-orders-lbl {
-        position: absolute;
-        left: 612px;
-        top: 176px;
-        transform: translateX(-50%);
-        z-index: 6;
-        color: var(--muted);
-        font-size: 13px;
-        font-weight: 850;
+        font-size: 11px;
+        font-weight: 950;
+        letter-spacing: 0.07em;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
       }
-      .bm-order {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 6;
-        width: 30px;
-        height: 30px;
+      .bm-node strong {
+        color: var(--ink);
+        font-size: 19px;
+        font-weight: 950;
+        line-height: 1.05;
+      }
+      .bm-node-icon {
+        width: 64px;
+        height: 64px;
         display: grid;
         place-items: center;
         border-radius: 50%;
-        background: radial-gradient(circle at 38% 34%, #ffe9a8, #f1b62e 70%);
-        color: #7a5300;
-        font-size: 15px;
-        font-weight: 900;
-        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-        offset-path: path("M600,210 L842,210");
-        offset-rotate: 0deg;
-        animation: bmOrder 3s linear infinite;
-      }
-      .bm-order.o2 {
-        animation-delay: 1s;
-      }
-      .bm-order.o3 {
-        animation-delay: 2s;
-      }
-      @keyframes bmOrder {
-        0% {
-          offset-distance: 0%;
-          opacity: 0;
-        }
-        12% {
-          opacity: 1;
-        }
-        82% {
-          offset-distance: 100%;
-          opacity: 1;
-        }
-        92%,
-        100% {
-          offset-distance: 100%;
-          opacity: 0;
-        }
-      }
-      /* the 5% commission — primary revenue */
-      .bm-comm {
-        position: absolute;
-        left: 885px;
-        top: 372px;
-        transform: translateX(-50%);
-        z-index: 6;
-        display: grid;
-        justify-items: center;
-        gap: 2px;
-        text-align: center;
-      }
-      .bm-comm .pct {
-        color: var(--green);
-        font-size: 98px;
-        font-weight: 900;
-        line-height: 0.86;
-      }
-      .bm-comm .lbl {
-        color: var(--ink);
-        font-size: 18px;
-        font-weight: 850;
-      }
-      .bm-comm .tag {
-        margin-bottom: 6px;
-        border-radius: 999px;
-        padding: 3px 12px;
         background: var(--pale-green);
-        color: var(--deep-green);
-        font-size: 11px;
-        font-weight: 850;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        color: var(--green);
+        box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.8);
       }
-      /* subscription — secondary */
-      .bm-sub {
+      .bm-node-icon.logo {
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 16px 28px rgba(47, 107, 69, 0.22);
+      }
+      .bm-node-icon.logo img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+      }
+
+      .bm-wire {
+        position: relative;
+        height: 2px;
+        align-self: center;
+        border-radius: 4px;
+        background: rgba(47, 107, 69, 0.32);
+      }
+      .bm-wire::after {
+        content: "";
         position: absolute;
-        left: 885px;
-        top: 540px;
+        top: 50%;
+        right: -2px;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid rgba(47, 107, 69, 0.56);
+        border-right: 2px solid rgba(47, 107, 69, 0.56);
+        transform: translateY(-50%) rotate(45deg);
+      }
+      .bm-dot {
+        display: none;
+      }
+
+      .bm-fork {
+        grid-column: 2;
+        grid-row: 1;
+        position: relative;
+        align-self: stretch;
+      }
+      .bm-fork::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 22%;
+        bottom: 22%;
+        width: 2px;
+        background: rgba(47, 107, 69, 0.32);
         transform: translateX(-50%);
-        z-index: 6;
+      }
+      .bm-fork::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(47, 107, 69, 0.32);
+      }
+
+      .bm-tracks {
+        grid-column: 3;
+        grid-row: 1;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 18px;
+        min-height: 0;
+      }
+      .bm-track {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 18px;
+        min-height: 0;
+        border-radius: 8px;
+        border: 1px solid;
+        padding: 22px 24px;
+        box-shadow: 0 18px 42px rgba(26, 28, 25, 0.1);
+      }
+      .bm-track.commission {
+        border-color: rgba(47, 107, 69, 0.28);
+        background:
+          radial-gradient(circle at 88% 45%, rgba(47, 107, 69, 0.12), transparent 34%),
+          linear-gradient(115deg, rgba(255, 255, 255, 0.98), rgba(239, 249, 232, 0.95));
+      }
+      .bm-track.premium {
+        border-color: rgba(239, 123, 69, 0.34);
+        background:
+          radial-gradient(circle at 88% 48%, rgba(239, 123, 69, 0.13), transparent 36%),
+          linear-gradient(115deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 234, 0.96));
+      }
+      .bm-track-tag {
+        width: max-content;
         border-radius: 999px;
-        padding: 8px 18px;
-        background: rgba(255, 255, 255, 0.85);
-        border: 1px dashed rgba(47, 107, 69, 0.45);
+        padding: 6px 10px;
+        background: rgba(47, 107, 69, 0.1);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .bm-track.commission .bm-track-tag {
+        color: var(--deep-green);
+      }
+      .bm-track.premium .bm-track-tag {
+        background: rgba(239, 123, 69, 0.11);
+        color: #c1591f;
+      }
+      .bm-track-main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px;
+      }
+      .bm-track-copy small {
+        display: block;
         color: var(--muted);
-        font-size: 14px;
-        font-weight: 800;
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .bm-track-copy span {
+        display: block;
+        margin-top: 7px;
+        color: var(--ink);
+        font-size: 23px;
+        font-weight: 950;
+        line-height: 1.12;
+      }
+      .bm-count {
+        color: var(--green);
+        font-size: 92px;
+        font-weight: 950;
+        line-height: 0.85;
+        letter-spacing: 0;
         white-space: nowrap;
       }
-      .bm-sub b {
+      .bm-fee {
+        text-align: right;
+        color: var(--orange);
+        font-size: 36px;
+        font-weight: 950;
+        line-height: 0.98;
+      }
+      .bm-track-wire {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background: linear-gradient(90deg, rgba(47, 107, 69, 0.22), rgba(47, 107, 69, 0.04));
+      }
+      .bm-track.premium .bm-track-wire {
+        background: linear-gradient(90deg, rgba(239, 123, 69, 0.3), rgba(239, 123, 69, 0.04));
+      }
+
+      .bm-drivers {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: auto repeat(4, 1fr);
+        align-items: center;
+        gap: 10px;
+        min-height: 64px;
+        border-radius: 8px;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.62);
+        border: 1px solid rgba(47, 107, 69, 0.14);
+        box-shadow: 0 12px 28px rgba(26, 28, 25, 0.06);
+      }
+      .bm-drivers-title {
         color: var(--deep-green);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .bm-driver {
+        display: grid;
+        place-items: center;
+        min-height: 36px;
+        border-radius: 8px;
+        padding: 8px 10px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(47, 107, 69, 0.16);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 900;
+        text-align: center;
+        line-height: 1.1;
       }
 
       .reveal h1.business-title {
@@ -9527,6 +9583,249 @@
           font-size: 20px;
         }
       }
+
+      /* ===== Prototype slides: real screenshots in device frames ===== */
+      .proto-slide {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 100%;
+        padding: 0 !important;
+        background: transparent;
+      }
+      .reveal h1.proto-title {
+        position: absolute;
+        left: 64px;
+        top: 46px;
+        z-index: 6;
+        margin: 0;
+        color: var(--green);
+        font-size: clamp(40px, 4.6vw, 56px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      .proto-kicker {
+        position: absolute;
+        left: 68px;
+        top: 108px;
+        z-index: 6;
+        color: var(--deep-green);
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .proto-rail {
+        position: absolute;
+        left: 64px;
+        right: 64px;
+        top: 156px;
+        bottom: 34px;
+        z-index: 5;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        align-items: start;
+      }
+      /* connector line behind the step badges */
+      .proto-rail::before {
+        content: "";
+        position: absolute;
+        left: 16%;
+        right: 16%;
+        top: 21px;
+        height: 3px;
+        border-radius: 3px;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(47, 107, 69, 0.4) 0 12px,
+          transparent 12px 22px
+        );
+      }
+      .proto-item {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        grid-template-rows: 44px auto auto;
+        gap: 12px;
+      }
+      .proto-slide.present .proto-item {
+        animation: protoRise 0.6s ease both;
+      }
+      .proto-slide.present .proto-item.i1 {
+        animation-delay: 0.1s;
+      }
+      .proto-slide.present .proto-item.i2 {
+        animation-delay: 0.24s;
+      }
+      .proto-slide.present .proto-item.i3 {
+        animation-delay: 0.38s;
+      }
+      @keyframes protoRise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .proto-step {
+        position: relative;
+        z-index: 2;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--green);
+        color: #fff;
+        font-size: 19px;
+        font-weight: 950;
+        box-shadow: 0 10px 22px rgba(47, 107, 69, 0.32);
+        border: 3px solid #f6f8f2;
+      }
+      .proto-phone {
+        position: relative;
+        width: 236px;
+        height: 392px;
+        border: 8px solid #1a1c19;
+        border-radius: 30px;
+        background: #f4f6f0;
+        box-shadow: 0 26px 50px rgba(26, 28, 25, 0.28);
+        overflow: hidden;
+      }
+      .proto-item.i2 .proto-phone {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 32px 58px rgba(26, 28, 25, 0.34);
+      }
+      .proto-item.i1 .proto-phone {
+        transform: rotate(-2.5deg);
+      }
+      .proto-item.i3 .proto-phone {
+        transform: rotate(2.5deg);
+      }
+      .proto-phone::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.55);
+        z-index: 4;
+      }
+      .proto-phone img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        background: #f4f6f0;
+        border-radius: 22px;
+      }
+      .proto-cap {
+        max-width: 290px;
+        text-align: center;
+      }
+      .proto-cap strong {
+        display: block;
+        color: var(--deep-green);
+        font-size: 19px;
+        font-weight: 950;
+        line-height: 1.08;
+      }
+      .proto-cap span {
+        display: block;
+        margin-top: 6px;
+        color: var(--ink);
+        font-size: 14.5px;
+        font-weight: 750;
+        line-height: 1.28;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .proto-slide.present .proto-item {
+          animation: none !important;
+        }
+      }
+      .proto-phone img {
+        cursor: zoom-in;
+      }
+
+      /* Lightbox: click a prototype screenshot to view it enlarged */
+      .proto-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 4vh 4vw;
+        background: rgba(15, 22, 14, 0.82);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        cursor: zoom-out;
+      }
+      .proto-lightbox.open {
+        display: flex;
+        animation: lbFade 0.18s ease;
+      }
+      .proto-lightbox img {
+        max-width: min(92vw, 460px);
+        max-height: 92vh;
+        border-radius: 22px;
+        border: 8px solid #1a1c19;
+        background: #f4f6f0;
+        box-shadow: 0 36px 90px rgba(0, 0, 0, 0.55);
+        animation: lbPop 0.22s ease;
+      }
+      .proto-lightbox-close {
+        position: absolute;
+        top: 22px;
+        right: 26px;
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--ink);
+        font-size: 26px;
+        font-weight: 900;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+      @keyframes lbFade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes lbPop {
+        from {
+          opacity: 0.3;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .proto-lightbox.open,
+        .proto-lightbox img {
+          animation: none !important;
+        }
+      }
     </style>
   </head>
 
@@ -9742,6 +10041,100 @@
                 <div class="p3-notif">🔔 New order<small>5 kg Potato</small></div>
                 <div class="p3-list"><span>🥔 Potato</span><b>5 kg</b></div>
                 <button class="p3-accept">Accept order</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="proto-slide" data-transition="fade">
+          <div class="p1nature">
+            <div class="p1-sun" aria-hidden="true"></div>
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
+
+            <h1 class="proto-title">Prototype</h1>
+            <div class="proto-kicker">Get discovered, sell instantly</div>
+
+            <div class="proto-rail">
+              <div class="proto-item i1">
+                <div class="proto-step">1</div>
+                <div class="proto-phone">
+                  <img src="appscrenshots/hot_link.jpg" alt="Farmer home screen with shareable farm page link" />
+                </div>
+                <div class="proto-cap">
+                  <strong>Hotlink farm page</strong>
+                  <span>Drop your link on any social feed — orders come in instantly.</span>
+                </div>
+              </div>
+
+              <div class="proto-item i2">
+                <div class="proto-step">2</div>
+                <div class="proto-phone">
+                  <img src="appscrenshots/discover.jpg" alt="Consumer map showing farms and hot sales nearby" />
+                </div>
+                <div class="proto-cap">
+                  <strong>Discover on the map</strong>
+                  <span>Buyers find your hot sales on the map, right near them.</span>
+                </div>
+              </div>
+
+              <div class="proto-item i3">
+                <div class="proto-step">3</div>
+                <div class="proto-phone">
+                  <img src="appscrenshots/ReOKO_Style_post.jpg" alt="REKO-style farm wall post with comments" />
+                </div>
+                <div class="proto-cap">
+                  <strong>REKO-style wall</strong>
+                  <span>Post, comment and counter-offer — REKO without Facebook.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="proto-slide" data-transition="fade">
+          <div class="p1nature">
+            <div class="p1-sun" aria-hidden="true"></div>
+            <div class="p1-hill back" aria-hidden="true"></div>
+            <div class="p1-hill mid" aria-hidden="true"></div>
+            <div class="p1-hill front" aria-hidden="true"></div>
+
+            <h1 class="proto-title">Prototype</h1>
+            <div class="proto-kicker">From order to transaction</div>
+
+            <div class="proto-rail">
+              <div class="proto-item i1">
+                <div class="proto-step">1</div>
+                <div class="proto-phone">
+                  <img src="appscrenshots/hoysales_crop.jpg" alt="Farmer hot-sale product listing screen" />
+                </div>
+                <div class="proto-cap">
+                  <strong>Post a hot sale</strong>
+                  <span>List a hot-sale product in seconds, set price and quantity.</span>
+                </div>
+              </div>
+
+              <div class="proto-item i2">
+                <div class="proto-step">2</div>
+                <div class="proto-phone">
+                  <img src="appscrenshots/order_managment.jpg" alt="Order details screen with status timeline" />
+                </div>
+                <div class="proto-cap">
+                  <strong>Managed order book</strong>
+                  <span>Accept, track and fulfill every order from one place.</span>
+                </div>
+              </div>
+
+              <div class="proto-item i3">
+                <div class="proto-step">3</div>
+                <div class="proto-phone">
+                  <img src="appscrenshots/sales_reports.jpg" alt="Monthly sales statement screen" />
+                </div>
+                <div class="proto-cap">
+                  <strong>Automatic sales reports</strong>
+                  <span>A clear monthly statement — know exactly what you earned.</span>
+                </div>
               </div>
             </div>
           </div>
@@ -10140,31 +10533,70 @@
 
             <h1 class="bm-title">Business model</h1>
 
-            <div class="bm-points">
-              <div class="bm-point">Platform provides accessibility, visibility and order book</div>
-              <div class="bm-point">Commission and/or subscription as pricing policy</div>
-              <div class="bm-point">5% flat commission per order</div>
-              <div class="bm-point">Value drivers: registered users, retention, average transaction size, commission size</div>
+            <div class="bm-stage">
+              <!-- Source: order flows into the platform -->
+              <div class="bm-source">
+                <div class="bm-node">
+                  <small>Orders</small>
+                  <div class="bm-node-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 4h2l2.3 12.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.2L20.5 8H6" />
+                      <circle cx="9.5" cy="20.5" r="1.3" />
+                      <circle cx="17.5" cy="20.5" r="1.3" />
+                    </svg>
+                  </div>
+                  <strong>Customer buys</strong>
+                </div>
+
+                <div class="bm-wire" aria-hidden="true"></div>
+
+                <div class="bm-node platform">
+                  <small>Platform</small>
+                  <div class="bm-node-icon logo">
+                    <img src="logo.png" alt="FRSH Nearby logo" />
+                  </div>
+                  <strong>FRSH Nearby</strong>
+                </div>
+              </div>
+
+              <!-- Fork: revenue splits into two parallel tracks -->
+              <div class="bm-fork" aria-hidden="true"></div>
+
+              <div class="bm-tracks">
+                <div class="bm-track commission" aria-label="Track A: 5 percent flat commission per order">
+                  <div class="bm-track-tag">Track A · Commission</div>
+                  <div class="bm-track-main">
+                    <div class="bm-track-copy">
+                      <small>Primary revenue</small>
+                      <span>flat commission, every order</span>
+                    </div>
+                    <b class="bm-count" data-count="5" data-suffix="%">5%</b>
+                  </div>
+                  <div class="bm-track-wire" aria-hidden="true"></div>
+                </div>
+
+                <div class="bm-track premium" aria-label="Track B: flat monthly premium subscription with no per-order commission">
+                  <div class="bm-track-tag">Track B · Premium</div>
+                  <div class="bm-track-main">
+                    <div class="bm-track-copy">
+                      <small>Alternative</small>
+                      <span>no per-order commission</span>
+                    </div>
+                    <b class="bm-fee">Subscription</b>
+                  </div>
+                  <div class="bm-track-wire" aria-hidden="true"></div>
+                </div>
+              </div>
+
+              <!-- Value drivers: the levers that grow both tracks -->
+              <div class="bm-drivers">
+                <span class="bm-drivers-title">Value drivers</span>
+                <div class="bm-driver">Registered users</div>
+                <div class="bm-driver">Retention</div>
+                <div class="bm-driver">Avg order size</div>
+                <div class="bm-driver">Commission size</div>
+              </div>
             </div>
-
-            <!-- the platform earns a small 5% on every order it processes -->
-            <svg class="bm-line" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M600,210 L842,210" />
-              <path d="M885,256 L885,338" />
-            </svg>
-            <div class="bm-orders-lbl">Every order</div>
-            <div class="bm-order o1" aria-hidden="true">€</div>
-            <div class="bm-order o2" aria-hidden="true">€</div>
-            <div class="bm-order o3" aria-hidden="true">€</div>
-            <div class="bm-node bm-frsh frsh"><span class="ic">📱</span><small>FRSH Nearby</small></div>
-
-            <div class="bm-comm" aria-label="5 percent commission per order, primary revenue">
-              <span class="tag">Primary revenue</span>
-              <span class="pct">5%</span>
-              <span class="lbl">commission per order</span>
-            </div>
-
-            <div class="bm-sub">Secondary: <b>subscription</b></div>
           </div>
         </section>
 
@@ -10201,10 +10633,10 @@
               <div class="team-info">
                 <h2>Suresh</h2>
                 <div class="team-meta">
-                  <span class="team-degree">M.S in Engineering</span>
+                  <span class="team-degree">M.S in Engineering, Intelligent Systems</span>
                   <span class="team-role">Cofounder</span>
                 </div>
-                <div class="team-focus">Product development and system thinking</div>
+                <div class="team-focus">Software, AI and product development</div>
               </div>
             </div>
 
@@ -10243,6 +10675,11 @@
           </div>
         </section>
       </div>
+    </div>
+
+    <div class="proto-lightbox" id="protoLightbox" aria-hidden="true">
+      <button class="proto-lightbox-close" type="button" aria-label="Close">&times;</button>
+      <img src="" alt="" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
@@ -10295,6 +10732,71 @@
             isWhite || isRed || isBlack || isYellow || isGreen || isBlue ? "none" : "block";
         });
       });
+
+      // Business model: count the 5% up when the slide becomes active.
+      const bmReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      function bmCountUp(el) {
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || "";
+        if (bmReduceMotion) {
+          el.textContent = target + suffix;
+          return;
+        }
+        const duration = 900;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(tick);
+      }
+      Reveal.on("slidechanged", (event) => {
+        event.currentSlide
+          .querySelectorAll(".bm-count")
+          .forEach(bmCountUp);
+      });
+
+      // Prototype: click a screenshot to view it enlarged in a modal.
+      (function () {
+        const lightbox = document.getElementById("protoLightbox");
+        if (!lightbox) return;
+        const lightboxImg = lightbox.querySelector("img");
+        const closeBtn = lightbox.querySelector(".proto-lightbox-close");
+
+        function openLightbox(src, alt) {
+          lightboxImg.src = src;
+          lightboxImg.alt = alt || "";
+          lightbox.classList.add("open");
+          lightbox.setAttribute("aria-hidden", "false");
+        }
+        function closeLightbox() {
+          lightbox.classList.remove("open");
+          lightbox.setAttribute("aria-hidden", "true");
+          lightboxImg.src = "";
+        }
+
+        document.querySelectorAll(".proto-phone img").forEach((img) => {
+          img.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            openLightbox(img.currentSrc || img.src, img.alt);
+          });
+        });
+
+        lightbox.addEventListener("click", closeLightbox);
+        closeBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          closeLightbox();
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && lightbox.classList.contains("open")) {
+            closeLightbox();
+          }
+        });
+      })();
     </script>
   </body>
 </html>
