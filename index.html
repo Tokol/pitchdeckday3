@@ -4685,6 +4685,20 @@
         font-weight: 600;
         line-height: 1.25;
       }
+      .team-tagline {
+        display: inline-block;
+        margin-top: 4px;
+        transform: translateY(-8px);
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: var(--pale-green);
+        color: var(--deep-green);
+        font-size: 15px;
+        font-weight: 850;
+        font-style: italic;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
 
 
       .ask-slide {
@@ -6705,37 +6719,44 @@
       .bm-drivers {
         grid-column: 1 / -1;
         grid-row: 2;
-        display: grid;
-        grid-template-columns: auto repeat(4, 1fr);
-        align-items: center;
-        gap: 10px;
-        min-height: 64px;
-        border-radius: 8px;
-        padding: 10px 14px;
-        background: rgba(255, 255, 255, 0.62);
-        border: 1px solid rgba(47, 107, 69, 0.14);
-        box-shadow: 0 12px 28px rgba(26, 28, 25, 0.06);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+        padding: 0;
+        background: none;
+        border: 0;
+        box-shadow: none;
       }
       .bm-drivers-title {
-        color: var(--deep-green);
-        font-size: 12px;
+        display: block;
+        text-align: center;
+        color: var(--ink);
+        font-size: 17px;
         font-weight: 950;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
       }
-      .bm-driver {
+      .bm-drivers-grid {
         display: grid;
-        place-items: center;
-        min-height: 36px;
-        border-radius: 8px;
-        padding: 8px 10px;
-        background: rgba(255, 255, 255, 0.9);
+        grid-template-columns: repeat(4, 1fr);
+        align-items: stretch;
+        gap: 12px;
+      }
+      .bm-driver {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 64px;
+        border-radius: 10px;
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.92);
         border: 1px solid rgba(47, 107, 69, 0.16);
         color: var(--ink);
-        font-size: 14px;
+        font-size: 17px;
         font-weight: 900;
         text-align: center;
-        line-height: 1.1;
+        line-height: 1.2;
       }
 
       .reveal h1.business-title {
@@ -10067,6 +10088,7 @@
             <h1 class="p2-title">
               <span class="hl m">Low margins for food producers</span>
               <span class="hl p">high prices for end consumers</span>
+              <br/>
               <span class="hl a">low accessibility to local consumption</span>
             </h1>
 
@@ -10076,9 +10098,9 @@
               <path class="p2-dash" d="M698,392 L935,392" />
             </svg>
             <div class="p2-lock" aria-hidden="true">🔒</div>
-            <div class="p2-access" aria-label="Low accessibility to local consumption">
+            <div class="p2-access" aria-label="Low accessibility To local consumption">
               <strong>Low accessibility</strong>
-              <small>to local consumption</small>
+              <small>To local consumption</small>
             </div>
 
             <!-- local producer: low margins -->
@@ -10099,7 +10121,7 @@
                 <small>End consumer</small>
                 <strong>High prices</strong>
                 <div class="p2-bars" aria-hidden="true"><span></span><span></span><span></span></div>
-                <span class="p2-sub">Missed Opportunity to consume Locally</span>
+                <span class="p2-sub">Missed opportunity to consume locally</span>
               </div>
             </div>
           </div>
@@ -10173,13 +10195,13 @@
               <div class="proto-item i1">
                 <div class="proto-step">1</div>
                 <div class="proto-phone">
-                  <img src="appscrenshots/hot_link.jpg" alt="Farmer home screen with shareable farm page link" />
+                  <img src="appscrenshots/hoysales_crop.jpg" alt="Farmer hot-sale product listing screen" />
                 </div>
                 <div class="proto-cap">
-                  <div class="proto-icon" aria-hidden="true">🔗</div>
+                  <div class="proto-icon" aria-hidden="true">🥩</div>
                   <div>
-                    <strong>Share farm page</strong>
-                    <span>Drop your link on any social feed and receive orders instantly.</span>
+                    <strong>Post a hot sale</strong>
+                    <span>List product, price and quantity in seconds.</span>
                   </div>
                 </div>
               </div>
@@ -10192,8 +10214,8 @@
                 <div class="proto-cap">
                   <div class="proto-icon" aria-hidden="true">⌖</div>
                   <div>
-                    <strong>Get discovered nearby</strong>
-                    <span>Buyers find your hot sales on the map, right near them.</span>
+                    <strong>Get discovered </strong>
+                    <span>Local consumers find your hot sales on the map.</span>
                   </div>
                 </div>
               </div>
@@ -10229,13 +10251,13 @@
               <div class="proto-item i1">
                 <div class="proto-step">1</div>
                 <div class="proto-phone">
-                  <img src="appscrenshots/hoysales_crop.jpg" alt="Farmer hot-sale product listing screen" />
+                  <img src="appscrenshots/hot_link.jpg" alt="Farmer home screen with shareable farm page link" />
                 </div>
                 <div class="proto-cap">
-                  <div class="proto-icon" aria-hidden="true">🥩</div>
+                  <div class="proto-icon" aria-hidden="true">🔗</div>
                   <div>
-                    <strong>Post a hot sale</strong>
-                    <span>List product, price and quantity in seconds.</span>
+                    <strong>Share farm page</strong>
+                    <span>Drop your link on any social feed and receive orders instantly.</span>
                   </div>
                 </div>
               </div>
@@ -10558,7 +10580,7 @@
               <div class="fut-badge">1</div>
               <div class="fut-card">
                 <span class="fut-when">Next month</span>
-                <strong>Acquire more users from the waiting list and aim to launch the MVP.</strong>
+                <strong>Acquire more users to our waiting list and aim to launch the MVP</strong>
               </div>
             </div>
 
@@ -10574,7 +10596,7 @@
               <div class="fut-badge">1Y</div>
               <div class="fut-card">
                 <span class="fut-when">1 year</span>
-                <strong>Fully integrate into the existing ecosystem in Finland and expand to neighbouring countries.</strong>
+                <strong>Fully integrate into and improve the existing ecosystem in Finland</strong>
               </div>
             </div>
 
@@ -10582,7 +10604,7 @@
               <div class="fut-badge bp">2Y+</div>
               <div class="fut-card">
                 <span class="fut-when">2 years +</span>
-                <strong>Reshape the local food ecosystem into a producer and consumer network across Europe</strong>
+                <strong>Reshape the local food ecosystem, expand into Europe, and integrate our own courier service</strong>
               </div>
             </div>
 
@@ -10717,10 +10739,12 @@
               <!-- Value drivers: the levers that grow both tracks -->
               <div class="bm-drivers">
                 <span class="bm-drivers-title">Value drivers</span>
-                <div class="bm-driver">Registered users</div>
-                <div class="bm-driver">Retention</div>
-                <div class="bm-driver">Average order price</div>
-                <div class="bm-driver">Commission size</div>
+                <div class="bm-drivers-grid">
+                  <div class="bm-driver">Registered users</div>
+                  <div class="bm-driver">Retention</div>
+                  <div class="bm-driver">Average order price</div>
+                  <div class="bm-driver">Commission size</div>
+                </div>
               </div>
             </div>
           </div>
@@ -10745,36 +10769,39 @@
             <div class="team-card tc1">
               <div class="team-avatar">J</div>
               <div class="team-info">
-                <h2>Jiri</h2>
+                <h2>Jiri Wrangell</h2>
                 <div class="team-meta">
-                  <span class="team-degree">B. Sc in Economics and Business Administration</span>
+                  <span class="team-degree">B.Sc in Economics and Business Administration</span>
                   <span class="team-role">Cofounder</span>
                 </div>
-                <div class="team-focus">Business intelligence and generalist</div>
+                <div class="team-focus">Business intelligence, legal and compliance</div>
+                <span class="team-tagline">“The important but boring stuff”</span>
               </div>
             </div>
 
             <div class="team-card tc2">
               <div class="team-avatar">S</div>
               <div class="team-info">
-                <h2>Suresh</h2>
+                <h2>Suresh Lama </h2>
                 <div class="team-meta">
                   <span class="team-degree">M.S in Engineering, Intelligent Systems</span>
                   <span class="team-role">Cofounder</span>
                 </div>
                 <div class="team-focus">Software, AI and product development</div>
+                <span class="team-tagline">“The artist”</span>
               </div>
             </div>
 
             <div class="team-card tc3">
               <div class="team-avatar">J</div>
               <div class="team-info">
-                <h2>Joe</h2>
+                <h2>Johannes Lövdahl </h2>
                 <div class="team-meta">
-                  <span class="team-degree">M. Sc in Economics and Business Administration</span>
+                  <span class="team-degree">M.Sc in Economics and Business Administration</span>
                   <span class="team-role">cofounder</span>
                 </div>
                 <div class="team-focus">Business operations, vision and leadership</div>
+                <span class="team-tagline">“The guy who makes it happen”</span>
               </div>
             </div>
           </div>
