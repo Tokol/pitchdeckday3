@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pitch Deck</title>
+    <title>FRSH Nearby</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css" />
@@ -3659,7 +3659,7 @@
       .prog-stop {
         position: absolute;
         z-index: 5;
-        width: 232px;
+        width: 214px;
         display: grid;
         justify-items: center;
         gap: 12px;
@@ -3685,6 +3685,9 @@
       }
       .s3 .prog-badge {
         animation-delay: 0.8s;
+      }
+      .s4 .prog-badge {
+        animation-delay: 1.2s;
         border-color: var(--orange);
       }
       @keyframes progPop {
@@ -3702,7 +3705,7 @@
         justify-items: center;
         gap: 7px;
         border-radius: 18px;
-        padding: 13px 16px;
+        padding: 13px 14px;
         background: #fff;
         box-shadow: 0 14px 30px rgba(26, 28, 25, 0.1);
         text-align: center;
@@ -3732,8 +3735,19 @@
         top: 386px;
       }
       .s3 {
-        left: 940px;
-        top: 334px;
+        left: 908px;
+        top: 344px;
+      }
+      .s4 {
+        left: 1104px;
+        top: 280px;
+      }
+      .s4 .prog-card {
+        width: 220px;
+      }
+      .s4 .prog-card strong {
+        font-size: 14px;
+        line-height: 1.18;
       }
       .prog-flag {
         position: absolute;
@@ -6559,143 +6573,30 @@
         bottom: 40px;
         z-index: 5;
         display: grid;
-        grid-template-columns: 342px 46px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         grid-template-rows: minmax(0, 1fr) 64px;
         gap: 18px;
         align-items: stretch;
       }
 
-      .bm-source {
+      .bm-tracks {
         grid-column: 1;
         grid-row: 1;
-        display: grid;
-        grid-template-columns: 1fr 48px 1fr;
-        align-items: center;
-        gap: 8px;
         align-self: center;
-        min-height: 258px;
-        border-radius: 8px;
-        padding: 18px;
-        background: rgba(255, 255, 255, 0.72);
-        border: 1px solid rgba(47, 107, 69, 0.16);
-        box-shadow: 0 18px 44px rgba(26, 28, 25, 0.08);
-      }
-      .bm-node {
         display: grid;
-        place-items: center;
-        gap: 10px;
-        min-height: 178px;
-        padding: 18px 12px;
-        text-align: center;
-        border-radius: 8px;
-        border: 1px solid rgba(47, 107, 69, 0.18);
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 14px 30px rgba(26, 28, 25, 0.08);
-      }
-      .bm-node.platform {
-        border-color: rgba(47, 107, 69, 0.34);
-        background: linear-gradient(180deg, #ffffff, #eff9e9);
-      }
-      .bm-node small {
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 950;
-        letter-spacing: 0.07em;
-        text-transform: uppercase;
-      }
-      .bm-node strong {
-        color: var(--ink);
-        font-size: 19px;
-        font-weight: 950;
-        line-height: 1.05;
-      }
-      .bm-node-icon {
-        width: 64px;
-        height: 64px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: var(--pale-green);
-        color: var(--green);
-        box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.8);
-      }
-      .bm-node-icon.logo {
-        border-radius: 8px;
-        background: #ffffff;
-        box-shadow: 0 16px 28px rgba(47, 107, 69, 0.22);
-      }
-      .bm-node-icon.logo img {
-        width: 48px;
-        height: 48px;
-        object-fit: contain;
-      }
-
-      .bm-wire {
-        position: relative;
-        height: 2px;
-        align-self: center;
-        border-radius: 4px;
-        background: rgba(47, 107, 69, 0.32);
-      }
-      .bm-wire::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: -2px;
-        width: 10px;
-        height: 10px;
-        border-top: 2px solid rgba(47, 107, 69, 0.56);
-        border-right: 2px solid rgba(47, 107, 69, 0.56);
-        transform: translateY(-50%) rotate(45deg);
-      }
-      .bm-dot {
-        display: none;
-      }
-
-      .bm-fork {
-        grid-column: 2;
-        grid-row: 1;
-        position: relative;
-        align-self: stretch;
-      }
-      .bm-fork::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 22%;
-        bottom: 22%;
-        width: 2px;
-        background: rgba(47, 107, 69, 0.32);
-        transform: translateX(-50%);
-      }
-      .bm-fork::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: rgba(47, 107, 69, 0.32);
-      }
-
-      .bm-tracks {
-        grid-column: 3;
-        grid-row: 1;
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        gap: 18px;
+        grid-template-rows: auto auto;
+        gap: 16px;
         min-height: 0;
       }
       .bm-track {
         position: relative;
         overflow: hidden;
         display: grid;
-        grid-template-rows: auto 1fr;
-        gap: 18px;
-        min-height: 0;
+        grid-template-rows: auto auto;
+        gap: 14px;
         border-radius: 8px;
         border: 1px solid;
-        padding: 22px 24px;
+        padding: 18px 24px;
         box-shadow: 0 18px 42px rgba(26, 28, 25, 0.1);
       }
       .bm-track.commission {
@@ -6751,11 +6652,36 @@
       }
       .bm-count {
         color: var(--green);
-        font-size: 92px;
+        font-size: 68px;
         font-weight: 950;
         line-height: 0.85;
         letter-spacing: 0;
         white-space: nowrap;
+      }
+      .bm-approx {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 4px;
+      }
+      .bm-tilde {
+        color: var(--green);
+        font-size: 42px;
+        font-weight: 950;
+        line-height: 0.85;
+        opacity: 0.7;
+        transform-origin: 50% 70%;
+        animation: bmTildePulse 2.6s ease-in-out infinite;
+      }
+      @keyframes bmTildePulse {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.55;
+        }
+        50% {
+          transform: translateY(-6px) scale(1.14);
+          opacity: 0.95;
+        }
       }
       .bm-fee {
         text-align: right;
@@ -10095,7 +10021,7 @@
               <div class="p1a p1-farmer" aria-label="Local producer: one euro, fresh, low CO2">
                 <span class="who">🧑‍🌾<span class="pap">🫑</span></span>
                 <span class="p1-badge local">
-                  <span class="price">Local · €1</span>
+                  <span class="price">Local </span>
                   <span class="attrs">Fresh · low CO₂</span>
                 </span>
               </div>
@@ -10355,15 +10281,15 @@
             <h1 class="prog-title">Progress</h1>
 
             <svg class="prog-path" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
-              <path class="prog-done" d="M150,558 C250,542 272,494 320,476 C440,450 540,440 640,416 C758,392 850,386 940,364" />
-              <path class="prog-ahead" d="M940,364 C1030,348 1110,336 1176,322" />
+              <path class="prog-done" d="M150,558 C250,542 272,494 320,476 C440,450 540,440 640,416 C748,394 832,386 908,374 C982,360 1040,338 1104,310" />
+              <path class="prog-ahead" d="M1104,310 C1134,306 1158,302 1176,298" />
             </svg>
 
             <div class="prog-stop s1">
               <div class="prog-badge">20+</div>
               <div class="prog-card">
                 <span class="prog-tag">Outreach</span>
-                <strong>20+ local producers called</strong>
+                <strong>20+ local producers interviewed<br />High consumer interest</strong>
               </div>
             </div>
 
@@ -10371,16 +10297,24 @@
               <div class="prog-badge">✓</div>
               <div class="prog-card">
                 <span class="prog-tag">Planning</span>
-                <strong>Viable business plan created</strong>
+                <strong>Viable business plan and financial estimates approved by VASEK</strong>
               </div>
             </div>
 
             <div class="prog-stop s3">
-              <div class="prog-flag">📍 we're here</div>
-              <div class="prog-badge">€</div>
+              <div class="prog-badge">📄</div>
               <div class="prog-card">
-                <span class="prog-tag">Funding</span>
-                <strong>First funding applications will be turned in this week (Starttiraha)</strong>
+                <span class="prog-tag">Applications</span>
+                <strong>Starttiraha<br />Time 2 Scale</strong>
+              </div>
+            </div>
+
+            <div class="prog-stop s4">
+              <div class="prog-flag">📍 we're here</div>
+              <div class="prog-badge">🧭</div>
+              <div class="prog-card">
+                <span class="prog-tag">Current situation</span>
+                <strong>Incorporation<br />MVP in progress<br />Customer acquisition<br />Network building</strong>
               </div>
             </div>
           </div>
@@ -10734,7 +10668,7 @@
                 </div>
                 <div>
                   <span class="an-num">1.3M</span>
-                  <span class="an-desc">farmers in Europe selling directly to consumer</span>
+                  <span class="an-desc">farmers in Europe selling directly to consumers</span>
                 </div>
               </div>
             </div>
@@ -10751,34 +10685,6 @@
             <h1 class="bm-title">Business model</h1>
 
             <div class="bm-stage">
-              <!-- Source: order flows into the platform -->
-              <div class="bm-source">
-                <div class="bm-node">
-                  <small>Orders</small>
-                  <div class="bm-node-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 4h2l2.3 12.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.2L20.5 8H6" />
-                      <circle cx="9.5" cy="20.5" r="1.3" />
-                      <circle cx="17.5" cy="20.5" r="1.3" />
-                    </svg>
-                  </div>
-                  <strong>Customer buys</strong>
-                </div>
-
-                <div class="bm-wire" aria-hidden="true"></div>
-
-                <div class="bm-node platform">
-                  <small>Platform</small>
-                  <div class="bm-node-icon logo">
-                    <img src="frsh-nearby-logo.svg" alt="FRSH Nearby logo" />
-                  </div>
-                  <strong>FRSH Nearby</strong>
-                </div>
-              </div>
-
-              <!-- Fork: revenue splits into two parallel tracks -->
-              <div class="bm-fork" aria-hidden="true"></div>
-
               <div class="bm-tracks">
                 <div class="bm-track commission" aria-label="Track A: 5 percent flat commission per order">
                   <div class="bm-track-tag">Track A · Commission</div>
@@ -10787,7 +10693,10 @@
                       <small>Primary revenue</small>
                       <span>flat commission, every order</span>
                     </div>
-                    <b class="bm-count" data-count="5" data-suffix="%">5%</b>
+                    <span class="bm-approx">
+                      <span class="bm-tilde" aria-hidden="true">~</span>
+                      <b class="bm-count" data-count="5" data-suffix="%">5%</b>
+                    </span>
                   </div>
                   <div class="bm-track-wire" aria-hidden="true"></div>
                 </div>
@@ -10810,7 +10719,7 @@
                 <span class="bm-drivers-title">Value drivers</span>
                 <div class="bm-driver">Registered users</div>
                 <div class="bm-driver">Retention</div>
-                <div class="bm-driver">Avg order size</div>
+                <div class="bm-driver">Average order price</div>
                 <div class="bm-driver">Commission size</div>
               </div>
             </div>
